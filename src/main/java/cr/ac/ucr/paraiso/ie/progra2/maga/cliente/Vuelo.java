@@ -25,14 +25,11 @@ public class Vuelo {
         try {
             echoSocket = new Socket(inetAddress,9999);
             writer = new PrintWriter(echoSocket.getOutputStream(), true);
-            reader = new BufferedReader(
-                    new InputStreamReader(
-                            echoSocket.getInputStream()));
+            reader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
             String entrada = reader.readLine();
             System.out.println("Servidor: " + entrada);
             String salida;
-            BufferedReader lectorTeclado = new BufferedReader(
-                    new InputStreamReader(System.in));
+            BufferedReader lectorTeclado = new BufferedReader(new InputStreamReader(System.in));
             while((salida = lectorTeclado.readLine()) != null){
                 writer.println(salida);
                 entrada = reader.readLine();
