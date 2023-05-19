@@ -22,6 +22,7 @@ public class MultiServidorHilo extends Thread{
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     this.socket.getInputStream()));
             Vuelo vuelo = new Vuelo();
+            String salida = vuelo.estadoAvion(null);
             writer.println("Cliente conectado con el servidor");
             writer.close();
             reader.close();

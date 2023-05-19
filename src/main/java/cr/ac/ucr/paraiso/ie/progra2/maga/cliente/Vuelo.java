@@ -10,6 +10,12 @@ import java.net.UnknownHostException;
 
 public class Vuelo {
 
+    private static final int EN_ESPERA = 0;
+    private static final int  ATERRIZAR = 1;
+    private static final int PUERTA = 2;
+    private static final int DESPEGAR = 3;
+    private int estado = EN_ESPERA;
+
     public static void main(String[] args) throws UnknownHostException {
         InetAddress inetAddress = InetAddress.getLocalHost();
         Socket echoSocket = null;
@@ -39,6 +45,13 @@ public class Vuelo {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String estadoAvion(String entrada){
+        String salida = null;
+        if(estado == EN_ESPERA)
+            salida = "Avión en espera";
+        return salida;
     }
 
 }
