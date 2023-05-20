@@ -1,4 +1,4 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
+package cr.ac.ucr.paraiso.ie.progra2.maga;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,13 +7,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ServerMain extends Application {
+public class ClienteMain extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ServerMain.class.getResource("servidor.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource("interfaz/cliente.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("cliente");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
