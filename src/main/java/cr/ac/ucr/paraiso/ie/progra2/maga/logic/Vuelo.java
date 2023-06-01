@@ -19,12 +19,12 @@ public class Vuelo {
                     estado = DESPEGAR;
                 }
                 break;
-            case 1: //Aterrizar
+            case 1: //Ir a puerta
                 if(aeropuerto.pistasDisponibles()) { //Si el avión se encuentra en el aire y hay pistas disponibles puede aterrizar.
                     estado = PUERTA;
                 }
                 break;
-            case 2: //Ir a puerta
+            case 2: //En espera
                 if(aeropuerto.puertasDisponibles()) { //Si el avión ya aterrizó y hay puertas disponibles puede despegar ir a puerta.
                     estado = EN_ESPERA;
                 }
