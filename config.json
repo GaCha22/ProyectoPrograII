@@ -1,0 +1,32 @@
+{
+  "pistas":
+  [
+    {
+      "numPista": 1,
+      "disponible": true
+    },
+    {
+      "numPista": 2,
+      "disponible": true
+    }
+  ],
+  "puertas":
+  [
+    {
+      "numPuerta": 1,
+      "disponible": true
+    },
+    {
+      "numPuerta": 2,
+      "disponible": true
+    },
+    {
+      "numPuerta": 3,
+      "disponible": true
+    },
+    {
+      "numPuerta": 4,
+      "disponible": true
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.logic;
 
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 
 public class Vuelo {
@@ -10,7 +11,18 @@ public class Vuelo {
     private final int PUERTA = 2;
     private final int DESPEGAR = 3;
 
-    Aeropuerto aeropuerto = new Aeropuerto();
+    private Aeronave aeronave;
+
+    Aeropuerto aeropuertoOrigen = new Aeropuerto();
+    Aeropuerto aeropuertoDestino = new Aeropuerto();
+
+    public Vuelo(int estado, Aeronave aeronave, Aeropuerto aeropuertoOrigen, Aeropuerto aeropuertoDestino) {
+        this.estado = estado;
+        this.aeronave = aeronave;
+        this.aeropuertoOrigen = aeropuertoOrigen;
+        this.aeropuertoDestino = aeropuertoDestino;
+    }
+
 
     public int estadoAeronave(int estado){
         switch (estado){
@@ -38,4 +50,13 @@ public class Vuelo {
         return estado;
     }
 
+    @Override
+    public String toString() {
+        return "Vuelo{" +
+                "estado=" + estado +
+                ", aeronave=" + aeronave +
+                ", aeropuertoOrigen=" + aeropuertoOrigen +
+                ", aeropuertoDestino=" + aeropuertoDestino +
+                '}';
+    }
 }
