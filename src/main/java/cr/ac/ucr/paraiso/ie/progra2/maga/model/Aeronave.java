@@ -10,7 +10,7 @@ public class Aeronave {
     private final int COMERCIAL = 1;
     private final int CARGA= 2;
     private final int AVIONETA = 3;
-    private int estado = 3;
+    private static int estado = 3;
 
     Vuelo vuelo = new Vuelo();
 
@@ -52,6 +52,10 @@ public class Aeronave {
 
     public void setEstado(){
         this.estado = vuelo.estadoAeronave(estado);
+    }
+
+    public static int getEstado() {
+        return estado;
     }
 
     public void estadoAeronave(){
