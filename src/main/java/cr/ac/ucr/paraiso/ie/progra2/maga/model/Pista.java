@@ -5,7 +5,6 @@ public class Pista {
     private boolean disponible;
     private int numPista;
 
-
     public boolean isDisponible() {
         return disponible;
     }

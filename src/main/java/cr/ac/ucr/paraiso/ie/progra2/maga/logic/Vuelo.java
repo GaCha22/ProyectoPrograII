@@ -9,6 +9,7 @@ public class Vuelo {
     private final int DESPEGAR = 3;
     private int estado = EN_ESPERA;
 
+
     //Método en la cual se le indica al avión que despegue.
     public void despegar (){ //Si el avión se encuentra en tierra puede despegar.
         this.estado = DESPEGAR;

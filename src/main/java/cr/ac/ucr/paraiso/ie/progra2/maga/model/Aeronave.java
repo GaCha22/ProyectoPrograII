@@ -20,9 +20,15 @@ public class Aeronave {
          String tiempoEspera = "Tiempo Espera: ";
 
          switch(this.tipo){
-             case 1: tiempoEspera += " 2min"; break;
-             case 2: tiempoEspera += " 4min"; break;
-             case 3: tiempoEspera += " 1min"; break;
+             case 1:
+                 tiempoEspera += " 2min";
+                 break;
+             case 2:
+                 tiempoEspera += " 4min";
+                 break;
+             case 3:
+                 tiempoEspera += " 1min";
+                 break;
          }
 
          return tiempoEspera;

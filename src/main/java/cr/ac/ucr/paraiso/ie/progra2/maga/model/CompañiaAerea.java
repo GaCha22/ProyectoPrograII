@@ -9,5 +9,4 @@ public class CompañiaAerea {
     private List<Puerta> puertasAlquiladas;
 
 
-
 }
