@@ -7,10 +7,10 @@ public class Aeronave {
     private String tiempoEspera;
 
     private int tipo;
-
     private final static int COMERCIAL = 1;
     private final static int CARGA= 2;
     private final static int AVIONETA = 3;
+    private int estado = 0;
 
     public Aeronave(int tipo) {
         this.tipo = tipo;
@@ -30,9 +30,7 @@ public class Aeronave {
                  tiempoEspera += " 1min";
                  break;
          }
-
          return tiempoEspera;
-
     }
 
     public String getPlaca() {
@@ -43,5 +41,11 @@ public class Aeronave {
         this.placa = placa;
     }
 
+    public int getTipo() {
+        return tipo;
+    }
 
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
 }
