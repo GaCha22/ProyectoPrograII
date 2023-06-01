@@ -21,7 +21,7 @@ public class Aeronave {
     }
 
     public String calcularTiempoEspera(int tipo){
-         String tiempoEspera = "Tiempo Espera: ";
+         tiempoEspera = "Tiempo Espera: ";
          switch(this.tipo){
              case 1:
                  tiempoEspera += " 2min";
