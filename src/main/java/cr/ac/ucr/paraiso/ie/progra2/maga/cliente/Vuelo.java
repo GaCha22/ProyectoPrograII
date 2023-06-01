@@ -8,7 +8,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class Vuelo {
+public class Vuelo extends Thread{
 
     private static final int EN_ESPERA = 0;
     private static final int  ATERRIZAR = 1;
@@ -16,25 +16,20 @@ public class Vuelo {
     private static final int DESPEGAR = 3;
     private int estado = EN_ESPERA;
 
-    public static void main(String[] args) throws UnknownHostException {
-        InetAddress inetAddress = InetAddress.getLocalHost();
+    @Override
+    public void run() {
         Socket echoSocket = null;
         PrintWriter writer = null;
         BufferedReader reader = null;
 
         try {
+            InetAddress inetAddress = InetAddress.getLocalHost();
             echoSocket = new Socket(inetAddress,9999);
             writer = new PrintWriter(echoSocket.getOutputStream(), true);
             reader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
             String entrada = reader.readLine();
             System.out.println("Servidor: " + entrada);
-            String salida;
             BufferedReader lectorTeclado = new BufferedReader(new InputStreamReader(System.in));
-            while((salida = lectorTeclado.readLine()) != null){
-                writer.println(salida);
-                entrada = reader.readLine();
-                System.out.println("Servidor: " + entrada);
-            }//while
             reader.close();
             writer.close();
             lectorTeclado.close();
@@ -42,6 +37,7 @@ public class Vuelo {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public String estadoAvion(String entrada){
