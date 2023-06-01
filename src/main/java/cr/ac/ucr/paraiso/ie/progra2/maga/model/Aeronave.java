@@ -5,13 +5,11 @@ import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Vuelo;
 public class Aeronave {
 
     private String placa;
-
     private String tiempoEspera;
-
     private int tipo;
-    private final static int COMERCIAL = 1;
-    private final static int CARGA= 2;
-    private final static int AVIONETA = 3;
+    private final int COMERCIAL = 1;
+    private final int CARGA= 2;
+    private final int AVIONETA = 3;
     private int estado = 3;
 
     Vuelo vuelo = new Vuelo();
@@ -54,6 +52,10 @@ public class Aeronave {
 
     public void setEstado(){
         this.estado = vuelo.estadoAeronave(estado);
+    }
+
+    public void estadoAeronave(){
+
     }
 
 }
