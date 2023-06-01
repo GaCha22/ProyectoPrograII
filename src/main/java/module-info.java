@@ -1,6 +1,8 @@
 module cr.ac.ucr.paraiso.ie.progra2.gama {
     requires javafx.controls;
     requires javafx.fxml;
+    requires com.fasterxml.jackson.core;
+    requires com.fasterxml.jackson.databind;
 
 
     exports cr.ac.ucr.paraiso.ie.progra2.maga.controller;
