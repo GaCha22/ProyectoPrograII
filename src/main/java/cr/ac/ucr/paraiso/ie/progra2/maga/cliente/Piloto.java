@@ -6,9 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
-public class Vuelo extends Thread{
+public class Piloto extends Thread{
 
     private static final int EN_ESPERA = 0;
     private static final int  ATERRIZAR = 1;
@@ -40,11 +39,5 @@ public class Vuelo extends Thread{
 
     }
 
-    public String estadoAvion(String entrada){
-        String salida = null;
-        if(estado == EN_ESPERA)
-            salida = "Avión en espera";
-        return salida;
-    }
 
 }
