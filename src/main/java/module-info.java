@@ -3,6 +3,8 @@ module cr.ac.ucr.paraiso.ie.progra2.gama {
     requires javafx.fxml;
 
 
-    opens cr.ac.ucr.paraiso.ie.progra2.gama to javafx.fxml;
-    exports cr.ac.ucr.paraiso.ie.progra2.gama;
+    exports cr.ac.ucr.paraiso.ie.progra2.maga.controller;
+    opens cr.ac.ucr.paraiso.ie.progra2.maga.controller to javafx.fxml;
+    exports cr.ac.ucr.paraiso.ie.progra2.maga;
+    opens cr.ac.ucr.paraiso.ie.progra2.maga to javafx.fxml;
 }

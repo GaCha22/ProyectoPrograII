@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                cr.ac.ucr.paraiso.ie.progra2.gama/cr.ac.ucr.paraiso.ie.progra2.gama.HelloApplication
+                                cr.ac.ucr.paraiso.ie.progra2.gama/cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
