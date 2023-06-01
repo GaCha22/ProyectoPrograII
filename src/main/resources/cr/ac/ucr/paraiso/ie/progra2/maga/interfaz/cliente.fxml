@@ -17,18 +17,9 @@
          <children>
             <VBox spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox alignment="CENTER">
+                  <HBox alignment="CENTER_LEFT">
                      <children>
-                        <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                           <children>
-                              <ChoiceBox fx:id="chbTipo" prefWidth="150.0" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#onActionGenerarReporte" text="Generar reporte" />
-                           </children>
-                        </HBox>
+                        <ChoiceBox fx:id="chbTipo" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER">

@@ -22,7 +22,7 @@ public class ServerMain extends Application {
 
     @Override
     public void stop() throws Exception {
-        multiServidor.interrupt();
+        System.exit(0);
     }
 
     public static void main(String[] args) {
