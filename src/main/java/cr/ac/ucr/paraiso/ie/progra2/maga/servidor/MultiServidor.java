@@ -3,10 +3,11 @@ package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class MultiServidor {
-    public static void main(String[] args) {
+public class MultiServidor extends Thread{
+    private boolean escuchando = true;
+    @Override
+    public void run() {
         ServerSocket serverSocket = null;
-        boolean escuchando = true;
 
         try {
             serverSocket = new ServerSocket(9999);
