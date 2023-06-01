@@ -14,22 +14,22 @@ public class Vuelo {
 
     public int estadoAeronave(int estado){
         switch (estado){
-            case 0: //Despegar
+            case 0: //En Espera a Despegar
                 if(aeropuerto.pistasDisponibles()) { //Si el avión se encuentra en tierra y hay pistas disponibles puede despegar.
                     estado = DESPEGAR;
                 }
                 break;
-            case 1: //Ir a puerta
+            case 1: //Aterrizar a Ir a puerta
                 if(aeropuerto.pistasDisponibles()) { //Si el avión se encuentra en el aire y hay pistas disponibles puede aterrizar.
                     estado = PUERTA;
                 }
                 break;
-            case 2: //En espera
+            case 2: //Puerta a En espera
                 if(aeropuerto.puertasDisponibles()) { //Si el avión ya aterrizó y hay puertas disponibles puede despegar ir a puerta.
                     estado = EN_ESPERA;
                 }
                 break;
-            case 3: //Aterrizar
+            case 3: //Despegar a Aterrizar
                 if(aeropuerto.pistasDisponibles()) { //Si el avión se encuentra en el aire y hay pistas disponibles puede aterrizar.
                     estado = ATERRIZAR;
                 }
