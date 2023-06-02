@@ -10,6 +10,11 @@ public class Aeropuerto {
     public Aeropuerto() {
     }
 
+    public Aeropuerto(Pista[] pistas, Puerta[] puertas) {
+        this.pistas = pistas;
+        this.puertas = puertas;
+    }
+
     public boolean pistasDisponibles(){
         boolean despegar = false;
         for(Pista pista : pistas){
