@@ -30,7 +30,11 @@ public class Vuelo {
     }
 
     public void cambiarEstado(){
-        int estadoAeronave = this.aeronave.getEstado();
+        if(aeronave.getEstado() != vueloLogica.estadoAeronave(aeronave.getEstado())){
+            this.enEstado = false;
+        }else{
+            this.enEstado = true;
+        }
     }
 
     public String getIdVuelo() {
