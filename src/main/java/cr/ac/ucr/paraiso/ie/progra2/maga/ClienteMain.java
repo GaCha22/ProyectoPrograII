@@ -9,16 +9,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ClienteMain extends Application {
-    Piloto vuelo = new Piloto();
+    Piloto piloto = new Piloto();
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource("interfaz/cliente.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Cliente");
+        stage.setTitle("cliente");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        vuelo.start();
+        piloto.start();
     }
 
     public static void main(String[] args) {

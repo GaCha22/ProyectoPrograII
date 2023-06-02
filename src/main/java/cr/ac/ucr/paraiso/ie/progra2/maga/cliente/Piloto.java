@@ -8,30 +8,31 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class Piloto extends Thread{
+    private PrintWriter writer;
+    private BufferedReader reader;
+    private String respuesta;
 
     @Override
     public void run() {
-        Socket echoSocket = null;
-        PrintWriter writer = null;
-        BufferedReader reader = null;
 
         try {
             InetAddress inetAddress = InetAddress.getLocalHost();
-            echoSocket = new Socket(inetAddress,9999);
-            writer = new PrintWriter(echoSocket.getOutputStream(), true);
-            reader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
-            String entrada = reader.readLine();
-            System.out.println("Servidor: " + entrada);
+            Socket echoSocket = new Socket(inetAddress, 9999);
+            this.writer = new PrintWriter(echoSocket.getOutputStream(), true);
+            this.reader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+            while (respuesta == null) {
+                respuesta = reader.readLine();
+            }
+            System.out.println("Servidor: " + respuesta);
             BufferedReader lectorTeclado = new BufferedReader(new InputStreamReader(System.in));
-            reader.close();
-            writer.close();
             lectorTeclado.close();
-            echoSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
-
+    public String getRespuesta() {
+        return respuesta;
+    }
 }
