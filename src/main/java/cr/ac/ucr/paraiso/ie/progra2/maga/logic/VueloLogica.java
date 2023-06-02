@@ -1,28 +1,15 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.logic;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 
-public class Vuelo {
+public class VueloLogica {
 
     //Se crean los estados de los aviones.
     private final int EN_ESPERA = 0;
     private final int  ATERRIZAR = 1;
     private final int PUERTA = 2;
     private final int DESPEGAR = 3;
-
-    private Aeronave aeronave;
-
-    Aeropuerto aeropuertoOrigen = new Aeropuerto();
-    Aeropuerto aeropuertoDestino = new Aeropuerto();
-
-    public Vuelo(int estado, Aeronave aeronave, Aeropuerto aeropuertoOrigen, Aeropuerto aeropuertoDestino) {
-        this.estado = estado;
-        this.aeronave = aeronave;
-        this.aeropuertoOrigen = aeropuertoOrigen;
-        this.aeropuertoDestino = aeropuertoDestino;
-    }
-
+    Aeropuerto aeropuerto = new Aeropuerto();
 
     public int estadoAeronave(int estado){
         switch (estado){
@@ -50,13 +37,4 @@ public class Vuelo {
         return estado;
     }
 
-    @Override
-    public String toString() {
-        return "Vuelo{" +
-                "estado=" + estado +
-                ", aeronave=" + aeronave +
-                ", aeropuertoOrigen=" + aeropuertoOrigen +
-                ", aeropuertoDestino=" + aeropuertoDestino +
-                '}';
-    }
 }
