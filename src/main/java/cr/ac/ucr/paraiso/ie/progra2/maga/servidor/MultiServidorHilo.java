@@ -1,7 +1,5 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Vuelo;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

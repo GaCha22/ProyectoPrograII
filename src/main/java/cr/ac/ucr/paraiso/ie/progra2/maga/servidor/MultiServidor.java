@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 public class MultiServidor extends Thread{
-    boolean escuchando = true;
+    private boolean escuchando = true;
     @Override
     public void run() {
         ServerSocket serverSocket = null;
@@ -18,10 +18,5 @@ public class MultiServidor extends Thread{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public void interrupt() {
-        escuchando = false;
     }
 }
