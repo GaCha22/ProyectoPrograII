@@ -25,6 +25,16 @@ public class Aeropuerto {
         return despegar;
     }
 
+    public boolean puertasDisponibles(){
+        boolean puertaDisponible = false;
+        for(Puerta puerta : puertas){
+            if(puerta.isDisponible()){
+                puertaDisponible = true;
+            }
+        }
+        return puertaDisponible;
+    }
+
     public Pista[] getPistas() {
         return pistas;
     }
@@ -39,16 +49,6 @@ public class Aeropuerto {
 
     public void setPuertas(Puerta[] puertas) {
         this.puertas = puertas;
-    }
-
-    public boolean puertasDisponibles(){
-        boolean puertaDisponible = false;
-        for(Puerta puerta : puertas){
-            if(puerta.isDisponible()){
-                puertaDisponible = true;
-            }
-        }
-        return puertaDisponible;
     }
 
 }

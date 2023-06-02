@@ -15,8 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class GestionaArchivo {
-    private Pista[] pistas;
-    private Puerta[] puertas;
+
     public String leerArchivo(String path) {
         Gson gson = new Gson();
         String archivo;
@@ -26,9 +25,8 @@ public class GestionaArchivo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         archivo = aeropuerto.toString();
-        return "";
+        return archivo;
     }
 
     public String generarReporteVuelos() {
@@ -55,18 +53,10 @@ public class GestionaArchivo {
         String path = "reportes.json";
 
         try (FileWriter fileWriter = new FileWriter(path)) {
-            String json = gson.toJson(vuelo); // convierte objeto Java en cadena JSON
+            String json = gson.toJson(vuelo); //convierte objeto Java en cadena JSON
             fileWriter.write(json);
         } catch (IOException e) {
             throw new RuntimeException("Error al escribir el vuelo en el archivo: " + e.getMessage(), e);
         }
-    }
-
-    public Pista[] getPistas() {
-        return pistas;
-    }
-
-    public Puerta[] getPuertas() {
-        return puertas;
     }
 }
