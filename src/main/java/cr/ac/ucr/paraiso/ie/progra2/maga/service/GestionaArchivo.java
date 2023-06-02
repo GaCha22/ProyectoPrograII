@@ -1,7 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.service;
 
 import com.google.gson.GsonBuilder;
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Pista;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Puerta;
 import com.google.gson.Gson;
@@ -44,20 +44,20 @@ public class GestionaArchivo {
         }
 
         Gson gson = new GsonBuilder().create();
-        Vuelo[] vuelos = gson.fromJson(jsonString, Vuelo[].class);
+        VueloLogica[] vueloLogicas = gson.fromJson(jsonString, VueloLogica[].class);
 
-        for (Vuelo vuelo : vuelos) {
-            salida += "\n" + vuelo.toString();
+        for (VueloLogica vueloLogica : vueloLogicas) {
+            salida += "\n" + vueloLogica.toString();
         }
         return salida;
     }
 
-    public void escribirVuelo(Vuelo vuelo) {
+    public void escribirVuelo(VueloLogica vueloLogica) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String path = "reportes.json";
 
         try (FileWriter fileWriter = new FileWriter(path)) {
-            String json = gson.toJson(vuelo); // convierte objeto Java en cadena JSON
+            String json = gson.toJson(vueloLogica); // convierte objeto Java en cadena JSON
             fileWriter.write(json);
         } catch (IOException e) {
             throw new RuntimeException("Error al escribir el vuelo en el archivo: " + e.getMessage(), e);
