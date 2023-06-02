@@ -1,54 +1,66 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.service;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import java.io.File;
-import java.io.FileNotFoundException;
+import com.google.gson.GsonBuilder;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Pista;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Puerta;
+import com.google.gson.Gson;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-
-//https://github.com/fangyidong/json-simple , usar esta libreria?
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class GestionaArchivo {
-
-        public void leerArchivo()
-        {
-            JSONParser parser = new JSONParser();
-            FileReader fileReader;
-            try {
-                File file = new File("config.json");
-                fileReader = new FileReader(file);
-
-                JSONArray array = (JSONArray) parser.parse(fileReader);
-
-
-                for(int i=0;i<array.size();i++)
-                {
-                    JSONObject obj =  (JSONObject)array.get(i);
-                    parseObject(obj);
-                }
-
-            }
-
-            catch(FileNotFoundException e)
-            {
-                System.out.println(e.getStackTrace()+ " :File Not Found");
-            }
-            catch(ParseException e)
-            {
-                System.out.println(e.getStackTrace()+ " :Could not parse");
-            }
-            catch(IOException e)
-            {
-                System.out.println(e.getStackTrace()+ " :IOException");
-            }
+    private Pista[] pistas;
+    private Puerta[] puertas;
+    public void leerArchivoConfig() {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader("config.json")) {
+            GestionaArchivo archivo = gson.fromJson(reader, GestionaArchivo.class);
+            this.pistas = archivo.getPistas();
+            this.puertas = archivo.getPuertas();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-    private void parseObject(JSONObject obj) {
-        JSONArray pistas= (JSONArray) obj.get("pistas");
-        JSONArray puertas = (JSONArray) obj.get("puertas");
     }
 
+    public Pista[] getPistas() {
+        return pistas;
+    }
+
+    public Puerta[] getPuertas() {
+        return puertas;
+    }
+
+    public String generarReporteVuelos() {
+        String jsonString;
+        String salida = "";
+        String path = "reportes.json";
+        try {
+            jsonString = new String(Files.readAllBytes(Paths.get(path)));
+        } catch (IOException e) {
+            throw new RuntimeException("Error al leer el archivo: " + e.getMessage(), e);
+        }
+
+        Gson gson = new GsonBuilder().create();
+        Vuelo[] vuelos = gson.fromJson(jsonString, Vuelo[].class);
+
+        for (Vuelo vuelo : vuelos) {
+            salida += "\n" + vuelo.toString();
+        }
+        return salida;
+    }
+
+    public void escribirVuelo(Vuelo vuelo) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String path = "reportes.json";
+
+        try (FileWriter fileWriter = new FileWriter(path)) {
+            String json = gson.toJson(vuelo); // convierte objeto Java en cadena JSON
+            fileWriter.write(json);
+        } catch (IOException e) {
+            throw new RuntimeException("Error al escribir el vuelo en el archivo: " + e.getMessage(), e);
+        }
+    }
 }

@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Aeropuerto {
 
-    private List<Pista> pistas;
-    private List<Puerta> puertas;
+    private Pista[] pistas;
+    private Puerta[] puertas;
 
     public Aeropuerto() {
     }
@@ -20,19 +20,19 @@ public class Aeropuerto {
         return despegar;
     }
 
-    public List<Pista> getPistas() {
+    public Pista[] getPistas() {
         return pistas;
     }
 
-    public void setPistas(List<Pista> pistas) {
+    public void setPistas(Pista[] pistas) {
         this.pistas = pistas;
     }
 
-    public List<Puerta> getPuertas() {
+    public Puerta[] getPuertas() {
         return puertas;
     }
 
-    public void setPuertas(List<Puerta> puertas) {
+    public void setPuertas(Puerta[] puertas) {
         this.puertas = puertas;
     }
 
