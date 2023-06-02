@@ -53,7 +53,7 @@ public class GestionaArchivo {
         String path = "reportes.json";
 
         try (FileWriter fileWriter = new FileWriter(path)) {
-            String json = gson.toJson(vuelo); // convierte objeto Java en cadena JSON
+            String json = gson.toJson(vuelo); //convierte objeto Java en cadena JSON
             fileWriter.write(json);
         } catch (IOException e) {
             throw new RuntimeException("Error al escribir el vuelo en el archivo: " + e.getMessage(), e);
