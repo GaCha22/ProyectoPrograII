@@ -1,18 +1,21 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Aeropuerto {
 
     private Pista[] pistas;
     private Puerta[] puertas;
+    private int numPistas;
+    private int numPuertas;
 
     public Aeropuerto() {
     }
 
-    public Aeropuerto(Pista[] pistas, Puerta[] puertas) {
-        this.pistas = pistas;
-        this.puertas = puertas;
+    public Aeropuerto(int numPistas, int numPuertas) {
+        this.numPistas = numPistas;
+        this.numPuertas = numPuertas;
     }
 
     public boolean pistasDisponibles(){
@@ -51,4 +54,11 @@ public class Aeropuerto {
         return puertaDisponible;
     }
 
+    @Override
+    public String toString() {
+        return "Aeropuerto{" +
+                "pistas=" + Arrays.toString(pistas) +
+                ", puertas=" + Arrays.toString(puertas) +
+                '}';
+    }
 }
