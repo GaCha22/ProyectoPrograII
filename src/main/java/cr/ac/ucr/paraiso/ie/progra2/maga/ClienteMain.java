@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ClienteMain extends Application {
-    Piloto piloto = new Piloto();
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource("interfaz/cliente.fxml"));
@@ -18,7 +17,6 @@ public class ClienteMain extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        piloto.start();
     }
 
     public static void main(String[] args) {

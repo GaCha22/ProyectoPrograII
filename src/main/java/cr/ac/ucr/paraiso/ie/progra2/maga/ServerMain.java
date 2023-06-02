@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ServerMain extends Application {
-    MultiServidor multiServidor = new MultiServidor();
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ServerMain.class.getResource("interfaz/servidor.fxml"));
@@ -20,7 +19,6 @@ public class ServerMain extends Application {
         stage.setTitle("Controlador Aereo");
         stage.setScene(scene);
         stage.show();
-        multiServidor.start();
     }
 
     @Override
