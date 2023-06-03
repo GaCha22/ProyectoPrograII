@@ -25,7 +25,7 @@ public class ClienteController {
     @FXML
     private Button btnIrAPuerta;
     private Piloto piloto;
-    private Vuelo vuelo;
+    //private Vuelo vuelo;
 
 
     @FXML
@@ -41,8 +41,9 @@ public class ClienteController {
         btnIrAPuerta.setDisable(true);
     }
 
-    //¡Importante!
-    //Aarón: Deshabilité vuelo.cambiarEstado() porque aún no tiene valores, por lo que tira un error.
+    //¡Importante! Nota para mí xd
+    //Deshabilitar vuelo.cambiarEstado() porque aún no tiene valores, tira un error.
+    //Solucionar cosas con el constructor de Vuelo.
     @FXML
     void onActionDespegar(ActionEvent e) {
         //vuelo.cambiarEstado();
