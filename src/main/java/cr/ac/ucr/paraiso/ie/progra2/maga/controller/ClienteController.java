@@ -38,6 +38,7 @@ public class ClienteController {
         String respuesta = piloto.getRespuesta();
         txtaDatos.setText(respuesta);
         btnDespegar.setDisable(true);
+        btnIrAPuerta.setDisable(true);
     }
 
     //¡Importante!
