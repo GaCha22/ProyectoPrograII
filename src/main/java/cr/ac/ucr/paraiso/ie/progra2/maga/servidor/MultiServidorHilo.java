@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class MultiServidorHilo extends Thread{
+public class  MultiServidorHilo extends Thread{
     private Socket socket;
     public MultiServidorHilo(Socket socket) {
         super("MultiServidorHilo");
