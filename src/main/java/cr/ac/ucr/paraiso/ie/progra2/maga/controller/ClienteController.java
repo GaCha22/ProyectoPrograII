@@ -46,17 +46,21 @@ public class ClienteController {
     void onActionDespegar(ActionEvent e) {
         //vuelo.cambiarEstado();
         btnIrAPuerta.setDisable(true);
+        btnAterrizar.setDisable(false);
+        btnDespegar.setDisable(true);
     }
 
     @FXML
     void onActionAterrizar(ActionEvent e) {
         btnIrAPuerta.setDisable(false);
+        btnAterrizar.setDisable(true);
         //vuelo.cambiarEstado();
     }
 
     @FXML
     void onActionIrAPuerta(ActionEvent e) {
         btnDespegar.setDisable(false);
+        btnIrAPuerta.setDisable(true);
         //vuelo.cambiarEstado();
     }
 
