@@ -1,30 +1,58 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 
-public class  MultiServidorHilo extends Thread{
+import java.io.*;
+import java.net.Socket;
+import java.util.Queue;
+
+public class  MultiServidorHilo implements Runnable {
     private Socket socket;
+    BufferedReader reader;
+    BufferedWriter writer;
+
     public MultiServidorHilo(Socket socket) {
-        super("MultiServidorHilo");
         this.socket = socket;
+        try {
+            reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+            writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
+        } catch (IOException e) {
+            closeResources(socket, writer, reader);
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void run() {
         try {
-            PrintWriter writer = new PrintWriter(this.socket.getOutputStream(), true);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-            writer.println("Cliente conectado con el servidor");
-            writer.close();
-            reader.close();
-            this.socket.close();
+            writer.write("Cliente conectado con el servidor");
+            while (socket.isConnected()){
+                String peticion = reader.readLine();
+            }
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
         }
+    }
+
+    public void agregarPetición(Queue<Vuelo> vuelos){
+
+    }
+
+    private void closeResources(Socket socket, BufferedWriter bufferedWriter, BufferedReader bufferedReader){
+        try {
+            if (socket != null) {
+                socket.close();
+            }
+            if (bufferedReader != null){
+                bufferedReader.close();
+            }
+            if (bufferedWriter != null){
+                bufferedWriter.close();
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 }
