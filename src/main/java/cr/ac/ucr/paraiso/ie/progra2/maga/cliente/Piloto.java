@@ -29,7 +29,6 @@ public class Piloto extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public String getRespuesta() {
