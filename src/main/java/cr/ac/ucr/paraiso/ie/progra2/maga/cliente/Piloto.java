@@ -1,6 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.cliente;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocol;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 import javafx.scene.control.TextArea;
@@ -17,6 +18,7 @@ public class Piloto{
     private Socket echoSocket;
 
     Protocol protocol = new Protocol();
+
     public Piloto(int puerto) {
         this.puerto = puerto;
         try {
@@ -54,11 +56,14 @@ public class Piloto{
                 while (echoSocket.isConnected()){
                     try {
                         String respuesta = reader.readLine();
+                        protocol.gestionarEstado(3); // los aviones inician estando en el aire
                     }catch (IOException e){
                         e.printStackTrace();
                         System.out.println("Error recibiendo el mensaje del servidor");
                         closeResources(echoSocket, reader, writer);
                         break;
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }
