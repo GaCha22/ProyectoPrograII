@@ -1,37 +1,34 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.model;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 
 public class Aeronave {
 
     private String placa;
-    private String tiempoEspera;
+    private int tiempoEspera;
     private int tipo;
     private final int COMERCIAL = 1;
     private final int CARGA= 2;
     private final int AVIONETA = 3;
     private int estado = 3;
-
-    Vuelo vuelo = new Vuelo();
+    private Vuelo vuelo;
 
     public Aeronave(int tipo) {
         this.tipo = tipo;
+        this.tiempoEspera = calcularTiempoEspera();
     }
 
-    public String calcularTiempoEspera(int tipo){
-         tiempoEspera = "Tiempo Espera: ";
+    public int calcularTiempoEspera(){
          switch(this.tipo){
-             case 1:
-                 tiempoEspera += " 2min";
-                 break;
-             case 2:
-                 tiempoEspera += " 4min";
-                 break;
-             case 3:
-                 tiempoEspera += " 1min";
-                 break;
+             case COMERCIAL:
+                 return  2;
+             case CARGA:
+                 return 4;
+             case AVIONETA:
+                 return  1;
+             default: //si no tiene un tipo definido
+                 return 0;
          }
-         return tiempoEspera;
     }
 
     public String getPlaca() {
@@ -54,8 +51,5 @@ public class Aeronave {
         return this.estado;
     }
 
-    public void estadoAeronave(int estadoAvion){
-        this.estado = vuelo.estadoAeronave(estadoAvion);
-    }
 
 }
