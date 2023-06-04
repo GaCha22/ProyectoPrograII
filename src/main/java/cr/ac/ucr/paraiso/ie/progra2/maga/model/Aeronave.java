@@ -18,6 +18,11 @@ public class Aeronave {
         this.tiempoEspera = calcularTiempoEspera();
     }
 
+    public Aeronave(String placa, int tipo) {
+        this.placa = placa;
+        this.tipo = tipo;
+    }
+
     public int calcularTiempoEspera(){
          switch(this.tipo){
              case COMERCIAL:
