@@ -3,20 +3,25 @@ package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class MultiServidor extends Thread{
-    private boolean escuchando = true;
-    @Override
-    public void run() {
-        ServerSocket serverSocket = null;
-
+public class MultiServidor{
+    ServerSocket serverSocket;
+    public MultiServidor(int socket){
         try {
-            serverSocket = new ServerSocket(9999);
+            serverSocket = new ServerSocket(socket);
             System.out.println("Servidor activo: " + serverSocket.getLocalPort());
-            while(escuchando){
-                new MultiServidorHilo(serverSocket.accept()).start();
-            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    public void startServer() {
+            while(!serverSocket.isClosed()){
+                try {
+                    new Thread(new MultiServidorHilo(serverSocket.accept())).start();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
     }
 }
