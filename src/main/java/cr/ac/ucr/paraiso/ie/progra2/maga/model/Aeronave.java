@@ -26,11 +26,11 @@ public class Aeronave {
     public int calcularTiempoEspera(){
          switch(this.tipo){
              case COMERCIAL:
-                 return  2;
+                 return  120000;
              case CARGA:
-                 return 4;
+                 return 240000;
              case AVIONETA:
-                 return  1;
+                 return  60000;
              default: //si no tiene un tipo definido
                  return 0;
          }

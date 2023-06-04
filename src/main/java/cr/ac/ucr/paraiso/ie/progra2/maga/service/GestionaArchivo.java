@@ -19,6 +19,11 @@ import java.nio.file.Paths;
 
 public class GestionaArchivo {
 
+    private Pista[] pistas;
+    private Puerta[] puertas;
+
+    public String leerArchivo(String path) {
+
     public String leerArchivo(String path) {
         Gson gson = new Gson();
         String archivo;
@@ -33,15 +38,30 @@ public class GestionaArchivo {
     }
 
   /*  public void leerArchivoConfig() {
+
         Gson gson = new Gson();
-        try (FileReader reader = new FileReader("config.json")) {
-            GestionaArchivo archivo = gson.fromJson(reader, GestionaArchivo.class);
-            this.pistas = archivo.getPistas();
-            this.puertas = archivo.getPuertas();
+        String archivo = "";
+        Aeropuerto aeropuerto = null;
+        try (FileReader reader = new FileReader(path)) {
+            archivo = gson.toJson(reader, Aeropuerto.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        archivo = aeropuerto.toString();
+        return archivo;
+    }
+
+    public Pista[] getPistas() {
+        return pistas;
+    }
+
+    public Puerta[] getPuertas() {
+        return puertas;
+    }
+
     } */
+
 
     public String generarReporteVuelos() {
         String jsonString;

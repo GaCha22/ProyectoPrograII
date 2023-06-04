@@ -38,6 +38,7 @@ public class Aeropuerto {
         }
         return puertaDisponible;
     }
+
     public Pista[] getPistas() {
         return pistas;
     }
@@ -55,6 +56,7 @@ public class Aeropuerto {
     }
 
 
+
     @Override
     public String toString() {
         return "Aeropuerto{" +
@@ -62,5 +64,6 @@ public class Aeropuerto {
                 ", puertas=" + Arrays.toString(puertas) +
                 '}';
     }
+
 
 }
