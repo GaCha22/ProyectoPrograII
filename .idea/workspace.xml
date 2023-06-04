@@ -4,9 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4d4ec7d-9daf-4447-90e2-27b1df8e2055" name="Changes" comment="Funcionalidad botones">
+
+    <list default="true" id="d4d4ec7d-9daf-4447-90e2-27b1df8e2055" name="Changes" comment="Cambios varios">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cr/ac/ucr/paraiso/ie/progra2/maga/interfaz/clienteHome.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/cliente/Piloto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/cliente/Piloto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeronave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeronave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/service/GestionaArchivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/service/GestionaArchivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidorHilo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidorHilo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cr/ac/ucr/paraiso/ie/progra2/maga/interfaz/cliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cr/ac/ucr/paraiso/ie/progra2/maga/interfaz/cliente.fxml" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/src/test/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +29,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -50,12 +65,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev__C22202&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -68,6 +87,8 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+
+
   <component name="RunManager" selected="Application.ClienteMain">
     <configuration name="ClienteMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain" />
@@ -96,16 +117,23 @@
       </method>
     </configuration>
     <configuration name="Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
       <module name="Maga" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Test" />
       <option name="TEST_OBJECT" value="class" />
+
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+
+        <item itemvalue="Application.ClienteMain" />
+        <item itemvalue="Application.ServerMain" />
+        <item itemvalue="JUnit.Test" />
+
         <item itemvalue="Application.ClienteMain" />
         <item itemvalue="Application.ServerMain" />
         <item itemvalue="JUnit.Test" />
@@ -124,6 +152,10 @@
       <workItem from="1685643889980" duration="489000" />
       <workItem from="1685644401832" duration="1191000" />
       <workItem from="1685663277150" duration="8248000" />
+
+      <workItem from="1685681223300" duration="5783000" />
+      <workItem from="1685690465140" duration="565000" />
+      <workItem from="1685727303878" duration="3649000" />
     </task>
     <task id="LOCAL-00001" summary="Commit">
       <created>1685686382560</created>
@@ -132,42 +164,17 @@
       <option name="project" value="LOCAL" />
       <updated>1685686382560</updated>
     </task>
-    <task id="LOCAL-00002" summary="Correción Json">
-      <created>1685748259387</created>
+
+    <task id="LOCAL-00002" summary="Cambios varios">
+      <created>1685684099448</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1685748259387</updated>
+      <updated>1685684099448</updated>
     </task>
-    <task id="LOCAL-00003" summary="Correción Json">
-      <created>1685809254186</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1685809254186</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Funcionalidad botones">
-      <created>1685811595777</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1685811595777</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Funcionalidad botones">
-      <created>1685811702336</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1685811702336</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Funcionalidad botones">
-      <created>1685812225685</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1685812225685</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="3" />
+
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,9 +192,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+
     <MESSAGE value="Commit" />
-    <MESSAGE value="Correción Json" />
-    <MESSAGE value="Funcionalidad botones" />
-    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad botones" />
+
+    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+
+
   </component>
 </project>

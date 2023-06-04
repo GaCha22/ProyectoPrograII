@@ -1,8 +1,9 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
+
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,8 +16,6 @@ public class ClienteController {
 
 
     @FXML
-    private ChoiceBox<String> chbTipo;
-    @FXML
     private TextArea txtaDatos;
     @FXML
     private Button btnDespegar;
@@ -25,6 +24,7 @@ public class ClienteController {
     @FXML
     private Button btnIrAPuerta;
     private Piloto piloto;
+
     //private Vuelo vuelo;
 
 
@@ -64,6 +64,19 @@ public class ClienteController {
         btnDespegar.setDisable(false);
         btnIrAPuerta.setDisable(true);
         //vuelo.cambiarEstado();
+
+    private Aeronave aeronave;
+
+    @FXML
+    void initialize(){
+        piloto = new Piloto(9999);
+        piloto.start(txtaDatos);
+    }
+
+    @FXML
+    void onActionGenerarReporte(ActionEvent event) {
+
+
     }
 
 }
