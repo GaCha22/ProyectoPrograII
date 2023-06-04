@@ -27,6 +27,7 @@ public class ClienteController {
 
     @FXML
     void onActionGenerarReporte(ActionEvent event) {
+
     }
 
 }

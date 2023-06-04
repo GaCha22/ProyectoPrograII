@@ -17,6 +17,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidorHilo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidorHilo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/cr/ac/ucr/paraiso/ie/progra2/maga/interfaz/cliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cr/ac/ucr/paraiso/ie/progra2/maga/interfaz/cliente.fxml" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/test/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +28,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
         <option value="FxmlFile" />
       </list>
@@ -62,6 +64,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -112,16 +115,21 @@
       </method>
     </configuration>
     <configuration name="Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
       <module name="Maga" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Test" />
       <option name="TEST_OBJECT" value="class" />
+
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ClienteMain" />
+        <item itemvalue="Application.ServerMain" />
+        <item itemvalue="JUnit.Test" />
         <item itemvalue="Application.ClienteMain" />
         <item itemvalue="Application.ServerMain" />
       </list>
@@ -139,6 +147,7 @@
       <workItem from="1685643889980" duration="489000" />
       <workItem from="1685644401832" duration="1191000" />
       <workItem from="1685663277150" duration="8248000" />
+
       <workItem from="1685681223300" duration="5783000" />
       <workItem from="1685690465140" duration="565000" />
       <workItem from="1685727303878" duration="3649000" />
@@ -158,6 +167,7 @@
       <updated>1685684099448</updated>
     </task>
     <option name="localTasksCounter" value="3" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,7 +185,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+
     <MESSAGE value="Commit" />
     <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+
   </component>
 </project>
