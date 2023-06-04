@@ -2,6 +2,7 @@ package cr.ac.ucr.paraiso.ie.progra2.maga.service;
 
 import com.google.gson.GsonBuilder;
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Pista;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Puerta;
 import com.google.gson.Gson;
@@ -14,15 +15,18 @@ import java.nio.file.Paths;
 public class GestionaArchivo {
     private Pista[] pistas;
     private Puerta[] puertas;
-    public void leerArchivoConfig() {
+
+    public String leerArchivo(String path) {
         Gson gson = new Gson();
-        try (FileReader reader = new FileReader("config.json")) {
-            GestionaArchivo archivo = gson.fromJson(reader, GestionaArchivo.class);
-            this.pistas = archivo.getPistas();
-            this.puertas = archivo.getPuertas();
+        String archivo = "";
+        Aeropuerto aeropuerto = null;
+        try (FileReader reader = new FileReader(path)) {
+            archivo = gson.toJson(reader, Aeropuerto.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        archivo = aeropuerto.toString();
+        return archivo;
     }
 
     public Pista[] getPistas() {

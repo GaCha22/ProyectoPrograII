@@ -13,13 +13,15 @@ public class ServidorController {
         multiServidor = new MultiServidor();
         multiServidor.start();
     }
-
-    public void onActionPonerEnEspera(ActionEvent a) {
+    @FXML
+    void onActionPonerEnEspera(ActionEvent a) {
     }
 
-    public void onActionAceptarSolicitud(ActionEvent a) {
+    @FXML
+    void onActionAceptarSolicitud(ActionEvent a) {
     }
 
-    public void onActionGenerarReporte(ActionEvent a) {
+    @FXML
+    void onActionGenerarReporte(ActionEvent a) {
     }
 }
