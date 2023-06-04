@@ -16,7 +16,9 @@ public class ClienteMain extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("cliente");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
+        piloto.start();
     }
 
     public static void main(String[] args) {

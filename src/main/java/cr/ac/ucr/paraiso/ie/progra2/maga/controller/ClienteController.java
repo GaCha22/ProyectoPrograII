@@ -26,6 +26,7 @@ public class ClienteController {
 
     @FXML
     void initialize(){
+        piloto = new Piloto();
         piloto.start();
         ObservableList<String> items = FXCollections.observableArrayList("Avioneta", "Avión comercial", "Avión de carga");
         chbTipo.setItems(items);
