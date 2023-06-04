@@ -2,9 +2,9 @@ package cr.ac.ucr.paraiso.ie.progra2.maga.model;
 
 public class Puerta {
 
-    private int numPuerta;
+    public int numPuerta;
 
-    private boolean disponible;
+    public boolean disponible;
 
     public Puerta() {
     }

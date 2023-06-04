@@ -2,8 +2,8 @@ package cr.ac.ucr.paraiso.ie.progra2.maga.model;
 
 public class Pista {
 
-    private boolean disponible;
-    private int numPista;
+    public boolean disponible;
+    public int numPista;
 
     public boolean isDisponible() {
         return disponible;

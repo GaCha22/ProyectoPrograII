@@ -11,6 +11,8 @@ public class VueloLogica {
     private final int DESPEGAR = 3;
     Aeropuerto aeropuerto = new Aeropuerto();
 
+    //vuelo logica me parece que deberia llevar dos aeropuertos tambien
+    //ponerlos como gerundios los estados
     public int estadoAeronave(int estado){
         switch (estado){
             case 0: //En Espera a Despegar

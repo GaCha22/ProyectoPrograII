@@ -1,5 +1,6 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;

@@ -37,7 +37,6 @@ public class Aeropuerto {
         }
         return puertaDisponible;
     }
-
     public Pista[] getPistas() {
         return pistas;
     }
@@ -54,15 +53,6 @@ public class Aeropuerto {
         this.puertas = puertas;
     }
 
-    public boolean puertasDisponibles(){
-        boolean puertaDisponible = false;
-        for(Puerta puerta : puertas){
-            if(puerta.isDisponible()){
-                puertaDisponible = true;
-            }
-        }
-        return puertaDisponible;
-    }
 
     @Override
     public String toString() {

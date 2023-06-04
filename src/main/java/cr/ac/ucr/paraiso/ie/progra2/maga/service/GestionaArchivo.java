@@ -5,8 +5,11 @@ import com.google.gson.GsonBuilder;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.*;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Pista;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Puerta;
 import com.google.gson.Gson;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,17 +21,27 @@ public class GestionaArchivo {
 
     public String leerArchivo(String path) {
         Gson gson = new Gson();
-        String archivo = "";
+        String archivo;
         Aeropuerto aeropuerto = null;
         try (FileReader reader = new FileReader(path)) {
-             archivo = gson.toJson(reader, Aeropuerto.class);
+             aeropuerto = gson.fromJson(reader, Aeropuerto.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         archivo = aeropuerto.toString();
         return archivo;
     }
+
+  /*  public void leerArchivoConfig() {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader("config.json")) {
+            GestionaArchivo archivo = gson.fromJson(reader, GestionaArchivo.class);
+            this.pistas = archivo.getPistas();
+            this.puertas = archivo.getPuertas();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    } */
 
     public String generarReporteVuelos() {
         String jsonString;
@@ -49,7 +62,7 @@ public class GestionaArchivo {
         return salida;
     }
 
-    public void escribirVuelo(Aeronave aeronave) {
+    public void escribirVuelo(Vuelo vuelo) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String path = "reportes.json";
 
