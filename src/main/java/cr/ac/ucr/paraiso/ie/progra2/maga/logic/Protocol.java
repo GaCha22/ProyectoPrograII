@@ -23,13 +23,11 @@ public class Protocol {
             switch (estado){
                 case 0: despegar(); break;
                 case 1: puerta(); break;
-                case 2: wait(aeronave.calcularTiempoEspera());
+                case 2: vueloLogica.estadoAeronave(estadoAeronave);
                 case 3: aterrizar(); break;
             }
 
-
     }
-
     public void despegar() throws InterruptedException {
     if(aeropuerto.pistasDisponibles())
        vueloLogica.estadoAeronave(estadoAeronave);
@@ -45,7 +43,6 @@ public class Protocol {
         else{
             wait(aeronave.calcularTiempoEspera());
         }
-
 
     }
 
