@@ -51,5 +51,4 @@ public class Aeronave {
         return this.estado;
     }
 
-
 }

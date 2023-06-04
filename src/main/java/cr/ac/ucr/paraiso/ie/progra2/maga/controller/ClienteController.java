@@ -1,14 +1,13 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocol;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 public class ClienteController {
@@ -23,10 +22,10 @@ public class ClienteController {
     @FXML
     private Button btnIrAPuerta;
     private Piloto piloto;
+    Protocol protocol = new Protocol();
 
     @FXML
     void initialize(){
-        piloto = new Piloto();
         piloto.start();
         ObservableList<String> items = FXCollections.observableArrayList("Avioneta", "Avión comercial", "Avión de carga");
         chbTipo.setItems(items);
@@ -36,20 +35,23 @@ public class ClienteController {
     }
 
     @FXML
-    void onActionIrAPuerta(ActionEvent a) {
+    void onActionIrAPuerta(ActionEvent a) throws InterruptedException {
         btnAterrizar.setDisable(true);
         btnDespegar.setDisable(false);
+        protocol.IrAPuerta();
     }
 
     @FXML
-    void onActionAterrizar(ActionEvent a) {
+    void onActionAterrizar(ActionEvent a) throws InterruptedException {
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(false);
+        protocol.aterrizar();
     }
 
     @FXML
-    void onActionDespegar(ActionEvent a) {
+    void onActionDespegar(ActionEvent a) throws InterruptedException {
         btnIrAPuerta.setDisable(true);
         btnAterrizar.setDisable(false);
+        protocol.despegar();
     }
 }
