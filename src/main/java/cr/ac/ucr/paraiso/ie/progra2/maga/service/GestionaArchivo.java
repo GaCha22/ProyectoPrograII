@@ -1,6 +1,9 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.service;
 
 import com.google.gson.GsonBuilder;
+
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
+
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.*;
 import com.google.gson.Gson;

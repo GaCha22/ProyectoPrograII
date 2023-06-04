@@ -13,6 +13,7 @@ public class Vuelo {
     private Aeropuerto aeropuertoDestino;
     private CompaniaAerea companiaAerea;
     private boolean enEstado; //true si está Autorizado y false si está en espera
+    private int estadoAvion;
     private LocalTime horaSalida;
     private LocalTime horaLlegada;
     private VueloLogica vueloLogica;
@@ -83,6 +84,14 @@ public class Vuelo {
 
     public void setEnEstado(boolean enEstado) {
         this.enEstado = enEstado;
+    }
+
+    public int getEstadoAvion() {
+        return estadoAvion;
+    }
+
+    public void setEstadoAvion(int estadoAvion) {
+        this.estadoAvion = estadoAvion;
     }
 
     public LocalTime getHoraSalida() {

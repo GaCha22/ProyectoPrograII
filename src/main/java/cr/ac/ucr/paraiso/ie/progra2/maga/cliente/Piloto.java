@@ -34,7 +34,6 @@ public class Piloto{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void enviarPetición(Aeronave aeronave){
