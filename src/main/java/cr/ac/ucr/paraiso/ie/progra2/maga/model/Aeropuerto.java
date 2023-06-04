@@ -20,6 +20,7 @@ public class Aeropuerto {
 
     public boolean pistasDisponibles(){
         boolean despegar = false;
+
         for(Pista pista : pistas){
             if(pista.isDisponible()){
                 despegar = true;
