@@ -20,7 +20,6 @@ public class ServerMain extends Application {
         stage.setTitle("Controlador Aereo");
         stage.setScene(scene);
         stage.show();
-        multiServidor.start();
     }
 
     @Override

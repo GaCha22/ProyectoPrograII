@@ -36,7 +36,7 @@ public class Aeropuerto {
         this.puertas = puertas;
     }
 
-    public boolean puertasDisponibles(){
+    public boolean  puertasDisponibles(){
         boolean puertaDisponible = false;
         for(Puerta puerta : puertas){
             if(puerta.isDisponible()){

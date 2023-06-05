@@ -18,7 +18,6 @@ public class ClienteMain extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        piloto.start();
     }
 
     public static void main(String[] args) {
