@@ -21,7 +21,7 @@ public class GeneraRandoms {
     }
 
     public String getAeropuertoOrigen(){
-        String[] list = {"Aeropuerto Internacional Tobías Bolaños", "Aeropuerto Internacional Fresno Yosemite", "Aeropuerto Internacional de San Francisco", "Aeropuerto Regional de Asheville", "Aeropuerto de Hamburgo", "Aeropuerto Internacional de Viena", "Aeropuerto de Bruselas-National"};
+        String[] list = {"Aeropuerto Internacional Tobías Bolaños", "Aeropuerto Internacional Fresno Yosemite", "Aeropuerto Internacional de San Francisco", "Aeropuerto de Asheville", "Aeropuerto de Hamburgo", "Aeropuerto Internacional de Viena", "Aeropuerto de Bruselas-National"};
         return list[random(0,7)];
     }
 
