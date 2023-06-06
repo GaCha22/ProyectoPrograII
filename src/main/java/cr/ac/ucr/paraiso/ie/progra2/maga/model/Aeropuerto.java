@@ -64,6 +64,15 @@ public class Aeropuerto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+
+    public boolean  puertasDisponibles(){
+        boolean puertaDisponible = false;
+        for(Puerta puerta : puertas){
+            if(puerta.isDisponible()){
+                puertaDisponible = true;
+            }
+        }
+        return puertaDisponible;
     }
 
     @Override
