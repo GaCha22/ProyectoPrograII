@@ -55,7 +55,7 @@ public class ClienteHomeController {
 
     @javafx.fxml.FXML
     void onActionGuardar(ActionEvent a) {
-        if (!chbAerolinea.getValue().equals("Aerolíneas") && !chbTipo.getValue().equals("Tipo de avión") && !txtPlaca.equals("")) {
+        if (!chbAerolinea.getValue().equals("Aerolíneas") && !chbTipo.getValue().equals("Tipo de avión") && !txtPlaca.getText().equals("")) {
             companiaAerea = new CompaniaAerea(chbAerolinea.getValue());
             int tipo = chbTipo.getValue().equals("Avioneta") ? 3 : chbTipo.getValue().equals("Avión comercial") ? 1 : 2;
             aeronave = new Aeronave(txtPlaca.getText(), tipo);
@@ -68,7 +68,7 @@ public class ClienteHomeController {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error al guardar");
             alert.setHeaderText(null);
-            alert.setContentText("Ocurrió un error al intentar guardar los datos.");
+            alert.setContentText("Complete todos los espacios para guardar.");
             alert.showAndWait();
         }
     }
