@@ -60,6 +60,7 @@ public class ClienteHomeController {
             int tipo = chbTipo.getValue().equals("Avioneta") ? 3 : chbTipo.getValue().equals("Avión comercial") ? 1 : 2;
             aeronave = new Aeronave(txtPlaca.getText(), tipo);
             loadPage("interfaz/cliente.fxml");
+            clienteController.setVuelo(aeronave, companiaAerea);
             clienteController.setTextTXT("Tipo: " + aeronave.getTipo() +
                     "\nPlaca: " + aeronave.getPlaca() +
                     "\nAerolínea: " + companiaAerea.getNombre());
