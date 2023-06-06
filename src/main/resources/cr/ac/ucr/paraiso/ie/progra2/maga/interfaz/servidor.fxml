@@ -80,6 +80,7 @@
                               <Button fx:id="btnGenerarReporte" mnemonicParsing="false" text="Generar Reporte" />
                               <Button fx:id="btnAceptarSolicitud" mnemonicParsing="false" text="Aceptar solicitud" />
                               <Button fx:id="btnPonerEnEspera" mnemonicParsing="false" text="Poner en espera" />
+
                            </children>
                         </VBox>
                      </children>

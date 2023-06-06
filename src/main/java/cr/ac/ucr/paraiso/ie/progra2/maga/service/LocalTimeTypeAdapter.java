@@ -22,3 +22,4 @@ public class LocalTimeTypeAdapter implements JsonSerializer<LocalTime>, JsonDese
     }
 
 }
+

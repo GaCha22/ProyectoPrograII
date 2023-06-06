@@ -8,10 +8,16 @@ public class Aeropuerto {
     private Puerta[] puertas;
     private String nombre;
 
+    private String nombre;
+
+    private String nombre;
+
+
     public Aeropuerto() {
     }
 
     public Aeropuerto(String nombre) {
+
         this.nombre = nombre;
     }
 
@@ -83,3 +89,4 @@ public class Aeropuerto {
 
 
 }
+

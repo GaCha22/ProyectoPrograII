@@ -21,4 +21,6 @@ public class CompaniaAerea {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
 }
+

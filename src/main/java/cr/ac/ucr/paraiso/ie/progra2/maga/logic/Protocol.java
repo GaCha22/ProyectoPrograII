@@ -1,5 +1,6 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.logic;
 
+
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.*;
 
 
@@ -8,6 +9,7 @@ import java.util.Scanner;
 import static java.lang.Thread.sleep;
 
 public class Protocol {
+
     Aeropuerto aeropuerto = new Aeropuerto();
     Scanner sn = new Scanner(System.in);
     int tipo = sn.nextInt(); //es con interfaz no asi

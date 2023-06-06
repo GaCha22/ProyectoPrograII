@@ -1,3 +1,4 @@
+
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
@@ -38,3 +39,4 @@ public class Test {
 
 
 }
+
