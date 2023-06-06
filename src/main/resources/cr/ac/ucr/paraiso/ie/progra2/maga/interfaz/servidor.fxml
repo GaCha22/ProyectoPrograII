@@ -77,9 +77,9 @@
                      <children>
                         <VBox alignment="CENTER" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button fx:id="btnGenerarReporte" mnemonicParsing="false" text="Generar Reporte" />
-                              <Button fx:id="btnAceptarSolicitud" mnemonicParsing="false" text="Aceptar solicitud" />
-                              <Button fx:id="btnPonerEnEspera" mnemonicParsing="false" text="Poner en espera" />
+                              <Button fx:id="btnGenerarReporte" onAction="#onActionGenerarReporte" mnemonicParsing="false" text="Generar Reporte" />
+                              <Button fx:id="btnAceptarSolicitud" onAction="#onActionAceptarSolicitud" mnemonicParsing="false" text="Aceptar solicitud" />
+                              <Button fx:id="btnPonerEnEspera" onAction="#onActionEnEsperar" mnemonicParsing="false" text="Poner en espera" />
                            </children>
                         </VBox>
                      </children>

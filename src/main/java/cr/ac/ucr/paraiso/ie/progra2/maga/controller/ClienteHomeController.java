@@ -29,6 +29,7 @@ public class ClienteHomeController {
     private TextField txtPlaca;
     @javafx.fxml.FXML
     private Button btnGuardar;
+    private ClienteController clienteController;
     CompaniaAerea companiaAerea;
     Aeronave aeronave;
 
@@ -46,6 +47,7 @@ public class ClienteHomeController {
         FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource(page));
         try {
             this.bp.setCenter(fxmlLoader.load());
+            clienteController = fxmlLoader.getController();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -57,8 +59,11 @@ public class ClienteHomeController {
             companiaAerea = new CompaniaAerea(chbAerolinea.getValue());
             int tipo = chbTipo.getValue().equals("Avioneta") ? 3 : chbTipo.getValue().equals("Avión comercial") ? 1 : 2;
             aeronave = new Aeronave(txtPlaca.getText(), tipo);
-            System.out.println(aeronave.getTipo() + aeronave.getPlaca() + companiaAerea.getNombre());
             loadPage("interfaz/cliente.fxml");
+            clienteController.setVuelo(aeronave, companiaAerea);
+            clienteController.setTextTXT("Tipo: " + aeronave.getTipo() +
+                    "\nPlaca: " + aeronave.getPlaca() +
+                    "\nAerolínea: " + companiaAerea.getNombre());
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error al guardar");
