@@ -27,34 +27,5 @@ public class ServidorController {
     }
 
 
-    @FXML
-    void onActionGenerarReporte(ActionEvent e) {
-
-    }
-
-    @FXML
-    void onActionPonerEnEspera(ActionEvent a) {
-    }
-
-    @FXML
-    void onActionAceptarSolicitud(ActionEvent a) {
-    }
-
-    @FXML
-    void onActionGenerarReporte(ActionEvent a) {
-    }
-}
-
-    @FXML
-    void onActionAceptarSolicitud(ActionEvent e) {
-
-    }
-
-    @FXML
-    void onActionPonerEnEspera(ActionEvent e) {
-
-    }
-
-
 }
 

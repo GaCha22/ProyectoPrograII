@@ -17,7 +17,7 @@ public class Piloto{
     private int puerto;
     private Socket echoSocket;
 
-    Protocol protocol = new Protocol();
+
 
     public Piloto(int puerto) {
         this.puerto = puerto;
@@ -56,14 +56,11 @@ public class Piloto{
                 while (echoSocket.isConnected()){
                     try {
                         String respuesta = reader.readLine();
-                        protocol.gestionarEstado(3); // los aviones inician estando en el aire
                     }catch (IOException e){
                         e.printStackTrace();
                         System.out.println("Error recibiendo el mensaje del servidor");
                         closeResources(echoSocket, reader, writer);
                         break;
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
                     }
                 }
             }

@@ -1,5 +1,6 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocol;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 
 import java.io.*;
@@ -10,6 +11,7 @@ public class  MultiServidorHilo implements Runnable {
     private Socket socket;
     BufferedReader reader;
     BufferedWriter writer;
+    Protocol protocol = new Protocol();
 
     public MultiServidorHilo(Socket socket) {
         this.socket = socket;
@@ -28,6 +30,7 @@ public class  MultiServidorHilo implements Runnable {
             writer.write("Cliente conectado con el servidor");
             while (socket.isConnected()){
                 String peticion = reader.readLine();
+
             }
         } catch (IOException e) {
             e.printStackTrace();

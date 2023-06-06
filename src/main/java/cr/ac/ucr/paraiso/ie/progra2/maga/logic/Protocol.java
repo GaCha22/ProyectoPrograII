@@ -1,21 +1,12 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.logic;
 
-
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Pista;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Puerta;
-
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.*;
-
 
 import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
 
 public class Protocol {
-
-=======
  //BORRADOR PROTOCOL
     Aeropuerto aeropuerto = new Aeropuerto();
     Scanner sn = new Scanner(System.in);
@@ -24,18 +15,9 @@ public class Protocol {
     VueloLogica vueloLogica = new VueloLogica();
     Pista pistas [] = aeropuerto.getPistas();
     Puerta puertas [] = aeropuerto.getPuertas();
+
+
     int estadoAeronave;
-
-
-    public void gestionarEstado(int estado) throws InterruptedException {
-        estadoAeronave = estado;
-        switch (estado){
-            case 0: despegar(); break;
-            case 1: puerta(); break;
-            case 2: vueloLogica.estadoAeronave(estadoAeronave);
-            case 3: aterrizar(); break; //este es el estado inicial de todas las aeronaves, el que entra como parametro.
-        }
-
     public void gestionarEstado(int estado) throws InterruptedException {
          estadoAeronave = estado;
             switch (estado){
@@ -45,7 +27,6 @@ public class Protocol {
                 case 3: aterrizar(); break; //este es el estado inicial de todas las aeronaves
             }
 
-
     }
 
     public void despegar() throws InterruptedException {
@@ -54,17 +35,10 @@ public class Protocol {
             for(int i=0; i<pistas.length; i++){
                 if(pistas[i].isDisponible()){
                     pistas[i].setDisponible(false);
-
-
-                    flag = i;
-                }}
-            aeropuerto.setPistas(pistas);
-
                     flag = i;
                 }}
             aeropuerto.setPistas(pistas);
             sleep(aeronave.calcularTiempoEspera());
-
             pistas[flag].setDisponible(true);
             notify();
             gestionarEstado(vueloLogica.estadoAeronave(estadoAeronave));
@@ -89,11 +63,7 @@ public class Protocol {
             gestionarEstado(vueloLogica.estadoAeronave(estadoAeronave));
         }
         else{
-
-            wait();
-
            wait();
-
         }
 
     }
@@ -107,7 +77,6 @@ public class Protocol {
                     flag = i;
                 }}
             aeropuerto.setPistas(pistas);
-
             sleep(aeronave.calcularTiempoEspera());
             pistas[flag].setDisponible(true);
             notify();
@@ -116,9 +85,4 @@ public class Protocol {
         else{
             wait();
         }
-
-    }
-}
-
 }}
-

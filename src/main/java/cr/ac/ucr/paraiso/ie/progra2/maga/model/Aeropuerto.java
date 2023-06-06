@@ -10,12 +10,15 @@ public class Aeropuerto {
     private int numPistas;
     private int numPuertas;
 
+    private String nombre;
+
     public Aeropuerto() {
     }
 
-    public Aeropuerto(int numPistas, int numPuertas) {
+    public Aeropuerto(int numPistas, int numPuertas, String nombre) {
         this.numPistas = numPistas;
         this.numPuertas = numPuertas;
+        this.nombre = nombre;
     }
 
     public boolean pistasDisponibles(){
@@ -55,7 +58,13 @@ public class Aeropuerto {
         this.puertas = puertas;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     @Override
     public String toString() {

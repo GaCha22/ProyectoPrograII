@@ -11,6 +11,7 @@ public class Aeronave {
     private final int CARGA= 2;
     private final int AVIONETA = 3;
     private int estado = 3;
+
     private Vuelo vuelo;
 
     public Aeronave(int tipo) {
@@ -56,5 +57,17 @@ public class Aeronave {
         return this.estado;
     }
 
-
+    @Override
+    public String toString() {
+        switch(this.tipo){
+            case COMERCIAL:
+                return  "COMERCIAL";
+            case CARGA:
+                return "CARGA";
+            case AVIONETA:
+                return  "AVIONETA";
+            default: //si no tiene un tipo definido
+                return "";
+        }
+    }
 }
