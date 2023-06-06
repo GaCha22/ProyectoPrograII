@@ -2,6 +2,7 @@ package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocol;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableListBase;
@@ -23,6 +24,7 @@ public class ClienteController {
     @FXML
     private Button btnIrAPuerta;
     private Piloto piloto;
+    private Aeronave aeronave;
     @FXML
     void initialize(){
         piloto = new Piloto();
