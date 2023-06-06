@@ -1,39 +1,39 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.service;
 
 import com.google.gson.GsonBuilder;
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Pista;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Puerta;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 import com.google.gson.Gson;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class GestionaArchivo {
-    private Pista[] pistas;
-    private Puerta[] puertas;
-    public void leerArchivoConfig() {
+
+
+    public Aeropuerto leerArchivoConfiguracion(String path) {
+
         Gson gson = new Gson();
-        try (FileReader reader = new FileReader("config.json")) {
-            GestionaArchivo archivo = gson.fromJson(reader, GestionaArchivo.class);
-            this.pistas = archivo.getPistas();
-            this.puertas = archivo.getPuertas();
+        String archivo;
+        Aeropuerto aeropuerto = null;
+        try (FileReader reader = new FileReader(path)) {
+
+            aeropuerto = gson.fromJson(reader, Aeropuerto.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
-    public Pista[] getPistas() {
-        return pistas;
-    }
-
-    public Puerta[] getPuertas() {
-        return puertas;
+        return aeropuerto;
     }
 
     public String generarReporteVuelos() {
+
         String jsonString;
         String salida = "";
         String path = "reportes.json";
@@ -42,25 +42,46 @@ public class GestionaArchivo {
         } catch (IOException e) {
             throw new RuntimeException("Error al leer el archivo: " + e.getMessage(), e);
         }
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
+                .create();
 
-        Gson gson = new GsonBuilder().create();
-        VueloLogica[] vueloLogicas = gson.fromJson(jsonString, VueloLogica[].class);
+        Vuelo[] vuelos = gson.fromJson(jsonString, Vuelo[].class);
 
-        for (VueloLogica vueloLogica : vueloLogicas) {
-            salida += "\n" + vueloLogica.toString();
+
+        for (Vuelo vuelo : vuelos) {
+            salida += "\n" + vuelo.toString();
         }
         return salida;
     }
 
-    public void escribirVuelo(VueloLogica vueloLogica) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    public void escribirVuelo(Vuelo vuelo) {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
+                .create();
         String path = "reportes.json";
 
-        try (FileWriter fileWriter = new FileWriter(path)) {
-            String json = gson.toJson(vueloLogica); // convierte objeto Java en cadena JSON
-            fileWriter.write(json);
+        try (FileReader fileReader = new FileReader(path)) {
+            Vuelo[] vuelosExistentes = gson.fromJson(fileReader, Vuelo[].class); // Lee los vuelos existentes del archivo
+            List<Vuelo> listaVuelos;
+
+            if (vuelosExistentes != null) {
+                listaVuelos = new ArrayList<>(Arrays.asList(vuelosExistentes)); // Convierte el arreglo en una lista
+            } else {
+                listaVuelos = new ArrayList<>(); // Crea una nueva lista si no hay vuelos existentes
+            }
+
+            listaVuelos.add(vuelo); // Agrega el nuevo vuelo a la lista
+
+            try (FileWriter fileWriter = new FileWriter(path)) {
+                String json = gson.toJson(listaVuelos.toArray()); // Convierte la lista de vuelos en un arreglo JSON
+                fileWriter.write(json);
+            } catch (IOException e) {
+                throw new RuntimeException("Error al escribir los vuelos en el archivo: " + e.getMessage(), e);
+            }
         } catch (IOException e) {
-            throw new RuntimeException("Error al escribir el vuelo en el archivo: " + e.getMessage(), e);
+            throw new RuntimeException("Error al leer los vuelos existentes del archivo: " + e.getMessage(), e);
         }
     }
+
 }

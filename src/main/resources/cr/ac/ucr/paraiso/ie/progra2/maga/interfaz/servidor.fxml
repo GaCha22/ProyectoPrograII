@@ -40,12 +40,12 @@
                                  </children>
                               </AnchorPane>
                               <TableView prefHeight="179.0" prefWidth="250.0">
-                                <columns>
+                                 <columns>
                                     <TableColumn prefWidth="100.0" text="Placa" />
-                                  <TableColumn prefWidth="125.0" text="Tipo de Avion" />
-                                  <TableColumn editable="false" prefWidth="140.0" resizable="false" text="Aviones en espera" />
+                                    <TableColumn prefWidth="125.0" text="Tipo de Avion" />
+                                    <TableColumn editable="false" prefWidth="140.0" resizable="false" text="Aviones en espera" />
                                     <TableColumn minWidth="8.0" prefWidth="100.0" text="Aerolínea" />
-                                </columns>
+                                 </columns>
                               </TableView>
                               <HBox spacing="20.0">
                                  <children>
@@ -77,9 +77,9 @@
                      <children>
                         <VBox alignment="CENTER" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Generar Reporte" />
-                              <Button mnemonicParsing="false" text="Aceptar solicitud" />
-                              <Button mnemonicParsing="false" text="Poner en espera" />
+                              <Button fx:id="btnGenerarReporte" mnemonicParsing="false" text="Generar Reporte" />
+                              <Button fx:id="btnAceptarSolicitud" mnemonicParsing="false" text="Aceptar solicitud" />
+                              <Button fx:id="btnPonerEnEspera" mnemonicParsing="false" text="Poner en espera" />
                            </children>
                         </VBox>
                      </children>

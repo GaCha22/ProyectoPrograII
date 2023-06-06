@@ -1,23 +1,39 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Aeropuerto {
-
     private Pista[] pistas;
     private Puerta[] puertas;
+    private String nombre;
 
     public Aeropuerto() {
     }
 
+    public Aeropuerto(String nombre) {
+        this.nombre = nombre;
+    }
+
     public boolean pistasDisponibles(){
         boolean despegar = false;
+
         for(Pista pista : pistas){
             if(pista.isDisponible()){
                 despegar = true;
             }
         }
         return despegar;
+    }
+
+    public boolean puertasDisponibles(){
+        boolean puertaDisponible = false;
+        for(Puerta puerta : puertas){
+            if(puerta.isDisponible()){
+                puertaDisponible = true;
+            }
+        }
+        return puertaDisponible;
     }
 
     public Pista[] getPistas() {
@@ -36,14 +52,34 @@ public class Aeropuerto {
         this.puertas = puertas;
     }
 
-    public boolean puertasDisponibles(){
-        boolean puertaDisponible = false;
-        for(Puerta puerta : puertas){
-            if(puerta.isDisponible()){
-                puertaDisponible = true;
-            }
-        }
-        return puertaDisponible;
+    public String getNombre() {
+        return nombre;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Aeropuerto{");
+        sb.append("nombre=").append(nombre);
+        sb.append(", pistas=[");
+        for (Pista pista : pistas) {
+            sb.append(pista.toString()).append(", ");
+        }
+        sb.setLength(sb.length() - 2);
+        sb.append("]");
+        sb.append(", puertas=[");
+        for (Puerta puerta : puertas) {
+            sb.append(puerta.toString()).append(", ");
+        }
+        sb.setLength(sb.length() - 2);
+        sb.append("]");
+        sb.append("}");
+        return sb.toString();
+    }
+
 
 }
