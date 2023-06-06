@@ -3,6 +3,7 @@ package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocol;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableListBase;
@@ -14,8 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 public class ClienteController {
-
-
     @FXML
     private TextArea txtaDatos;
     @FXML
@@ -25,13 +24,22 @@ public class ClienteController {
     @FXML
     private Button btnIrAPuerta;
     private Piloto piloto;
+
     private Aeronave aeronave;
     Protocol protocol = new Protocol();
+  
+    @FXML
+    void initialize(){
+        piloto = new Piloto(9999);
+        piloto.start(txtaDatos);
+    }
+
     @FXML
     void onActionIrAPuerta(ActionEvent a) throws InterruptedException {
         btnAterrizar.setDisable(true);
         btnDespegar.setDisable(false);
-        protocol.puerta();
+        protocol.IrAPuerta();
+
     }
 
     @FXML

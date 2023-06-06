@@ -1,7 +1,5 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.model;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
-
 public class Aeronave {
 
     private String placa;
@@ -25,16 +23,16 @@ public class Aeronave {
     }
 
     public int calcularTiempoEspera(){
-         switch(this.tipo){
-             case COMERCIAL:
-                 return  120000;
-             case CARGA:
-                 return 240000;
-             case AVIONETA:
-                 return  60000;
-             default: //si no tiene un tipo definido
-                 return 0;
-         }
+        switch(this.tipo){
+            case COMERCIAL:
+                return  120000;
+            case CARGA:
+                return 240000;
+            case AVIONETA:
+                return  60000;
+            default: //si no tiene un tipo definido
+                return 0;
+        }
     }
 
     public String getPlaca() {

@@ -1,6 +1,9 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.logic;
 
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Pista;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 
 public class VueloLogica {
 
@@ -10,6 +13,8 @@ public class VueloLogica {
     private final int PUERTA = 2;
     private final int DESPEGAR = 3;
     Aeropuerto aeropuerto = new Aeropuerto();
+    Aeronave tipoAvion;
+    Aeropuerto aeropuertoAqui;
 
     //vuelo logica me parece que deberia llevar dos aeropuertos tambien
     //ponerlos como gerundios los estados
@@ -38,5 +43,49 @@ public class VueloLogica {
         }
         return estado;
     }
+
+
+    public synchronized void avionAPuerta(int estado, int tipoAvion) throws InterruptedException {
+
+        while(aeropuertoAqui.puertasDisponibles() != false && estado == 1){
+
+            switch(tipoAvion){
+                case 1: // comercial
+                    wait(60000);
+                    break;
+                case 2: // carga
+                    wait(120000);
+                    break;
+                case 3: // avioneta
+                    wait(180000);
+                    break;
+            }
+
+        }
+        notifyAll();
+
+    }
+
+    public synchronized  void avionEsperandoPuerta(int estado){
+
+        while(aeropuertoAqui.pistasDisponibles() == false && estado == 2){
+
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        }
+
+        notifyAll();
+
+    }
+
+
+
+
+
 
 }

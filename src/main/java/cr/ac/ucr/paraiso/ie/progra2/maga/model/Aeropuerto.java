@@ -10,6 +10,9 @@ public class Aeropuerto {
 
     private String nombre;
 
+    private String nombre;
+
+
     public Aeropuerto() {
     }
 
@@ -82,5 +85,6 @@ public class Aeropuerto {
         sb.append("}");
         return sb.toString();
     }
+
 
 }

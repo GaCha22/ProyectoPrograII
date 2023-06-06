@@ -1,5 +1,4 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.service;
-
 import com.google.gson.GsonBuilder;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
@@ -23,11 +22,14 @@ import java.util.List;
 
 public class GestionaArchivo {
 
+
     public Aeropuerto leerArchivoConfiguracion(String path) {
+
         Gson gson = new Gson();
         String archivo;
         Aeropuerto aeropuerto = null;
         try (FileReader reader = new FileReader(path)) {
+
              aeropuerto = gson.fromJson(reader, Aeropuerto.class);
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,7 +51,9 @@ public class GestionaArchivo {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
                 .create();
+
         Vuelo[] vuelos = gson.fromJson(jsonString, Vuelo[].class);
+
 
         for (Vuelo vuelo : vuelos) {
             salida += "\n" + vuelo.toString();
