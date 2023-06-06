@@ -15,12 +15,12 @@ public class GeneraRandoms {
     }
 
 
-    public static String getIdVuelo(){
+    public String getIdVuelo(){
         String[] list = {"VL16553", "VL65526", "VL80340", "VL96734", "VL97620", "VL52452", "VL43230", "VL12371", "VL04923", "VL85312"};
         return list[random(0,10)];
     }
 
-    public static String getAeropuertoOrigen(){
+    public String getAeropuertoOrigen(){
         String[] list = {"Aeropuerto Internacional Tobías Bolaños", "Aeropuerto Internacional Fresno Yosemite", "Aeropuerto Internacional de San Francisco", "Aeropuerto Regional de Asheville", "Aeropuerto de Hamburgo", "Aeropuerto Internacional de Viena", "Aeropuerto de Bruselas-National"};
         return list[random(0,7)];
     }

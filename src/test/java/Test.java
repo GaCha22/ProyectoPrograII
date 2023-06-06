@@ -1,3 +1,4 @@
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.GeneraRandoms;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
@@ -7,11 +8,11 @@ import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 import java.time.LocalTime;
 
-import java.time.LocalTime;
 
 public class Test {
 
     GestionaArchivo gestionaArchivo = new GestionaArchivo();
+    GeneraRandoms gR = new GeneraRandoms();
     LocalTime horaSalida = LocalTime.now();
     LocalTime horaLlegada= LocalTime.now();
     Vuelo vuelo1 = new Vuelo("123",new Aeronave(2), new Aeropuerto(), new Aeropuerto( "Juan Santamaria"),new CompaniaAerea("compañia 2"),false, horaSalida,horaLlegada);
@@ -36,5 +37,10 @@ public class Test {
         System.out.println((gestionaArchivo.leerArchivoConfiguracion(path)).toString());
     }
 
+    @org.junit.jupiter.api.Test
+    public void generaRandomsFunciona(){
+        System.out.println(gR.getIdVuelo());
+        System.out.println(gR.getAeropuertoOrigen());
+    }
 
 }
