@@ -23,13 +23,10 @@ public class ClienteController {
     @FXML
     private Button btnIrAPuerta;
     private Piloto piloto;
-
     @FXML
     void initialize(){
         piloto = new Piloto();
         piloto.start();
-        String respuesta = piloto.getRespuesta();
-        txtaDatos.setText(respuesta);
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(true);
     }
@@ -53,6 +50,10 @@ public class ClienteController {
         btnIrAPuerta.setDisable(true);
         btnAterrizar.setDisable(false);
         btnDespegar.setDisable(true);
+    }
+
+    public void setTextTXT(String txt){
+        txtaDatos.setText(txt);
     }
 
 }
