@@ -29,6 +29,7 @@ public class Test {
     @org.junit.jupiter.api.Test
     public void leerArchivoConfigFunciona(){
         String path = "config.json";
+        //aeropuertoDestino
         System.out.println((gestionaArchivo.leerArchivoConfiguracion(path)).toString());
     }
 
