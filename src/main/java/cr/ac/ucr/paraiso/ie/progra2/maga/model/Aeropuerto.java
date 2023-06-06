@@ -59,6 +59,28 @@ public class Aeropuerto {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    public String pistasToString(){
+        StringBuilder sb = new StringBuilder();
+        for (Pista pista: pistas) {
+            sb.append("Pista #").append(pista.getNumPista()).append(" ")
+                    .append(pista.isDisponible()?"Disponible":"No Disponible")
+                    .append("\n");
+        }
+
+        return sb.toString();
+    }
+    
+    public String puertasToString(){
+        StringBuilder sb = new StringBuilder();
+        for (Puerta puerta: puertas) {
+            sb.append("Puerta #").append(puerta.getNumPuerta()).append(" ")
+                    .append(puerta.isDisponible()?"Disponible":"No Disponible")
+                    .append("\n");
+        }
+
+        return sb.toString();
+    }
 
     @Override
     public String toString() {

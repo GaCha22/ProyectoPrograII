@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane prefHeight="575.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.paraiso.ie.progra2.maga.controller.ServidorController">
+<BorderPane prefHeight="575.0" prefWidth="890.0" styleClass="borderpane" stylesheets="@../Stylesheets/serverStylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.paraiso.ie.progra2.maga.controller.ServidorController">
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -20,51 +19,55 @@
                <children>
                   <AnchorPane>
                      <children>
-                        <VBox spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT">
+                              <HBox alignment="CENTER">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Mostrar todos" />
-                                    <Button mnemonicParsing="false" text="Aterrizando" />
-                                    <Button mnemonicParsing="false" text="En puerta" />
-                                    <Button mnemonicParsing="false" text="Mostrar Todas" />
+                                    <Button fx:id="btnMostrarTodos" disable="true" mnemonicParsing="false" onAction="#onActionMostrarTodos" styleClass="btnFilter" text="Mostrar todos" />
+                                    <Button fx:id="btnMostrarAterrizando" mnemonicParsing="false" onAction="#onActionMostrarAterrizando" styleClass="btnFilter" text="Aterrizando" />
+                                    <Button fx:id="btnMostrarEnPuerta" mnemonicParsing="false" onAction="#onActionMostrarEnPuerta" styleClass="btnFilter" text="En puerta" />
+                                    <Button fx:id="btnMostrarEnEspera" mnemonicParsing="false" onAction="#onActionMostrarEnEspera" styleClass="btnFilter" text="En Espera" />
                                  </children>
                               </HBox>
                               <AnchorPane>
                                  <children>
-                                    <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Label text="Solicitudes" HBox.hgrow="ALWAYS" />
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <Label text="Solicitudes" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                          <TableView prefHeight="230.0">
+                                             <columns>
+                                                <TableColumn prefWidth="100.0" text="Placa" />
+                                                <TableColumn prefWidth="125.0" text="Tipo de Avion" />
+                                                <TableColumn editable="false" prefWidth="140.0" resizable="false" text="Aviones en espera" />
+                                                <TableColumn minWidth="8.0" prefWidth="100.0" text="Aerolínea" />
+                                             </columns>
+                                          </TableView>
                                        </children>
-                                    </HBox>
+                                    </VBox>
                                  </children>
                               </AnchorPane>
-                              <TableView prefHeight="179.0" prefWidth="250.0">
-                                 <columns>
-                                    <TableColumn prefWidth="100.0" text="Placa" />
-                                    <TableColumn prefWidth="125.0" text="Tipo de Avion" />
-                                    <TableColumn editable="false" prefWidth="140.0" resizable="false" text="Aviones en espera" />
-                                    <TableColumn minWidth="8.0" prefWidth="100.0" text="Aerolínea" />
-                                 </columns>
-                              </TableView>
                               <HBox spacing="20.0">
                                  <children>
-                                    <VBox spacing="10.0">
+                                    <VBox alignment="CENTER" spacing="5.0">
                                        <children>
                                           <Label text="Solicitud Seleccionada" />
-                                          <TextArea prefHeight="200.0" prefWidth="200.0" />
+                                          <TextArea fx:id="txtaSolicitudSeleccionada" editable="false" />
                                        </children>
                                     </VBox>
-                                    <VBox spacing="10.0">
+                                    <VBox alignment="CENTER" spacing="5.0">
                                        <children>
                                           <Label text="Pistas disponibles" />
-                                          <TextArea prefHeight="200.0" prefWidth="200.0" />
+                                          <TextArea fx:id="txtaPistasDisponibles" editable="false" />
                                        </children>
                                     </VBox>
-                                    <VBox spacing="10.0">
+                                    <VBox alignment="CENTER" spacing="5.0">
                                        <children>
                                           <Label text="Puertas disponibles" />
-                                          <TextArea prefHeight="200.0" prefWidth="200.0" />
+                                          <TextArea fx:id="txtaPuertasDisponibles" editable="false" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -77,16 +80,16 @@
                      <children>
                         <VBox alignment="CENTER" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button fx:id="btnGenerarReporte" onAction="#onActionGenerarReporte" mnemonicParsing="false" text="Generar Reporte" />
-                              <Button fx:id="btnAceptarSolicitud" onAction="#onActionAceptarSolicitud" mnemonicParsing="false" text="Aceptar solicitud" />
-                              <Button fx:id="btnPonerEnEspera" onAction="#onActionEnEsperar" mnemonicParsing="false" text="Poner en espera" />
+                              <Button fx:id="btnGenerarReporte" mnemonicParsing="false" onAction="#onActionGenerarReporte" text="Generar Reporte" />
+                              <Button fx:id="btnAceptarSolicitud" mnemonicParsing="false" onAction="#onActionAceptarSolicitud" text="Aceptar solicitud" />
+                              <Button fx:id="btnPonerEnEspera" mnemonicParsing="false" onAction="#onActionEnEsperar" text="Poner en espera" />
                            </children>
                         </VBox>
                      </children>
                   </AnchorPane>
                </children>
                <padding>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                </padding>
             </HBox>
          </children>

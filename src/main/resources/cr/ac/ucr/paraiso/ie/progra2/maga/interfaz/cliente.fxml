@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="800.0" stylesheets="@../Stylesheets/clienteStylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.paraiso.ie.progra2.maga.controller.ClienteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="800.0" styleClass="BorderPane" stylesheets="@../Stylesheets/clienteStylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.paraiso.ie.progra2.maga.controller.ClienteController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -28,9 +28,9 @@
                   </HBox>
                   <HBox alignment="CENTER" spacing="20.0">
                      <children>
-                        <Button fx:id="btnDespegar" onAction="#onActionDespegar" mnemonicParsing="false" text="Despegar" />
-                        <Button fx:id="btnAterrizar" onAction="#onActionAterrizar" mnemonicParsing="false" text="Aterrizar" />
-                        <Button fx:id="btnIrAPuerta" onAction="#onActionIrAPuerta" mnemonicParsing="false" text="Ir a puerta" />
+                        <Button fx:id="btnDespegar" mnemonicParsing="false" onAction="#onActionDespegar" text="Despegar" />
+                        <Button fx:id="btnAterrizar" mnemonicParsing="false" onAction="#onActionAterrizar" text="Aterrizar" />
+                        <Button fx:id="btnIrAPuerta" mnemonicParsing="false" onAction="#onActionIrAPuerta" text="Ir a puerta" />
                      </children>
                   </HBox>
                </children>
