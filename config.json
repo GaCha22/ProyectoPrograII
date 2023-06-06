@@ -1,6 +1,6 @@
 {
-  "pistas":
-  [
+  "nombre": "Juan Santamaria CR",
+  "pistas": [
     {
       "numPista": 1,
       "disponible": true
@@ -10,8 +10,7 @@
       "disponible": true
     }
   ],
-  "puertas":
-  [
+  "puertas": [
     {
       "numPuerta": 1,
       "disponible": true

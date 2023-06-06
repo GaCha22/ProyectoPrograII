@@ -24,4 +24,11 @@ public class Puerta {
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
+
+    @Override
+    public String toString() {
+        return "Puerta{" +
+                "numPuerta=" + numPuerta +
+                '}';
+    }
 }

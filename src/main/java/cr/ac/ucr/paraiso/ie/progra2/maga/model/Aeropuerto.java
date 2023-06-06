@@ -7,17 +7,13 @@ public class Aeropuerto {
 
     private Pista[] pistas;
     private Puerta[] puertas;
-    private int numPistas;
-    private int numPuertas;
 
     private String nombre;
 
     public Aeropuerto() {
     }
 
-    public Aeropuerto(int numPistas, int numPuertas, String nombre) {
-        this.numPistas = numPistas;
-        this.numPuertas = numPuertas;
+    public Aeropuerto( String nombre) {
         this.nombre = nombre;
     }
 
@@ -68,11 +64,23 @@ public class Aeropuerto {
 
     @Override
     public String toString() {
-        return "Aeropuerto{" +
-                "pistas=" + Arrays.toString(pistas) +
-                ", puertas=" + Arrays.toString(puertas) +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Aeropuerto{");
+        sb.append("nombre=").append(nombre);
+        sb.append(", pistas=[");
+        for (Pista pista : pistas) {
+            sb.append(pista.toString()).append(", ");
+        }
+        sb.setLength(sb.length() - 2);
+        sb.append("]");
+        sb.append(", puertas=[");
+        for (Puerta puerta : puertas) {
+            sb.append(puerta.toString()).append(", ");
+        }
+        sb.setLength(sb.length() - 2);
+        sb.append("]");
+        sb.append("}");
+        return sb.toString();
     }
-
 
 }

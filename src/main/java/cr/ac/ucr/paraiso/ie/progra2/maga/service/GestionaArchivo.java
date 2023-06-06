@@ -23,11 +23,7 @@ import java.util.List;
 
 public class GestionaArchivo {
 
-    private Pista[] pistas;
-    private Puerta[] puertas;
-
-
-    public String leerArchivo(String path) {
+    public Aeropuerto leerArchivoConfiguracion(String path) {
         Gson gson = new Gson();
         String archivo;
         Aeropuerto aeropuerto = null;
@@ -36,35 +32,9 @@ public class GestionaArchivo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        archivo = aeropuerto.toString();
-        return archivo;
+
+        return aeropuerto;
     }
-
-  /*  public void leerArchivoConfig() {
-
-        Gson gson = new Gson();
-        String archivo = "";
-        Aeropuerto aeropuerto = null;
-        try (FileReader reader = new FileReader(path)) {
-            archivo = gson.toJson(reader, Aeropuerto.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        archivo = aeropuerto.toString();
-        return archivo;
-    }
-
-    public Pista[] getPistas() {
-        return pistas;
-    }
-
-    public Puerta[] getPuertas() {
-        return puertas;
-    }
-
-    } */
-
 
     public String generarReporteVuelos() {
 
@@ -79,7 +49,6 @@ public class GestionaArchivo {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
                 .create();
-  //      Gson gson = new GsonBuilder().create();
         Vuelo[] vuelos = gson.fromJson(jsonString, Vuelo[].class);
 
         for (Vuelo vuelo : vuelos) {
@@ -87,20 +56,6 @@ public class GestionaArchivo {
         }
         return salida;
     }
-/*
-    public void escribirVuelo(Vuelo vuelo) {
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
-                .create();
-        String path = "reportes.json";
-
-        try (FileWriter fileWriter = new FileWriter(path)) {
-            String json = gson.toJson(vuelo); //convierte objeto Java en cadena JSON
-            fileWriter.write(json);
-        } catch (IOException e) {
-            throw new RuntimeException("Error al escribir el vuelo en el archivo: " + e.getMessage(), e);
-        }
-    }*/
 
     public void escribirVuelo(Vuelo vuelo) {
         Gson gson = new GsonBuilder()

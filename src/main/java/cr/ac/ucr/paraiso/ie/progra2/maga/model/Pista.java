@@ -20,4 +20,11 @@ public class Pista {
     public void setNumPista(int numPista) {
         this.numPista = numPista;
     }
+
+    @Override
+    public String toString() {
+        return "Pista{" +
+                "numPista=" + numPista +
+                '}';
+    }
 }
