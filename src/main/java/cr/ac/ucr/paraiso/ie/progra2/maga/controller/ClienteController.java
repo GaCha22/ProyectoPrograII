@@ -31,12 +31,15 @@ public class ClienteController {
         piloto.start();
         String respuesta = piloto.getRespuesta();
         txtaDatos.setText(respuesta);
+        btnDespegar.setDisable(true);
+        btnIrAPuerta.setDisable(true);
     }
 
     @FXML
     void onActionIrAPuerta(ActionEvent a) throws InterruptedException {
         btnAterrizar.setDisable(true);
         btnDespegar.setDisable(false);
+        btnIrAPuerta.setDisable(true);
         //protocol.IrAPuerta();
 
     }
@@ -45,6 +48,7 @@ public class ClienteController {
     void onActionAterrizar(ActionEvent a) throws InterruptedException {
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(false);
+        btnAterrizar.setDisable(true);
         //protocol.aterrizar();
     }
 
@@ -52,7 +56,9 @@ public class ClienteController {
     void onActionDespegar(ActionEvent a) throws InterruptedException {
         btnIrAPuerta.setDisable(true);
         btnAterrizar.setDisable(false);
+        btnDespegar.setDisable(true);
         //protocol.despegar();
     }
+
 
 }

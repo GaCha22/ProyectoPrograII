@@ -12,9 +12,7 @@ public class ClienteMain extends Application {
     Piloto piloto = new Piloto();
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource("interfaz/cliente.fxml"));
         FXMLLoader fxmlLoaderHome = new FXMLLoader(ClienteMain.class.getResource("interfaz/clienteHome.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
         Scene sceneHome = new Scene(fxmlLoaderHome.load());
         stage.setTitle("Cliente");
         stage.setScene(sceneHome);

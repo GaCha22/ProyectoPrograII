@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="410.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.paraiso.ie.progra2.maga.controller.ClienteHomeController">
+<BorderPane fx:id="bp" prefHeight="410.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.paraiso.ie.progra2.maga.controller.ClienteHomeController">
     <center>
         <AnchorPane prefHeight="400.0" prefWidth="600.0">
             <children>
@@ -35,10 +35,10 @@
                         <VBox alignment="TOP_CENTER" spacing="10.0">
                            <children>
                               <Label fx:id="lbPlacaAvion" text="Placa del Avión" />
-                                      <TextField fx:id="txtPlaca" />
+                                      <TextField fx:id="txtPlaca"/>
                            </children>
                         </VBox>
-                                <Button mnemonicParsing="false" onAction="#onActionGuardar" prefHeight="53.0" prefWidth="126.0" style="-fx-background-radius: 0;" text="Guardar Avión" />
+                                <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#onActionGuardar" prefHeight="53.0" prefWidth="126.0" style="-fx-background-radius: 0;" text="Guardar Avión" />
                             </children>
                         </VBox>
                         <HBox alignment="CENTER">
