@@ -31,6 +31,7 @@ public class Vuelo {
 
     public void cambiarEstado(){
         VueloLogica vueloLogica = new VueloLogica();
+
         if(aeronave.getEstado() != vueloLogica.estadoAeronave(aeronave.getEstado())){
             this.enEstado = true;
         }else{

@@ -12,6 +12,7 @@ public class Aeropuerto {
 
     private String nombre;
 
+
     public Aeropuerto() {
     }
 
@@ -19,6 +20,7 @@ public class Aeropuerto {
         this.numPistas = numPistas;
         this.numPuertas = numPuertas;
         this.nombre = nombre;
+
     }
 
     public boolean pistasDisponibles(){

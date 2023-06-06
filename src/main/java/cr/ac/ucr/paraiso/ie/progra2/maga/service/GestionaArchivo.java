@@ -10,6 +10,7 @@ import cr.ac.ucr.paraiso.ie.progra2.maga.model.Puerta;
 import com.google.gson.Gson;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class GestionaArchivo {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         archivo = aeropuerto.toString();
         return archivo;
     }
@@ -53,6 +55,7 @@ public class GestionaArchivo {
                 .create();
         //      Gson gson = new GsonBuilder().create();
         Vuelo[] vuelos = gson.fromJson(jsonString, Vuelo[].class);
+
 
         for (Vuelo vuelo : vuelos) {
             salida += "\n" + vuelo.toString();
@@ -84,6 +87,7 @@ public class GestionaArchivo {
             } catch (IOException e) {
                 throw new RuntimeException("Error al escribir los vuelos en el archivo: " + e.getMessage(), e);
             }
+
         } catch (IOException e) {
             throw new RuntimeException("Error al leer los vuelos existentes del archivo: " + e.getMessage(), e);
         }
