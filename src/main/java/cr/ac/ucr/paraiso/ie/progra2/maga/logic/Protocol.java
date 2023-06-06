@@ -36,7 +36,6 @@ public class Protocol {
 
     public void despegar() throws InterruptedException {
         int flag=0;
-        System.out.println("sirve despegar");
         if(aeropuerto.pistasDisponibles()){ //gestionar puertas disponibles
             for(int i=0; i<pistas.length; i++){
                 if(pistas[i].isDisponible()){
@@ -55,7 +54,6 @@ public class Protocol {
 
     public void IrAPuerta() throws InterruptedException {
         int flag=0;
-        System.out.println("sirve puerta");
         if(aeropuerto.puertasDisponibles()){ //gestionar puertas disponibles
             for(int i=0; i<puertas.length; i++){
                 if(puertas[i].isDisponible()){
@@ -75,7 +73,6 @@ public class Protocol {
 
     public void aterrizar() throws InterruptedException {
         int flag=0;
-        System.out.println("sirve aterrizar");
         if(aeropuerto.pistasDisponibles()){ //gestionar puertas disponibles
             for(int i=0; i<pistas.length; i++){
                 if(pistas[i].isDisponible()){
