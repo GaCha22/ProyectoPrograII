@@ -23,7 +23,6 @@ public class ClienteController {
     @FXML
     private Button btnIrAPuerta;
     private Piloto piloto;
-    //Protocol protocol = new Protocol();
 
     @FXML
     void initialize(){
@@ -40,8 +39,6 @@ public class ClienteController {
         btnAterrizar.setDisable(true);
         btnDespegar.setDisable(false);
         btnIrAPuerta.setDisable(true);
-        //protocol.IrAPuerta();
-
     }
 
     @FXML
@@ -49,7 +46,6 @@ public class ClienteController {
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(false);
         btnAterrizar.setDisable(true);
-        //protocol.aterrizar();
     }
 
     @FXML
@@ -57,7 +53,6 @@ public class ClienteController {
         btnIrAPuerta.setDisable(true);
         btnAterrizar.setDisable(false);
         btnDespegar.setDisable(true);
-        //protocol.despegar();
     }
 
 
