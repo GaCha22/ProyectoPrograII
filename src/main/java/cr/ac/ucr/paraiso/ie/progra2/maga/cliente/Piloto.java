@@ -12,7 +12,6 @@ import java.net.Socket;
 
 public class Piloto extends Thread{
     private String respuesta;
-    ClienteController cC = new ClienteController();
 
     @Override
     public void run() {
