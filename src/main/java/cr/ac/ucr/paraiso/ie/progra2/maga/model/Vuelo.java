@@ -13,11 +13,12 @@ public class Vuelo {
     private Aeropuerto aeropuertoDestino;
     private CompaniaAerea companiaAerea;
     private boolean enEstado; //true si está Autorizado y false si está en espera
+    private int estadoAvion;
     private LocalTime horaSalida;
     private LocalTime horaLlegada;
-    private VueloLogica vueloLogica;
 
-    public Vuelo(String idVuelo, Aeronave aeronave, Aeropuerto aeropuertoOrigen, Aeropuerto aeropuertoDestino, CompaniaAerea companiaAerea, boolean enEstado, LocalTime horaSalida, LocalTime horaLlegada, VueloLogica vueloLogica) {
+
+    public Vuelo(String idVuelo, Aeronave aeronave, Aeropuerto aeropuertoOrigen, Aeropuerto aeropuertoDestino, CompaniaAerea companiaAerea, boolean enEstado, LocalTime horaSalida, LocalTime horaLlegada) {
         this.idVuelo = idVuelo;
         this.aeronave = aeronave;
         this.aeropuertoOrigen = aeropuertoOrigen;
@@ -26,14 +27,14 @@ public class Vuelo {
         this.enEstado = enEstado;
         this.horaSalida = horaSalida;
         this.horaLlegada = horaLlegada;
-        this.vueloLogica = vueloLogica;
     }
 
-    public void cambiarEnEstado(){
-        if(aeronave.getEstado()==vueloLogica.estadoAeronave(aeronave.getEstado())){
-            this.enEstado = false;
-        }else{
+    public void cambiarEstado(){
+        VueloLogica vueloLogica = new VueloLogica();
+        if(aeronave.getEstado() != vueloLogica.estadoAeronave(aeronave.getEstado())){
             this.enEstado = true;
+        }else{
+            this.enEstado = false;
         }
     }
 
@@ -85,6 +86,14 @@ public class Vuelo {
         this.enEstado = enEstado;
     }
 
+    public int getEstadoAvion() {
+        return estadoAvion;
+    }
+
+    public void setEstadoAvion(int estadoAvion) {
+        this.estadoAvion = estadoAvion;
+    }
+
     public LocalTime getHoraSalida() {
         return horaSalida;
     }
@@ -99,5 +108,19 @@ public class Vuelo {
 
     public void setHoraLlegada(LocalTime horaLlegada) {
         this.horaLlegada = horaLlegada;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Vuelo{" +
+                "idVuelo='" + idVuelo + '\'' +
+                ", aeronave=" + aeronave.toString() +
+                ", aeropuertoOrigen=" + aeropuertoOrigen.getNombre()+
+                ", aeropuertoDestino=" + aeropuertoDestino.getNombre() +
+                ", companiaAerea=" + companiaAerea.getNombre() +
+                ", horaSalida=" + horaSalida +
+                ", horaLlegada=" + horaLlegada +
+                '}';
     }
 }
