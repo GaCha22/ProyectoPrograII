@@ -17,6 +17,10 @@ public class Vuelo {
     private LocalTime horaSalida;
     private LocalTime horaLlegada;
 
+    public Vuelo(Aeronave aeronave, CompaniaAerea companiaAerea) {
+        this.aeronave = aeronave;
+        this.companiaAerea = companiaAerea;
+    }
 
     public Vuelo(String idVuelo, Aeronave aeronave, Aeropuerto aeropuertoOrigen, Aeropuerto aeropuertoDestino, CompaniaAerea companiaAerea, boolean enEstado, LocalTime horaSalida, LocalTime horaLlegada) {
         this.idVuelo = idVuelo;
