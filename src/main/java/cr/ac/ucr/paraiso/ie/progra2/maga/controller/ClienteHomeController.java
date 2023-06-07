@@ -62,14 +62,14 @@ public class ClienteHomeController {
             aeronave = new Aeronave(txtPlaca.getText(), tipo);
             loadPage("interfaz/cliente.fxml");
             clienteController.setVuelo(aeronave, companiaAerea);
-            clienteController.setTextTXT("Tipo: " + aeronave.getTipo() +
+            clienteController.setTextTXT("Tipo: " + aeronave +
                     "\nPlaca: " + aeronave.getPlaca() +
-                    "\nAerolínea: " + companiaAerea.getNombre());
+                    "\nAerolínea: " + companiaAerea.getNombre() + "\n");
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error al guardar");
             alert.setHeaderText(null);
-            alert.setContentText("Complete todos los espacios para guardar.");
+            alert.setContentText("Complete todos los datos para poder guardar");
             alert.showAndWait();
         }
     }

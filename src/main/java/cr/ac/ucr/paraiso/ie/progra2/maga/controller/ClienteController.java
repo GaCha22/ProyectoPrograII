@@ -24,28 +24,28 @@ public class ClienteController {
 
     @FXML
     void initialize(){
-        piloto = new Piloto();
+        piloto = new Piloto(9999, txtaDatos);
         piloto.start();
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(true);
     }
 
     @FXML
-    void onActionIrAPuerta(ActionEvent a) throws InterruptedException {
+    void onActionIrAPuerta(ActionEvent a){
         btnAterrizar.setDisable(true);
         btnDespegar.setDisable(false);
         btnIrAPuerta.setDisable(true);
     }
 
     @FXML
-    void onActionAterrizar(ActionEvent a) throws InterruptedException {
+    void onActionAterrizar(ActionEvent a) {
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(false);
         btnAterrizar.setDisable(true);
     }
 
     @FXML
-    void onActionDespegar(ActionEvent a) throws InterruptedException {
+    void onActionDespegar(ActionEvent a){
         btnIrAPuerta.setDisable(true);
         btnAterrizar.setDisable(false);
         btnDespegar.setDisable(true);
