@@ -71,7 +71,7 @@ public class Protocol {
 
     public void aterrizar() throws InterruptedException {
         int flag=0;
-        if(aeropuerto.pistasDisponibles()){ //gestionar puertas disponibles. sincronizar
+        if(aeropuerto.pistasDisponibles()){ //sincronizar este metodo, el profe lo dijo
             for(int i=0; i<pistas.length; i++){
                 if(pistas[i].isDisponible()){
                     pistas[i].setDisponible(false);
