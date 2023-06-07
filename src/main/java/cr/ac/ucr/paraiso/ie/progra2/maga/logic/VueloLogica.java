@@ -65,7 +65,6 @@ public class VueloLogica {
         notifyAll();
     }
 
-
     //metodo que libere o quite puertas
     private void utilityPuertas() {
         int flag = 0;
@@ -76,43 +75,39 @@ public class VueloLogica {
                     flag = i;
                 }
             }
-            aeropuerto.setPuertas(puertas);
+            vuelo.getAeropuertoDestino().setPuertas(puertas);
             puertas[flag].setDisponible(true); // siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible
         }
     }
 
-
-
-
     // necesitamos un pistas
     private void utilityPistas() {
         int flag = 0;
-        if () { //gestionar puertas disponibles
+        if (vuelo.getAeropuertoDestino().pistasDisponibles()) { //gestionar puertas disponibles
             for (int i = 0; i < pistas.length; i++) {
                 if (pistas[i].isDisponible()) {
                     pistas[i].setDisponible(false);
                     flag = i;
                 }
             }
-            aeropuerto.setPistas(pistas);
+            vuelo.getAeropuertoDestino().setPistas(pistas);
             pistas[flag].setDisponible(true);
         }
     }
 
     public synchronized  void avionEsperandoPuerta(int estado){
 
-        while(!aeropuerto.pistasDisponibles() && estado == 2){
+        while(!vuelo.getAeropuertoDestino().pistasDisponibles() && estado == 2){
 
             try {
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
         }
+        aeronave.setEstado(estadoAeronave(estado));
 
-        notifyAll();
-
+        notify();
 
     }
 }
