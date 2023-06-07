@@ -14,6 +14,7 @@ public class Piloto extends Thread{
     private PrintWriter writer;
     private BufferedReader reader;
     private String respuesta;
+
     Socket echoSocket;
     TextArea txtA;
 
@@ -28,6 +29,7 @@ public class Piloto extends Thread{
             e.printStackTrace();
         }
     }
+
 
     @Override
     public void run() {
