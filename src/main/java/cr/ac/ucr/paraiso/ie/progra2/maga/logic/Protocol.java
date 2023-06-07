@@ -41,6 +41,7 @@ public class Protocol {
                 }
             }
             aeropuerto.setPistas(pistas);
+            sleep(aeronave.calcularTiempoEspera());
             pistas[flag].setDisponible(true);
             notify();
             gestionarEstado(vueloLogica.estadoAeronave(estadoAeronave));
@@ -60,7 +61,7 @@ public class Protocol {
             }
             aeropuerto.setPuertas(puertas);
             sleep(aeronave.calcularTiempoEspera());
-            puertas[flag].setDisponible(true); //siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible.
+            puertas[flag].setDisponible(true);
             notify();
             gestionarEstado(vueloLogica.estadoAeronave(estadoAeronave));
         }else{
@@ -70,7 +71,7 @@ public class Protocol {
 
     public void aterrizar() throws InterruptedException {
         int flag=0;
-        if(aeropuerto.pistasDisponibles()){ //gestionar puertas disponibles.
+        if(aeropuerto.pistasDisponibles()){ //gestionar puertas disponibles. sincronizar
             for(int i=0; i<pistas.length; i++){
                 if(pistas[i].isDisponible()){
                     pistas[i].setDisponible(false);
@@ -78,6 +79,7 @@ public class Protocol {
                 }
             }
             aeropuerto.setPistas(pistas);
+            sleep(aeronave.calcularTiempoEspera());
             pistas[flag].setDisponible(true);
             notify();
             gestionarEstado(vueloLogica.estadoAeronave(estadoAeronave));
