@@ -60,6 +60,24 @@ public class Aeropuerto {
         this.nombre = nombre;
     }
 
+    public void setDisponiblePista(int numPista, boolean disponible){
+        for (Pista pista:pistas) {
+            if(pista.numPista == numPista){
+                pista.disponible = disponible;
+            }
+        }
+    }
+
+    public void setDisponiblePuerta(int numPuerta, boolean disponible){
+        for (Puerta puerta:puertas) {
+            if(puerta.numPuerta == numPuerta){
+                puerta.disponible = disponible;
+            }
+        }
+    }
+
+
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
