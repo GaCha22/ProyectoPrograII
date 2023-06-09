@@ -1,6 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.model;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
+import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 
 import java.time.LocalTime;
 import java.util.Date;
@@ -17,6 +18,11 @@ public class Vuelo {
     private LocalTime horaSalida;
     private LocalTime horaLlegada;
 
+    public Vuelo(Aeronave aeronave, CompaniaAerea companiaAerea) {
+        this.aeronave = aeronave;
+        this.companiaAerea = companiaAerea;
+        this.aeropuertoDestino = GestionaArchivo.leerArchivoConfiguracion("config.json");
+    }
 
     public Vuelo(String idVuelo, Aeronave aeronave, Aeropuerto aeropuertoOrigen, Aeropuerto aeropuertoDestino, CompaniaAerea companiaAerea, boolean enEstado, LocalTime horaSalida, LocalTime horaLlegada) {
         this.idVuelo = idVuelo;

@@ -9,13 +9,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ClienteMain extends Application {
-    Piloto piloto = new Piloto();
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoaderHome = new FXMLLoader(ClienteMain.class.getResource("interfaz/clienteHome.fxml"));
-        Scene sceneHome = new Scene(fxmlLoaderHome.load());
-        stage.setTitle("Cliente");
-        stage.setScene(sceneHome);
+        FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource("interfaz/clienteHome.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("cliente");
+        stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
     }
