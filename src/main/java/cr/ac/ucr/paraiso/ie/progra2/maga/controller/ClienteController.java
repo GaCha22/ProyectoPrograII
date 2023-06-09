@@ -68,7 +68,7 @@ public class ClienteController {
         String contenido = txtaDatos.getText();
         String[] lineas = contenido.split("\n");
         String estado = this.vuelo.getAeronave().getEstado() == 3 ? "En el aire" : this.vuelo.getAeronave().getEstado() == 2 ? "En puerta" : this.vuelo.getAeronave().getEstado() == 1 ? "Aterrizando" : "En espera";
-        lineas[3] = "Estado del avión: jhfgfgs" + estado;
+        lineas[3] = "Estado del avión: SIRVE" + estado;
         String nuevoContenido = String.join("\n", lineas);
         txtaDatos.setText(nuevoContenido);
     }
