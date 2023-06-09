@@ -9,6 +9,10 @@ public class Puerta {
     public Puerta() {
     }
 
+    public void cantidadPuertas(){
+        
+    }
+
     public int getNumPuerta() {
         return numPuerta;
     }

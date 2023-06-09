@@ -55,6 +55,10 @@ public class Aeronave {
         return this.estado;
     }
 
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
         switch(this.tipo){
