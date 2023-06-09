@@ -17,10 +17,9 @@ import java.util.List;
 public class GestionaArchivo {
 
 
-    public Aeropuerto leerArchivoConfiguracion(String path) {
+    public static Aeropuerto leerArchivoConfiguracion(String path) {
 
         Gson gson = new Gson();
-        String archivo;
         Aeropuerto aeropuerto = null;
         try (FileReader reader = new FileReader(path)) {
 

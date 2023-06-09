@@ -2,11 +2,15 @@ package cr.ac.ucr.paraiso.ie.progra2.maga.model;
 
 public class Puerta {
 
-    public int numPuerta;
+    private int numPuerta;
 
-    public boolean disponible;
+    private boolean disponible;
 
     public Puerta() {
+    }
+
+    public void cantidadPuertas(){
+        
     }
 
     public int getNumPuerta() {
