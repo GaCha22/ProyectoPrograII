@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4d4ec7d-9daf-4447-90e2-27b1df8e2055" name="Changes" comment="9/6/23">
+    <list default="true" id="d4d4ec7d-9daf-4447-90e2-27b1df8e2055" name="Changes" comment="Estado inicial">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/VueloLogica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/VueloLogica.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +77,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ClienteMain">
     <configuration name="ClienteMain" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain" />
       <module name="Maga" />
@@ -136,9 +136,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Test.escribir" />
         <item itemvalue="Application.ClienteMain" />
         <item itemvalue="Application.ServerMain" />
+        <item itemvalue="JUnit.Test.escribir" />
         <item itemvalue="JUnit.Test.leerArchivoConfigFunciona" />
       </list>
     </recent_temporary>
@@ -177,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686350661276</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Estado inicial">
+      <created>1686351454660</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686351454660</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +205,8 @@
     <MESSAGE value="Cambios antes de la tragedia" />
     <MESSAGE value="Pantalla inicio" />
     <MESSAGE value="9/6/23" />
-    <option name="LAST_COMMIT_MESSAGE" value="9/6/23" />
+    <MESSAGE value="Estado inicial" />
+    <option name="LAST_COMMIT_MESSAGE" value="Estado inicial" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ProyectoPrograII$ClienteMain.ic" NAME="ClienteMain Coverage Results" MODIFIED="1685610076376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
