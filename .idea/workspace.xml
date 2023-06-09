@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/reportes.json" beforeDir="false" afterPath="$PROJECT_DIR$/reportes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/ServerMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/Protocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/Protocol.java" afterDir="false" />
-
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

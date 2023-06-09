@@ -11,7 +11,7 @@ public class ServerMain extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ServerMain.class.getResource("interfaz/servidor.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Controlador Aereo");
+        stage.setTitle("Controlador Aéreo");
         stage.setScene(scene);
         stage.show();
     }
