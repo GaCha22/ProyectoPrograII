@@ -7,9 +7,6 @@ public class CompaniaAerea {
     private String nombre;
 
     private List<Aeronave> aeronaves;
-
-    private List<Puerta> puertasAlquiladas;
-
     public CompaniaAerea(String nombre) {
         this.nombre = nombre;
     }
