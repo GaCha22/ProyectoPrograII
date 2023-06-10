@@ -66,8 +66,8 @@ public class ClienteController {
     }
 
     public void nuevoEstado(int estadoACambiar){
-        String contenidoTXT = txtaDatos.getText();
-        String[] lineas = contenidoTXT.split("\n");
+        String textArea = txtaDatos.getText();
+        String[] lineas = textArea.split("\n");
         this.vuelo.setEstadoAvion(vueloLogica.estadoAeronave(estadoACambiar));
         String estado = this.vuelo.getAeronave().getEstado() == 3 ? "En el aire" : this.vuelo.getAeronave().getEstado() == 2 ? "En puerta" : this.vuelo.getAeronave().getEstado() == 1 ? "Aterrizando" : "En espera";
         lineas[3] = "Estado del avión: " + estado;
