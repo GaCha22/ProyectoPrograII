@@ -36,7 +36,7 @@ public class Vuelo {
     }
 
     public void cambiarEstado(){
-        VueloLogica vueloLogica = new VueloLogica();
+        VueloLogica vueloLogica = new VueloLogica(this);
         if(aeronave.getEstado() != vueloLogica.estadoAeronave(aeronave.getEstado())){
             this.enEstado = true;
         }else{
@@ -97,7 +97,7 @@ public class Vuelo {
     }
 
     public void setEstadoAvion(int estadoAvion) {
-        this.estadoAvion = estadoAvion;
+        this.aeronave.setEstado(estadoAvion);
     }
 
     public LocalTime getHoraSalida() {

@@ -62,11 +62,10 @@ public class ClienteHomeController {
             aeronave = new Aeronave(txtPlaca.getText(), tipo);
             loadPage("interfaz/cliente.fxml");
             clienteController.setVuelo(aeronave, companiaAerea);
-            String estado = aeronave.getEstado() == 3 ? "En el aire" : aeronave.getEstado() == 2 ? "En puerta" : aeronave.getEstado() == 1 ? "Aterrizando" : "En espera";
             clienteController.setTextTXT("Tipo: " + aeronave +
                     "\nPlaca: " + aeronave.getPlaca() +
                     "\nAerolínea: " + companiaAerea.getNombre() +
-                    "\nEstado del avión: " + estado);
+                    "\nEstado del avión: En el aire");
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error al guardar");

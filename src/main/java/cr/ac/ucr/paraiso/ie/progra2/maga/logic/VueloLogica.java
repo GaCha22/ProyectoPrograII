@@ -13,9 +13,10 @@ public class VueloLogica {
     private final int DESPEGAR = 3;
     Aeronave aeronave;
     private Vuelo vuelo;
-    Pista pistas [] = vuelo.getAeropuertoDestino().getPistas();
-    Puerta puertas [] = vuelo.getAeropuertoDestino().getPuertas();
 
+    public VueloLogica(Vuelo vuelo) {
+        this.vuelo = vuelo;
+    }
 
     public int estadoAeronave(int estado){
         switch (estado){
@@ -49,15 +50,15 @@ public class VueloLogica {
 
             switch(tipoAvion){
                 case 1: // comercial
-                    utilityPuertas();
+                    //utilityPuertas();
                     wait(60000);
                     break;
                 case 2: // carga
-                    utilityPuertas();
+                    //utilityPuertas();
                     wait(120000);
                     break;
                 case 3: // avioneta
-                    utilityPuertas();
+                    //utilityPuertas();
                     wait(240000);
                     break;
             }
@@ -66,34 +67,34 @@ public class VueloLogica {
     }
 
     //metodo que libere o quite puertas
-    private void utilityPuertas() {
-        int flag = 0;
-        if (vuelo.getAeropuertoDestino().puertasDisponibles()) { // gestionar puertas disponibles
-            for (int i = 0; i < puertas.length; i++) {
-                if (puertas[i].isDisponible()) {
-                    puertas[i].setDisponible(false);
-                    flag = i;
-                }
-            }
-            vuelo.getAeropuertoDestino().setPuertas(puertas);
-            puertas[flag].setDisponible(true); // siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible
-        }
-    }
-
-    // necesitamos un pistas
-    private void utilityPistas() {
-        int flag = 0;
-        if (vuelo.getAeropuertoDestino().pistasDisponibles()) { //gestionar puertas disponibles
-            for (int i = 0; i < pistas.length; i++) {
-                if (pistas[i].isDisponible()) {
-                    pistas[i].setDisponible(false);
-                    flag = i;
-                }
-            }
-            vuelo.getAeropuertoDestino().setPistas(pistas);
-            pistas[flag].setDisponible(true);
-        }
-    }
+//    private void utilityPuertas() {
+//        int flag = 0;
+//        if (vuelo.getAeropuertoDestino().puertasDisponibles()) { // gestionar puertas disponibles
+//            for (int i = 0; i < puertas.length; i++) {
+//                if (puertas[i].isDisponible()) {
+//                    puertas[i].setDisponible(false);
+//                    flag = i;
+//                }
+//            }
+//            vuelo.getAeropuertoDestino().setPuertas(puertas);
+//            puertas[flag].setDisponible(true); // siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible
+//        }
+//    }
+//
+//    // necesitamos un pistas
+//    private void utilityPistas() {
+//        int flag = 0;
+//        if (vuelo.getAeropuertoDestino().pistasDisponibles()) { //gestionar puertas disponibles
+//            for (int i = 0; i < pistas.length; i++) {
+//                if (pistas[i].isDisponible()) {
+//                    pistas[i].setDisponible(false);
+//                    flag = i;
+//                }
+//            }
+//            vuelo.getAeropuertoDestino().setPistas(pistas);
+//            pistas[flag].setDisponible(true);
+//        }
+//    }
 
     public synchronized  void avionEsperandoPuerta(int estado){
         while(!vuelo.getAeropuertoDestino().pistasDisponibles() && estado == 2){

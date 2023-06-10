@@ -28,6 +28,7 @@ public class ClienteController {
     void initialize(){
         piloto = new Piloto(9999, txtaDatos);
         piloto.start();
+        vueloLogica = new VueloLogica(this.vuelo);
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(true);
     }
@@ -37,7 +38,7 @@ public class ClienteController {
         btnAterrizar.setDisable(true);
         btnDespegar.setDisable(false);
         btnIrAPuerta.setDisable(true);
-        nuevoEstado();
+        nuevoEstado(1);
     }
 
     @FXML
@@ -45,7 +46,7 @@ public class ClienteController {
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(false);
         btnAterrizar.setDisable(true);
-        nuevoEstado();
+        nuevoEstado(3);
     }
 
     @FXML
@@ -53,7 +54,7 @@ public class ClienteController {
         btnIrAPuerta.setDisable(true);
         btnAterrizar.setDisable(false);
         btnDespegar.setDisable(true);
-        nuevoEstado();
+        nuevoEstado(0);
     }
 
     public void setTextTXT(String txt){
@@ -64,13 +65,14 @@ public class ClienteController {
         this.vuelo = new Vuelo(aeronave, companiaAerea);
     }
 
-    public void nuevoEstado(){
-        String contenido = txtaDatos.getText();
-        String[] lineas = contenido.split("\n");
+    public void nuevoEstado(int estadoACambiar){
+        String contenidoTXT = txtaDatos.getText();
+        String[] lineas = contenidoTXT.split("\n");
+        this.vuelo.setEstadoAvion(vueloLogica.estadoAeronave(estadoACambiar));
         String estado = this.vuelo.getAeronave().getEstado() == 3 ? "En el aire" : this.vuelo.getAeronave().getEstado() == 2 ? "En puerta" : this.vuelo.getAeronave().getEstado() == 1 ? "Aterrizando" : "En espera";
-        lineas[3] = "Estado del avión: SIRVE" + estado;
-        String nuevoContenido = String.join("\n", lineas);
-        txtaDatos.setText(nuevoContenido);
+        lineas[3] = "Estado del avión: " + estado;
+        String txtaDatos = String.join("\n", lineas);
+        this.txtaDatos.setText(txtaDatos);
     }
 
 }
