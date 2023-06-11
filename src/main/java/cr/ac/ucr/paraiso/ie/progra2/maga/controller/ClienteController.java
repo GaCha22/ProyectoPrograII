@@ -5,6 +5,7 @@ import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,7 +27,8 @@ public class ClienteController {
 
     @FXML
     void initialize(){
-        piloto = new Piloto(9999, txtaDatos);
+        vuelo = GestionaArchivo.leerVuelo("vuelo.json");
+        piloto = new Piloto(9999, txtaDatos, "asdf");
         piloto.start();
         vueloLogica = new VueloLogica(this.vuelo);
         btnDespegar.setDisable(true);
@@ -63,6 +65,10 @@ public class ClienteController {
 
     public void setVuelo(Aeronave aeronave, CompaniaAerea companiaAerea){
         this.vuelo = new Vuelo(aeronave, companiaAerea);
+    }
+
+    public void setVuelo(Vuelo vuelo) {
+        this.vuelo = vuelo;
     }
 
     public void nuevoEstado(int estadoACambiar){

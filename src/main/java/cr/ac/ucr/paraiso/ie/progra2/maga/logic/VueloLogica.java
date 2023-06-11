@@ -11,12 +11,14 @@ public class VueloLogica {
     private final int  ATERRIZAR = 1;
     private final int PUERTA = 2;
     private final int DESPEGAR = 3;
-    Aeronave aeronave;
-    private Vuelo vuelo;
+    private Aeronave aeronave;
+    public static Vuelo vuelo;
 
     public VueloLogica(Vuelo vuelo) {
         this.vuelo = vuelo;
     }
+
+    public VueloLogica(){}
 
     public int estadoAeronave(int estado){
         switch (estado){
