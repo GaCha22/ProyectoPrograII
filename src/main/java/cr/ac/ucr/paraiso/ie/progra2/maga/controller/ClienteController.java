@@ -1,6 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
@@ -21,11 +22,13 @@ public class ClienteController {
     private Button btnIrAPuerta;
     private Piloto piloto;
     private Vuelo vuelo;
+    private VueloLogica vueloLogica;
 
     @FXML
     void initialize(){
         piloto = new Piloto(9999, txtaDatos);
         piloto.start();
+        vueloLogica = new VueloLogica(this.vuelo);
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(true);
     }
@@ -35,6 +38,7 @@ public class ClienteController {
         btnAterrizar.setDisable(true);
         btnDespegar.setDisable(false);
         btnIrAPuerta.setDisable(true);
+        nuevoEstado(1);
     }
 
     @FXML
@@ -42,6 +46,7 @@ public class ClienteController {
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(false);
         btnAterrizar.setDisable(true);
+        nuevoEstado(3);
     }
 
     @FXML
@@ -49,6 +54,7 @@ public class ClienteController {
         btnIrAPuerta.setDisable(true);
         btnAterrizar.setDisable(false);
         btnDespegar.setDisable(true);
+        nuevoEstado(0);
     }
 
     public void setTextTXT(String txt){
@@ -58,4 +64,15 @@ public class ClienteController {
     public void setVuelo(Aeronave aeronave, CompaniaAerea companiaAerea){
         this.vuelo = new Vuelo(aeronave, companiaAerea);
     }
+
+    public void nuevoEstado(int estadoACambiar){
+        String textArea = txtaDatos.getText();
+        String[] lineas = textArea.split("\n");
+        this.vuelo.setEstadoAvion(vueloLogica.estadoAeronave(estadoACambiar));
+        String estado = this.vuelo.getAeronave().getEstado() == 3 ? "En el aire" : this.vuelo.getAeronave().getEstado() == 2 ? "En puerta" : this.vuelo.getAeronave().getEstado() == 1 ? "Aterrizando" : "En espera";
+        lineas[3] = "Estado del avión: " + estado;
+        String txtaDatos = String.join("\n", lineas);
+        this.txtaDatos.setText(txtaDatos);
+    }
+
 }

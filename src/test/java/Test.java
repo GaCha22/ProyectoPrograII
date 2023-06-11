@@ -1,5 +1,4 @@
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.GeneraRandoms;
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocol;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
@@ -14,7 +13,6 @@ public class Test {
 
     GestionaArchivo gestionaArchivo = new GestionaArchivo();
     GeneraRandoms gR = new GeneraRandoms();
-    Protocol protocol = new Protocol();
     LocalTime horaSalida = LocalTime.now();
     LocalTime horaLlegada= LocalTime.now();
     Vuelo vuelo1 = new Vuelo("123",new Aeronave(2), new Aeropuerto(), new Aeropuerto( "Juan Santamaria"),new CompaniaAerea("compañia 2"),false, horaSalida,horaLlegada);

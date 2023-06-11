@@ -8,7 +8,6 @@ public class MultiServidor extends Thread{
     @Override
     public void run() {
         ServerSocket serverSocket = null;
-
         try {
             serverSocket = new ServerSocket(9999);
             System.out.println("Servidor activo: " + serverSocket.getLocalPort());
