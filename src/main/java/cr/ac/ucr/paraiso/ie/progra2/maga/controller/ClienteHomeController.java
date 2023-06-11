@@ -3,6 +3,7 @@ package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 import cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
+import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteHomeController {
     @FXML
@@ -54,18 +57,32 @@ public class ClienteHomeController {
         }
     }
 
+    GestionaArchivo gestionaArchivo = new GestionaArchivo();
+
     @FXML
     void onActionGuardar(ActionEvent a) {
         if (!chbAerolinea.getValue().equals("Aerolíneas") && !chbTipo.getValue().equals("Tipo de avión") && !txtPlaca.getText().equals("")) {
-            companiaAerea = new CompaniaAerea(chbAerolinea.getValue());
-            int tipo = chbTipo.getValue().equals("Avioneta") ? 3 : chbTipo.getValue().equals("Avión comercial") ? 1 : 2;
-            aeronave = new Aeronave(txtPlaca.getText(), tipo);
-            loadPage("interfaz/cliente.fxml");
-            clienteController.setVuelo(aeronave, companiaAerea);
-            clienteController.setTextTXT("Tipo: " + aeronave +
-                    "\nPlaca: " + aeronave.getPlaca() +
-                    "\nAerolínea: " + companiaAerea.getNombre() +
-                    "\nEstado del avión: En el aire");
+                String placa= txtPlaca.getText();
+            if (gestionaArchivo.buscarPlacaEnArchivo(placa,"placasRegistradas.txt")) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Error. La placa ya existe en la base de datos.");
+                alert.setHeaderText(null);
+                alert.setContentText("Ingrese una placa diferente");
+                alert.showAndWait();
+                txtPlaca.setText(""); //limpiar espacio
+            } else {
+                gestionaArchivo.registrarPlacas(placa,"placasRegistradas.txt");
+                companiaAerea = new CompaniaAerea(chbAerolinea.getValue());
+                int tipo = chbTipo.getValue().equals("Avioneta") ? 3 : chbTipo.getValue().equals("Avión comercial") ? 1 : 2;
+                aeronave = new Aeronave(txtPlaca.getText(), tipo);
+                loadPage("interfaz/cliente.fxml");
+                clienteController.setVuelo(aeronave, companiaAerea);
+                clienteController.setTextTXT("Tipo: " + aeronave +
+                        "\nPlaca: " + aeronave.getPlaca() +
+                        "\nAerolínea: " + companiaAerea.getNombre() +
+                        "\nEstado del avión: En el aire");
+            }
+
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error al guardar");

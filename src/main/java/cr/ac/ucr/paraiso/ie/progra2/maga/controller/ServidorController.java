@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
+import java.io.File;
+import java.io.IOException;
+
 public class ServidorController {
 
 
@@ -41,10 +44,15 @@ public class ServidorController {
     private Aeropuerto aeropuerto;
 
     @FXML
-    void initialize(){
+    void initialize() throws IOException {
         multiServidor = new MultiServidor();
         multiServidor.start();
         aeropuerto = GestionaArchivo.leerArchivoConfiguracion("config.json");
+        File archivo = new File("placasRegistradas.txt");
+        if (archivo.exists()) {
+            archivo.delete();
+        }
+        archivo.createNewFile(); //de esta manera el archivo se limpia cuando el servidor se carga
         txtaPistasDisponibles.setText(aeropuerto.pistasToString());
         txtaPuertasDisponibles.setText(aeropuerto.puertasToString());
     }
