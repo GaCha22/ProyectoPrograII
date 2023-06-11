@@ -47,10 +47,11 @@ public class Protocolo {
                 if (puertas[i].isDisponible()) {
                     puertas[i].setDisponible(false);
                     flag = i;
+                    break;
                 }
             }
             vuelo.getAeropuertoDestino().setPuertas(puertas);
-            puertas[flag].setDisponible(true); // siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible
+            puertas[flag].setDisponible(true); //siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible
         }
     }
 
@@ -62,6 +63,7 @@ public class Protocolo {
                 if (pistas[i].isDisponible()) {
                     pistas[i].setDisponible(false);
                     flag = i;
+                    break;
                 }
             }
             vuelo.getAeropuertoDestino().setPistas(pistas);
