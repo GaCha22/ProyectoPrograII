@@ -9,7 +9,7 @@ import java.net.Socket;
 public class MultiServidorHilo extends Thread{
     private Socket socket;
     public MultiServidorHilo(Socket socket, String name) {
-        super("Hilo " + name);
+        super(name);
         this.socket = socket;
     }
 
