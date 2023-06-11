@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ClienteHomeController {
@@ -41,6 +42,10 @@ public class ClienteHomeController {
 
     @FXML
     public void initialize() {
+        File archivo = new File("vuelo.json");
+        if (archivo.exists()) {
+            archivo.delete();
+        }
         ObservableList<String> items = FXCollections.observableArrayList("Avioneta", "Avión comercial", "Avión de carga");
         chbTipo.setItems(items);
         chbTipo.setValue("Tipo de avión");
@@ -77,6 +82,8 @@ public class ClienteHomeController {
                 int tipo = chbTipo.getValue().equals("Avioneta") ? 3 : chbTipo.getValue().equals("Avión comercial") ? 1 : 2;
                 aeronave = new Aeronave(txtPlaca.getText(), tipo);
                 loadPage("interfaz/cliente.fxml");
+                Vuelo vuelo = new Vuelo(aeronave, companiaAerea);
+                GestionaArchivo.escribirVuelo(vuelo, "vuelo.json");
                 clienteController.setVuelo(aeronave, companiaAerea);
                 clienteController.setTextTXT("Tipo: " + aeronave +
                         "\nPlaca: " + aeronave.getPlaca() +
