@@ -1,8 +1,10 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,8 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ClienteHomeController {
     @FXML
@@ -36,6 +36,8 @@ public class ClienteHomeController {
     private ClienteController clienteController;
     CompaniaAerea companiaAerea;
     Aeronave aeronave;
+    GestionaArchivo gestionaArchivo = new GestionaArchivo();
+
 
     @FXML
     public void initialize() {
@@ -57,12 +59,11 @@ public class ClienteHomeController {
         }
     }
 
-    GestionaArchivo gestionaArchivo = new GestionaArchivo();
 
     @FXML
     void onActionGuardar(ActionEvent a) {
         if (!chbAerolinea.getValue().equals("Aerolíneas") && !chbTipo.getValue().equals("Tipo de avión") && !txtPlaca.getText().equals("")) {
-                String placa= txtPlaca.getText();
+            String placa= txtPlaca.getText();
             if (gestionaArchivo.buscarPlacaEnArchivo(placa,"placasRegistradas.txt")) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Error. La placa ya existe en la base de datos.");
@@ -79,10 +80,8 @@ public class ClienteHomeController {
                 clienteController.setVuelo(aeronave, companiaAerea);
                 clienteController.setTextTXT("Tipo: " + aeronave +
                         "\nPlaca: " + aeronave.getPlaca() +
-                        "\nAerolínea: " + companiaAerea.getNombre() +
-                        "\nEstado del avión: En el aire");
+                        "\nAerolínea: " + companiaAerea.getNombre() + "\n");
             }
-
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error al guardar");

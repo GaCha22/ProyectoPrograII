@@ -18,13 +18,14 @@ public class Piloto extends Thread{
     Socket echoSocket;
     TextArea txtA;
 
-    public Piloto(int puerto, TextArea textArea){
+    public Piloto(int puerto, TextArea textArea, String id){
         this.txtA = textArea;
         this.puerto = puerto;
         try {
             echoSocket = new Socket("localhost", this.puerto);
             this.writer = new PrintWriter(echoSocket.getOutputStream(), true);
             this.reader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+            writer.println(id);
         } catch (IOException e) {
             e.printStackTrace();
         }

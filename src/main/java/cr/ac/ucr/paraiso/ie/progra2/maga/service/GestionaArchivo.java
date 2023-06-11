@@ -82,7 +82,6 @@ public class GestionaArchivo {
         }
     }
 
-
     // archivos txt
     public void registrarPlacas(String placa, String nombreArchivo) {
         try {
@@ -111,4 +110,5 @@ public class GestionaArchivo {
         }
         return false; // La placa no se encontró en el archivo
     }
+
 }

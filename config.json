@@ -13,31 +13,15 @@
   "puertas": [
     {
       "numPuerta": 1,
-      "disponible": true,
-      "companiaAerea": {
-        "nombre": "AVIANCA"
-      }
+      "disponible": true
     },
     {
       "numPuerta": 2,
-      "disponible": true,
-      "companiaAerea": {
-        "nombre": "IBERIA"
-      }
+      "disponible": true
     },
     {
       "numPuerta": 3,
-      "disponible": true,
-      "companiaAerea": {
-        "nombre": "TACA"
-      }
-    },
-    {
-      "numPuerta": 4,
-      "disponible": true,
-      "companiaAerea": {
-        "nombre": "AVIANCA"
-      }
+      "disponible": true
     }
   ]
 }

@@ -4,7 +4,6 @@ public class Puerta {
 
     private int numPuerta;
 
-    private CompaniaAerea companiaAerea;
     private boolean disponible;
 
     public Puerta() {
@@ -22,14 +21,6 @@ public class Puerta {
         this.numPuerta = numPuerta;
     }
 
-    public CompaniaAerea getCompaniaAerea() {
-        return companiaAerea;
-    }
-
-    public void setCompaniaAerea(CompaniaAerea companiaAerea) {
-        this.companiaAerea = companiaAerea;
-    }
-
     public boolean isDisponible() {
         return disponible;
     }
@@ -42,7 +33,6 @@ public class Puerta {
     public String toString() {
         return "Puerta{" +
                 "numPuerta=" + numPuerta +
-                ", companiaAerea=" + companiaAerea +
                 '}';
     }
 }
