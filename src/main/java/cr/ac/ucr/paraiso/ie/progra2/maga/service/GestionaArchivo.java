@@ -22,7 +22,6 @@ public class GestionaArchivo {
                 .create();
         Aeropuerto aeropuerto = null;
         try (FileReader reader = new FileReader(path)) {
-
             aeropuerto = gson.fromJson(reader, Aeropuerto.class);
         } catch (IOException e) {
             e.printStackTrace();
@@ -31,11 +30,10 @@ public class GestionaArchivo {
         return aeropuerto;
     }
 
-    public String generarReporteVuelos() {
+    public static String generarReporteVuelos(String path) {
 
         String jsonString;
         String salida = "";
-        String path = "reportes.json";
         try {
             jsonString = new String(Files.readAllBytes(Paths.get(path)));
         } catch (IOException e) {
@@ -54,11 +52,34 @@ public class GestionaArchivo {
         return salida;
     }
 
-    public void escribirVuelo(Vuelo vuelo) {
+    public static Vuelo leerVuelo(String path) {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
                 .create();
-        String path = "reportes.json";
+
+        Vuelo vuelo = null;
+        try (FileReader reader = new FileReader(path)) {
+            vuelo =  gson.fromJson(reader, Vuelo.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return vuelo;
+    }
+
+    public static void escribirVuelo(Vuelo vuelo, String path) {
+        File file = new File(path);
+        if (!file.exists()){
+            try {
+                boolean b = file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
+                .create();
 
         try (FileReader fileReader = new FileReader(path)) {
             Vuelo[] vuelosExistentes = gson.fromJson(fileReader, Vuelo[].class); // Lee los vuelos existentes del archivo

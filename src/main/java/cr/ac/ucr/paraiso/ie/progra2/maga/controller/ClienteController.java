@@ -5,6 +5,7 @@ import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,6 +27,7 @@ public class ClienteController {
 
     @FXML
     void initialize(){
+        vuelo = GestionaArchivo.leerVuelo("vuelo.json");
         piloto = new Piloto(9999, txtaDatos, "asdf");
         piloto.start();
         vueloLogica = new VueloLogica(this.vuelo);

@@ -24,6 +24,6 @@ public class CompaniaAerea {
     public String toString() {
         return "CompaniaAerea{" +
                 "nombre='" + nombre + '\'' +
-                '}';
+        '}';
     }
 }

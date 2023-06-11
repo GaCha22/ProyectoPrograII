@@ -11,7 +11,7 @@ public class Puerta {
     }
 
     public void cantidadPuertas(){
-        
+
     }
 
     public int getNumPuerta() {
