@@ -40,8 +40,8 @@ public class Protocolo {
         }
 
 
-    public synchronized void avionDespegue(){
-        while(!vuelo.getAeropuertoDestino().pistasDisponibles() && aeronave.getEstado() == 0){
+    public synchronized void avionDespegue() {
+        while (!vuelo.getAeropuertoDestino().pistasDisponibles() && aeronave.getEstado() == 0) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -50,10 +50,7 @@ public class Protocolo {
         }
         utilityPistas();
         //sale de puertas, mandelo a despegar
-        if(vuelo.getAeropuertoDestino().pistasDisponibles()) {
-            aeronave.setEstado(aeronave.getEstado());
-            notifyAll();
-        }
+        aeronave.setEstado(aeronave.getEstado());
     }
 
     public synchronized void avionAEnEspera(){
@@ -104,6 +101,11 @@ public class Protocolo {
         if (vuelo.getAeropuertoDestino().puertasDisponibles()) {
             for (int i = 0; i < puertas.length; i++) {
                 if (puertas[i].isDisponible()) {
+                    try {
+                        sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     puertas[i].setDisponible(false);
                     flag = i;
                     break;
@@ -111,6 +113,7 @@ public class Protocolo {
             }
             vuelo.getAeropuertoDestino().setPuertas(puertas);
             puertas[flag].setDisponible(true); //siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible
+            notifyAll();
         }
     }
 
@@ -120,6 +123,11 @@ public class Protocolo {
         if (vuelo.getAeropuertoDestino().pistasDisponibles()) {
             for (int i = 0; i < pistas.length; i++) {
                 if (pistas[i].isDisponible()) {
+                    try {
+                        sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     pistas[i].setDisponible(false);
                     flag = i;
                     break;
@@ -127,6 +135,7 @@ public class Protocolo {
             }
             vuelo.getAeropuertoDestino().setPistas(pistas);
             pistas[flag].setDisponible(true);
+            notifyAll();
         }
     }
 
