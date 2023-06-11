@@ -26,7 +26,7 @@ public class ClienteController {
 
     @FXML
     void initialize(){
-        piloto = new Piloto(9999, txtaDatos);
+        piloto = new Piloto(9999, txtaDatos, "asdf");
         piloto.start();
         vueloLogica = new VueloLogica(this.vuelo);
         btnDespegar.setDisable(true);
@@ -63,6 +63,10 @@ public class ClienteController {
 
     public void setVuelo(Aeronave aeronave, CompaniaAerea companiaAerea){
         this.vuelo = new Vuelo(aeronave, companiaAerea);
+    }
+
+    public void setVuelo(Vuelo vuelo) {
+        this.vuelo = vuelo;
     }
 
     public void nuevoEstado(int estadoACambiar){

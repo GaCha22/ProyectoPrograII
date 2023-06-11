@@ -37,6 +37,7 @@ public class Test {
         System.out.println((gestionaArchivo.leerArchivoConfiguracion(path)).toString());
     }
 
+
     @org.junit.jupiter.api.Test
     public void generaRandomsFunciona(){
         System.out.println(gR.getIdVuelo());

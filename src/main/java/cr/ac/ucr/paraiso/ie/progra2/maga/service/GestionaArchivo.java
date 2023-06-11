@@ -4,9 +4,8 @@ import com.google.gson.GsonBuilder;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 import com.google.gson.Gson;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalTime;
@@ -81,6 +80,35 @@ public class GestionaArchivo {
         } catch (IOException e) {
             throw new RuntimeException("Error al leer los vuelos existentes del archivo: " + e.getMessage(), e);
         }
+    }
+
+    // archivos txt
+    public void registrarPlacas(String placa, String nombreArchivo) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo, true));
+            writer.write(placa);
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean buscarPlacaEnArchivo(String placa, String nombreArchivo) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo));
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                if (linea.equals(placa)) {
+                    reader.close();
+                    return true; // La placa se encontró en el archivo
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false; // La placa no se encontró en el archivo
     }
 
 }
