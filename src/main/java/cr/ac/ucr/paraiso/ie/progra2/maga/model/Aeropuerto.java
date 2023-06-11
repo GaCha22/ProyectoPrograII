@@ -84,16 +84,16 @@ public class Aeropuerto {
 
     public void setDisponiblePista(int numPista, boolean disponible){
         for (Pista pista:pistas) {
-            if(pista.numPista == numPista){
-                pista.disponible = disponible;
+            if(pista.getNumPista() == numPista){
+                pista.setDisponible(disponible);
             }
         }
     }
 
     public void setDisponiblePuerta(int numPuerta, boolean disponible){
         for (Puerta puerta:puertas) {
-            if(puerta.numPuerta == numPuerta){
-                puerta.disponible = disponible;
+            if(puerta.getNumPuerta() == numPuerta){
+                puerta.setDisponible(disponible);
             }
         }
     }
