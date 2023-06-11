@@ -1,7 +1,6 @@
 {
   "nombre": "Juan Santamaría",
-  "pistas":
-  [
+  "pistas": [
     {
       "numPista": 1,
       "disponible": true
@@ -11,23 +10,34 @@
       "disponible": true
     }
   ],
-  "puertas":
-  [
+  "puertas": [
     {
       "numPuerta": 1,
-      "disponible": true
+      "disponible": true,
+      "companiaAerea": {
+        "nombre": "AVIANCA"
+      }
     },
     {
       "numPuerta": 2,
-      "disponible": true
+      "disponible": true,
+      "companiaAerea": {
+        "nombre": "IBERIA"
+      }
     },
     {
       "numPuerta": 3,
-      "disponible": true
+      "disponible": true,
+      "companiaAerea": {
+        "nombre": "TACA"
+      }
     },
     {
       "numPuerta": 4,
-      "disponible": true
+      "disponible": true,
+      "companiaAerea": {
+        "nombre": "AVIANCA"
+      }
     }
   ]
 }
