@@ -26,7 +26,7 @@ public class MultiServidor extends Thread{
                 MultiServidorHilo cliente = new MultiServidorHilo(socketCliente, clienteId);
                 cliente.start();
                 clientes.put(clienteId, cliente);
-                System.out.println(clientes.get("asdf").getName());
+                System.out.println(clientes.values());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

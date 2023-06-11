@@ -67,6 +67,33 @@ public class GestionaArchivo {
         return vuelo;
     }
 
+    public static void escribirVueloenVuelos(Vuelo vuelo, String path) { //ya no debe ser una lista
+        File file = new File(path);
+        if (!file.exists()) {
+            try {
+                boolean b = file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
+                .create();
+
+        try (FileReader fileReader = new FileReader(path)) {
+            Vuelo vueloExistente = gson.fromJson(fileReader, Vuelo.class); // Lee el vuelo existente del archivo
+
+            try (FileWriter fileWriter = new FileWriter(path)) {
+                String json = gson.toJson(vueloExistente != null ? vueloExistente : vuelo); // Convierte el vuelo existente o el nuevo vuelo en formato JSON
+                fileWriter.write(json);
+            } catch (IOException e) {
+                throw new RuntimeException("Error al escribir el vuelo en el archivo: " + e.getMessage(), e);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error al leer el vuelo existente del archivo: " + e.getMessage(), e);
+        }
+    }
+
     public static void escribirVuelo(Vuelo vuelo, String path) {
         File file = new File(path);
         if (!file.exists()){
