@@ -16,17 +16,12 @@ public class Protocolo {
 
     // si hay puertas disponibles, y si el avion esta en puerta, entonces lo pone a esperar un tiempo respectivo
     public synchronized void avionAPuerta() throws InterruptedException {
-
         while(vuelo.getAeropuertoDestino().puertasDisponibles() && aeronave.getEstado() == 1){
-
-            // pone el estado del avión en puerta
+            //pone el estado del avión en puerta
             aeronave.setEstado(logica.estadoAeronave(aeronave.getEstado()));
-
-            // deshabilita las puertas que se vayan a usar en ese momento
+            //deshabilita las puertas que se vayan a usar en ese momento
             utilityPuertas();
-
             switch(aeronave.getTipo()){
-
                 case 1: // comercial
                     wait(60000);
                     break;
@@ -38,7 +33,6 @@ public class Protocolo {
                     break;
             }
         }
-
         // sale de puertas, mandelo a despegar
         if(vuelo.getAeropuertoDestino().pistasDisponibles()) {
             aeronave.setEstado(3);
@@ -76,23 +70,19 @@ public class Protocolo {
         }
     }
 
-    // si no hay puertas pone en espera al hilo hasta que alguien le notifique que ya hay puertas
+    //si no hay puertas pone en espera al hilo hasta que alguien le notifique que ya hay puertas
     public synchronized void avionEsperando(){
-
-        // mientras no haya pistas o puertas disponibles
+        //mientras no haya pistas o puertas disponibles
         while(!vuelo.getAeropuertoDestino().puertasDisponibles() && aeronave.getEstado() == 1 ||
                 !vuelo.getAeropuertoDestino().pistasDisponibles() && aeronave.getEstado() == 2){
-
             aeronave.setEstado(0);
-
             try {
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
-
-        utilityPistas(); // deshabilita las pistas que se usen en este momento
+        utilityPistas(); //deshabilita las pistas que se usen en este momento
         aeronave.setEstado(logica.estadoAeronave(aeronave.getEstado()));
         notifyAll();
     }

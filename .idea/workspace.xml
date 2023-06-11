@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4d4ec7d-9daf-4447-90e2-27b1df8e2055" name="Changes" comment="TxtActualizado">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_06_2023_17_55_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_06_2023_17_55__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_06_2023_11_36_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_06_2023_11_36_p__m___Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_06_2023_11_37_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_06_2023_11_37_p__m___Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_06_2023_01_34_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_06_2023_01_34_p__m___Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_06_2023_01_35_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_06_2023_01_35_p__m___Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/Protocolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/Protocolo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +32,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/service/GestionaArchivo.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -224,5 +226,10 @@
     <MESSAGE value="Interfaz &quot;lista&quot;" />
     <MESSAGE value="TxtActualizado" />
     <option name="LAST_COMMIT_MESSAGE" value="TxtActualizado" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ProyectoPrograII$ClienteMain.ic" NAME="ClienteMain Coverage Results" MODIFIED="1685610076376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>cr.ac.ucr.paraiso.ie.progra2.maga.*</FILTER>
+    </SUITE>
   </component>
 </project>
