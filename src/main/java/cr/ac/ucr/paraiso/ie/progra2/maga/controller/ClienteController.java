@@ -28,7 +28,7 @@ public class ClienteController {
     @FXML
     void initialize(){
         vuelo = GestionaArchivo.leerVuelo("vuelo.json");
-        piloto = new Piloto(9999, txtaDatos, "asdf");
+        piloto = new Piloto(9999, txtaDatos, vuelo.getAeronave().getPlaca());
         piloto.start();
         vueloLogica = new VueloLogica(this.vuelo);
         btnDespegar.setDisable(true);
