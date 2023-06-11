@@ -8,8 +8,6 @@ public class CompaniaAerea {
 
     private List<Aeronave> aeronaves;
 
-    private List<Puerta> puertasAlquiladas;
-
     public CompaniaAerea(String nombre) {
         this.nombre = nombre;
     }
@@ -20,5 +18,12 @@ public class CompaniaAerea {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "CompaniaAerea{" +
+                "nombre='" + nombre + '\'' +
+        '}';
     }
 }

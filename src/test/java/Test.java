@@ -21,13 +21,13 @@ public class Test {
 
     @org.junit.jupiter.api.Test
     public void escribir(){
-        gestionaArchivo.escribirVuelo(vuelo1);
-        gestionaArchivo.escribirVuelo(vuelo2);
+        gestionaArchivo.escribirVuelo(vuelo1, "reportes.json");
+        gestionaArchivo.escribirVuelo(vuelo2, "reportes.json");
     }
 
     @org.junit.jupiter.api.Test
     public void leerRegistro(){
-        System.out.println(gestionaArchivo.generarReporteVuelos());
+        System.out.println(gestionaArchivo.generarReporteVuelos("reportes.json"));
     }
 
     @org.junit.jupiter.api.Test
@@ -36,6 +36,7 @@ public class Test {
         //aeropuertoDestino
         System.out.println((gestionaArchivo.leerArchivoConfiguracion(path)).toString());
     }
+
 
     @org.junit.jupiter.api.Test
     public void generaRandomsFunciona(){
