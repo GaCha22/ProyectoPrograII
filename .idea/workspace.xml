@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4d4ec7d-9daf-4447-90e2-27b1df8e2055" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/Protocolo.java" afterDir="false" />
+    <list default="true" id="d4d4ec7d-9daf-4447-90e2-27b1df8e2055" name="Changes" comment="TxtActualizado">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_06_2023_17_55_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_06_2023_17_55__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/cliente/Piloto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/cliente/Piloto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/VueloLogica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/VueloLogica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,13 +29,10 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Avance" />
+        <entry key="$PROJECT_DIR$" value="Luis_Ballar" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/service/GestionaArchivo.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -57,27 +56,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Git.Branch.Popup.ShowAllRemotes": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Luis__Ballar",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Luis/IdeaProjects/knockKnockSockets",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.3321839",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Luis__Ballar&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Luis/IdeaProjects/Hilos&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3321839&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.ClienteMain">
     <configuration name="ClienteMain" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
@@ -141,8 +140,8 @@
       <list>
         <item itemvalue="Application.ClienteMain" />
         <item itemvalue="Application.ServerMain" />
-        <item itemvalue="JUnit.Test.leerRegistro" />
         <item itemvalue="JUnit.Test.leerArchivoConfigFunciona" />
+        <item itemvalue="JUnit.Test.leerRegistro" />
         <item itemvalue="JUnit.Test.escribir" />
       </list>
     </recent_temporary>
@@ -174,14 +173,35 @@
       <option name="project" value="LOCAL" />
       <updated>1686021857559</updated>
     </task>
-    <task id="LOCAL-00003" summary="Synchronized casi completitos, falta verificar si funcionan">
-      <created>1686486178321</created>
+    <task id="LOCAL-00003" summary="Interfaz &quot;lista&quot;">
+      <created>1686024611534</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1686486178321</updated>
+      <updated>1686024611534</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Interfaz &quot;lista&quot;">
+      <created>1686024815654</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686024815654</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Interfaz &quot;lista&quot;">
+      <created>1686030130015</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1686030130015</updated>
+    </task>
+    <task id="LOCAL-00006" summary="TxtActualizado">
+      <created>1686071585781</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1686071585781</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,12 +221,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Cambios antes de la tragedia" />
     <MESSAGE value="Pantalla inicio" />
-    <MESSAGE value="Synchronized casi completitos, falta verificar si funcionan" />
-    <option name="LAST_COMMIT_MESSAGE" value="Synchronized casi completitos, falta verificar si funcionan" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ProyectoPrograII$ClienteMain.ic" NAME="ClienteMain Coverage Results" MODIFIED="1685610076376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>cr.ac.ucr.paraiso.ie.progra2.maga.*</FILTER>
-    </SUITE>
+    <MESSAGE value="Interfaz &quot;lista&quot;" />
+    <MESSAGE value="TxtActualizado" />
+    <option name="LAST_COMMIT_MESSAGE" value="TxtActualizado" />
   </component>
 </project>

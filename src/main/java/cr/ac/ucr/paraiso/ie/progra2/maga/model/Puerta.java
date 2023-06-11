@@ -6,11 +6,21 @@ public class Puerta {
 
     private boolean disponible;
 
+    private CompaniaAerea companiaAerea;
+
     public Puerta() {
     }
 
     public void cantidadPuertas(){
         
+    }
+
+    public CompaniaAerea getCompaniaAerea() {
+        return companiaAerea;
+    }
+
+    public void setCompaniaAerea(CompaniaAerea companiaAerea) {
+        this.companiaAerea = companiaAerea;
     }
 
     public int getNumPuerta() {
