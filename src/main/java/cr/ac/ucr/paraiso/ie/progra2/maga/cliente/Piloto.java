@@ -1,5 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.cliente;
 
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import javafx.scene.control.TextArea;
 
 import java.io.BufferedReader;
@@ -14,9 +16,11 @@ public class Piloto extends Thread{
     private PrintWriter writer;
     private BufferedReader reader;
     private String respuesta;
+    private Protocolo protocol;
 
     Socket echoSocket;
     TextArea txtA;
+    Aeronave aeronave;
 
     public Piloto(int puerto, TextArea textArea){
         this.txtA = textArea;
