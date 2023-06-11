@@ -39,6 +39,127 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4d4ec7d-9daf-4447-90e2-27b1df8e2055" name="Changes" comment="" />
+      <created>1685640919760</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1685640919760</updated>
+      <workItem from="1685640921609" duration="2735000" />
+      <workItem from="1685643889980" duration="489000" />
+      <workItem from="1685644401832" duration="1191000" />
+      <workItem from="1685663277150" duration="8248000" />
+    </task>
+    <task id="LOCAL-00001" summary="Cambios antes de la tragedia">
+      <created>1686018760327</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1686018760327</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Pantalla inicio">
+      <created>1686021857559</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1686021857559</updated>
+    </task>
+    <task id="LOCAL-00003" summary="9/6/23">
+      <created>1686350661276</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1686350661276</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Estado inicial">
+      <created>1686351454660</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686351454660</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Nuevos estados">
+      <created>1686353011421</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1686353011421</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Nuevos estados">
+      <created>1686353240570</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1686353240570</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Nuevos estados">
+      <created>1686355365035</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1686355365035</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Nuevos estados">
+      <created>1686355960700</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1686355960700</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Nuevos estados">
+      <created>1686453017240</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1686453017240</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Nuevos estados">
+      <created>1686453067396</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1686453067396</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Protocolo">
+      <created>1686512588293</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686512588293</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Protocolo">
+      <created>1686512707127</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1686512707127</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Protocolo">
+      <created>1686517870997</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686517870997</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Protocolo">
+      <created>1686518097900</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1686518097900</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Protocolo">
+      <created>1686518324936</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686518324936</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
