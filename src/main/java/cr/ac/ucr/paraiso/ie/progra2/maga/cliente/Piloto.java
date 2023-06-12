@@ -15,13 +15,12 @@ public class Piloto extends Thread{
     private BufferedReader reader;
     private String respuesta;
 
-    Socket echoSocket;
-    TextArea txtA;
+    private Socket echoSocket;
 
-    public Piloto(int puerto, TextArea textArea, String id){
-        this.txtA = textArea;
+    public Piloto(int puerto, String id){
         this.puerto = puerto;
         try {
+            respuesta = null;
             echoSocket = new Socket("localhost", this.puerto);
             this.writer = new PrintWriter(echoSocket.getOutputStream(), true);
             this.reader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
@@ -31,16 +30,28 @@ public class Piloto extends Thread{
         }
     }
 
-
     @Override
     public void run() {
         try {
-            while (respuesta == null) {
-                respuesta = reader.readLine();
-            }
             System.out.println("Servidor: " + respuesta);
+            while ((respuesta = reader.readLine()) != null) {
+                System.out.println(respuesta);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void despegar(){
+        this.writer.println("despegar");
+    }
+
+    public void aterrizar(){
+        this.writer.println("aterrizar");
+    }
+
+    public void puerta(){
+        this.writer.println("puerta");
+    }
+
 }

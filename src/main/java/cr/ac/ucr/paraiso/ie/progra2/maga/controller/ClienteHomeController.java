@@ -87,7 +87,8 @@ public class ClienteHomeController {
                 clienteController.setVuelo(aeronave, companiaAerea);
                 clienteController.setTextTXT("Tipo: " + aeronave +
                         "\nPlaca: " + aeronave.getPlaca() +
-                        "\nAerolínea: " + companiaAerea.getNombre() + "\n");
+                        "\nAerolínea: " + companiaAerea.getNombre() +
+                        "\nEstado del avión: En el aire");
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);

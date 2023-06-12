@@ -1,6 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
@@ -24,11 +25,12 @@ public class ClienteController {
     private Piloto piloto;
     private Vuelo vuelo;
     private VueloLogica vueloLogica;
+    private Protocolo protocolo;
 
     @FXML
     void initialize(){
         vuelo = GestionaArchivo.leerVuelo("vuelo.json");
-        piloto = new Piloto(9999, txtaDatos, vuelo.getAeronave().getPlaca());
+        piloto = new Piloto(9999, vuelo.getAeronave().getPlaca());
         piloto.start();
         vueloLogica = new VueloLogica(this.vuelo);
         btnDespegar.setDisable(true);
@@ -37,26 +39,32 @@ public class ClienteController {
 
     @FXML
     void onActionIrAPuerta(ActionEvent a){
+        piloto.puerta();
         btnAterrizar.setDisable(true);
         btnDespegar.setDisable(false);
         btnIrAPuerta.setDisable(true);
         nuevoEstado(1);
+        //protocolo.avionAPuerta();
     }
 
     @FXML
     void onActionAterrizar(ActionEvent a) {
+        piloto.aterrizar();
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(false);
         btnAterrizar.setDisable(true);
         nuevoEstado(3);
+        //protocolo.avionAterrizando();
     }
 
     @FXML
     void onActionDespegar(ActionEvent a){
+        piloto.despegar();
         btnIrAPuerta.setDisable(true);
         btnAterrizar.setDisable(false);
         btnDespegar.setDisable(true);
         nuevoEstado(0);
+        //protocolo.avionDespegue();
     }
 
     public void setTextTXT(String txt){
