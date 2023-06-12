@@ -64,7 +64,6 @@ public class ClienteHomeController {
         }
     }
 
-
     @FXML
     void onActionGuardar(ActionEvent a) {
         if (!chbAerolinea.getValue().equals("Aerolíneas") && !chbTipo.getValue().equals("Tipo de avión") && !txtPlaca.getText().equals("")) {

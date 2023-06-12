@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="987c181c-26f3-4792-b4d9-214c9a78c0fc" name="Changes" comment="Protocolo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/placasRegistradas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/placasRegistradas.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686535394764</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Protocolo">
+      <created>1686538091118</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1686538091118</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
