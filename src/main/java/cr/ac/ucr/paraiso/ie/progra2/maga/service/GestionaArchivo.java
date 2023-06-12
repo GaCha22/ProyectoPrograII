@@ -47,7 +47,7 @@ public class GestionaArchivo {
 
 
         for (Vuelo vuelo : vuelos) {
-            salida += "\n" + vuelo.toString();
+            salida +=  vuelo.toString()  + "\n" ;
         }
         return salida;
     }
