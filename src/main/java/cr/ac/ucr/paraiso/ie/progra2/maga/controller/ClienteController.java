@@ -25,7 +25,7 @@ public class ClienteController {
     private Piloto piloto;
     private Vuelo vuelo;
     private VueloLogica vueloLogica;
-    Protocolo protocolo = new Protocolo();
+    private Protocolo protocolo;
 
     @FXML
     void initialize(){
