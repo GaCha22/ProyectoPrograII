@@ -17,32 +17,51 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidorHilo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidorHilo.java" afterDir="false" />
+    <list default="true" id="987c181c-26f3-4792-b4d9-214c9a78c0fc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ReporteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cr/ac/ucr/paraiso/ie/progra2/maga/interfaz/reporte.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/placasRegistradas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/placasRegistradas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportes.json" beforeDir="false" afterPath="$PROJECT_DIR$/reportes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/cliente/Piloto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/cliente/Piloto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ServidorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ServidorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/service/GestionaArchivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/service/GestionaArchivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cr/ac/ucr/paraiso/ie/progra2/maga/interfaz/servidor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cr/ac/ucr/paraiso/ie/progra2/maga/interfaz/servidor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="dev_C22037Respaldo" />
-      </map>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
     </option>
+  </component>
+  <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/VueloLogica.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/service/GestionaArchivo.java" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Git.Branch.Popup.ShowAllRemotes": "true",
     "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="RunManager" selected="Application.ServerMain">
+    <configuration name="ClienteMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;
   }
 }]]></component>
   <component name="RunManager" selected="Application.ClienteMain">
@@ -82,15 +101,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test.leerRegistro" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Maga" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <option name="METHOD_NAME" value="leerRegistro" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ClienteMain" />
         <item itemvalue="Application.ServerMain" />
+        <item itemvalue="JUnit.Test.leerRegistro" />
         <item itemvalue="JUnit.Test.escribir" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="d4d4ec7d-9daf-4447-90e2-27b1df8e2055" name="Changes" comment="" />
