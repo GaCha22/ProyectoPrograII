@@ -17,8 +17,9 @@ public class GestionaArchivo {
 
 
     public static Aeropuerto leerArchivoConfiguracion(String path) {
-
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
+                .create();
         Aeropuerto aeropuerto = null;
         try (FileReader reader = new FileReader(path)) {
 
