@@ -32,8 +32,7 @@ public class ClienteController implements PropertyChangeListener {
 
     @FXML
     void initialize(){
-        vuelo = GestionaArchivo.leerVuelo("vuelo.json");
-        piloto = new Piloto(9999, vuelo.getAeronave().getPlaca());
+        piloto = new Piloto(9999);
         piloto.agregarPropertyChangeListener(this);
         piloto.start();
         vueloLogica = new VueloLogica(this.vuelo);
@@ -46,7 +45,6 @@ public class ClienteController implements PropertyChangeListener {
         piloto.puerta();
         btnIrAPuerta.setDisable(true);
         nuevoEstado(1);
-        //protocolo.avionAPuerta();
     }
 
     @FXML
@@ -54,7 +52,6 @@ public class ClienteController implements PropertyChangeListener {
         piloto.aterrizar();
         btnAterrizar.setDisable(true);
         nuevoEstado(3);
-        //protocolo.avionAterrizando();
     }
 
     @FXML
@@ -62,7 +59,6 @@ public class ClienteController implements PropertyChangeListener {
         piloto.despegar();
         btnDespegar.setDisable(true);
         nuevoEstado(0);
-        //protocolo.avionDespegue();
     }
 
     public void setTextTXT(String txt){

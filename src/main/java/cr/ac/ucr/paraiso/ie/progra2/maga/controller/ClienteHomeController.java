@@ -64,7 +64,6 @@ public class ClienteHomeController {
         }
     }
 
-
     @FXML
     void onActionGuardar(ActionEvent a) {
         if (!chbAerolinea.getValue().equals("Aerolíneas") && !chbTipo.getValue().equals("Tipo de avión") && !txtPlaca.getText().equals("")) {
@@ -89,11 +88,6 @@ public class ClienteHomeController {
                         "\nPlaca: " + aeronave.getPlaca() +
                         "\nAerolínea: " + companiaAerea.getNombre() +
                         "\nEstado del avión: En el aire");
-            }
-
-            File archivo = new File("vuelo.json");
-            if (archivo.exists()) {
-                archivo.delete();
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);

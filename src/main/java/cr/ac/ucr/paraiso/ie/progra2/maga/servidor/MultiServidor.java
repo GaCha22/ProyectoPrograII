@@ -1,5 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,8 +11,12 @@ import java.util.*;
 
 public class MultiServidor extends Thread{
     private boolean escuchando = true;
-    private Map<String, MultiServidorHilo> clientes = new HashMap<>();
+    public static Aeropuerto aeropuertoServer;
     private static Queue<MultiServidorHilo> clientsInQueue = new ArrayDeque<>();
+
+    public MultiServidor(Aeropuerto aeropuerto) {
+        aeropuertoServer = aeropuerto;
+    }
 
     @Override
     public void run() {
@@ -20,21 +26,9 @@ public class MultiServidor extends Thread{
             System.out.println("Servidor activo: " + serverSocket.getLocalPort());
             while(escuchando){
                 Socket socketCliente = serverSocket.accept();
-                String clienteId = getClientId(socketCliente);
-                MultiServidorHilo cliente = new MultiServidorHilo(socketCliente, clienteId);
+                MultiServidorHilo cliente = new MultiServidorHilo(socketCliente);
                 cliente.start();
-                clientes.put(clienteId, cliente);
-                System.out.println(clientes.values());
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private String getClientId(Socket socketCliente){
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socketCliente.getInputStream()));
-            return reader.readLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

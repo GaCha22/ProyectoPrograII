@@ -1,6 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.cliente;
 
-import javafx.scene.control.TextArea;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -8,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
 
 public class Piloto extends Thread{
@@ -18,17 +18,19 @@ public class Piloto extends Thread{
     private String respuesta;
     private Socket echoSocket;
     private String mensaje;
+    public final static Vuelo vuelo = GestionaArchivo.leerVuelo("vuelo.json");
     private PropertyChangeSupport propertyChangeSupport;
 
-    public Piloto(int puerto, String id){
+    public Piloto(int puerto){
         this.puerto = puerto;
         try {
             propertyChangeSupport = new PropertyChangeSupport(this);
-            respuesta = null;
             echoSocket = new Socket("localhost", this.puerto);
             this.writer = new PrintWriter(echoSocket.getOutputStream(), true);
             this.reader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
-            writer.println(id);
+            respuesta = reader.readLine();
+            System.out.println("Servidor: " + respuesta);
+            respuesta = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,9 +39,6 @@ public class Piloto extends Thread{
     @Override
     public void run() {
         try {
-            respuesta = reader.readLine();
-            System.out.println("Servidor: " + respuesta);
-            respuesta = null;
             while ((respuesta = reader.readLine()) != null) {
                 System.out.println(respuesta);
                 respuesta = respuesta.replaceAll("aceptar ", "");
