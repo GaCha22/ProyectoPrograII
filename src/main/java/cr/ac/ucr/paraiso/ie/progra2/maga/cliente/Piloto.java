@@ -33,6 +33,7 @@ public class Piloto extends Thread{
     @Override
     public void run() {
         try {
+            respuesta = reader.readLine();
             System.out.println("Servidor: " + respuesta);
             while ((respuesta = reader.readLine()) != null) {
                 System.out.println(respuesta);
