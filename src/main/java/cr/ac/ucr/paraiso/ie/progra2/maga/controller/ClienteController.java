@@ -1,6 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
@@ -24,6 +25,7 @@ public class ClienteController {
     private Piloto piloto;
     private Vuelo vuelo;
     private VueloLogica vueloLogica;
+    private Protocolo protocolo;
 
     @FXML
     void initialize(){
@@ -42,6 +44,7 @@ public class ClienteController {
         btnDespegar.setDisable(false);
         btnIrAPuerta.setDisable(true);
         nuevoEstado(1);
+        //protocolo.avionAPuerta();
     }
 
     @FXML
@@ -51,6 +54,7 @@ public class ClienteController {
         btnIrAPuerta.setDisable(false);
         btnAterrizar.setDisable(true);
         nuevoEstado(3);
+        //protocolo.avionAterrizando();
     }
 
     @FXML
@@ -60,6 +64,7 @@ public class ClienteController {
         btnAterrizar.setDisable(false);
         btnDespegar.setDisable(true);
         nuevoEstado(0);
+        //protocolo.avionDespegue();
     }
 
     public void setTextTXT(String txt){

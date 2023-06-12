@@ -101,12 +101,12 @@ public class Protocolo {
         if (vuelo.getAeropuertoDestino().puertasDisponibles()) {
             for (int i = 0; i < puertas.length; i++) {
                 if (puertas[i].isDisponible()) {
+                    puertas[i].setDisponible(false);
                     try {
                         sleep(5000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                    puertas[i].setDisponible(false);
                     flag = i;
                     break;
                 }
@@ -123,12 +123,12 @@ public class Protocolo {
         if (vuelo.getAeropuertoDestino().pistasDisponibles()) {
             for (int i = 0; i < pistas.length; i++) {
                 if (pistas[i].isDisponible()) {
+                    pistas[i].setDisponible(false);
                     try {
                         sleep(5000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                    pistas[i].setDisponible(false);
                     flag = i;
                     break;
                 }
