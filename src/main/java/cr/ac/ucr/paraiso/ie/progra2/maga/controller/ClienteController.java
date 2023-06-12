@@ -12,7 +12,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
-public class ClienteController {
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class ClienteController implements PropertyChangeListener {
 
     @FXML
     private TextArea txtaDatos;
@@ -31,6 +34,7 @@ public class ClienteController {
     void initialize(){
         vuelo = GestionaArchivo.leerVuelo("vuelo.json");
         piloto = new Piloto(9999, vuelo.getAeronave().getPlaca());
+        piloto.agregarPropertyChangeListener(this);
         piloto.start();
         vueloLogica = new VueloLogica(this.vuelo);
         btnDespegar.setDisable(true);
@@ -40,8 +44,6 @@ public class ClienteController {
     @FXML
     void onActionIrAPuerta(ActionEvent a){
         piloto.puerta();
-        btnAterrizar.setDisable(true);
-        btnDespegar.setDisable(false);
         btnIrAPuerta.setDisable(true);
         nuevoEstado(1);
         //protocolo.avionAPuerta();
@@ -50,8 +52,6 @@ public class ClienteController {
     @FXML
     void onActionAterrizar(ActionEvent a) {
         piloto.aterrizar();
-        btnDespegar.setDisable(true);
-        btnIrAPuerta.setDisable(false);
         btnAterrizar.setDisable(true);
         nuevoEstado(3);
         //protocolo.avionAterrizando();
@@ -60,8 +60,6 @@ public class ClienteController {
     @FXML
     void onActionDespegar(ActionEvent a){
         piloto.despegar();
-        btnIrAPuerta.setDisable(true);
-        btnAterrizar.setDisable(false);
         btnDespegar.setDisable(true);
         nuevoEstado(0);
         //protocolo.avionDespegue();
@@ -89,4 +87,25 @@ public class ClienteController {
         this.txtaDatos.setText(txtaDatos);
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        String actualizar = (String) evt.getNewValue();
+        switch (actualizar){
+            case "despegar":
+                btnIrAPuerta.setDisable(true);
+                btnAterrizar.setDisable(false);
+                btnDespegar.setDisable(true);
+                break;
+            case "aterrizar":
+                btnIrAPuerta.setDisable(false);
+                btnAterrizar.setDisable(true);
+                btnDespegar.setDisable(true);
+                break;
+            case "puerta":
+                btnIrAPuerta.setDisable(true);
+                btnAterrizar.setDisable(true);
+                btnDespegar.setDisable(false);
+                break;
+        }
+    }
 }

@@ -45,22 +45,16 @@ public class MultiServidorHilo extends Thread{
     }
 
     public void aceptarSolicitud(){
-        this.writer.println("aceptar");
-        MultiServidor.getClientsInQueue().poll();
-        if(MultiServidor.getClientsInQueue().peek() != null) MultiServidor.getClientsInQueue().peek().notify();
+        synchronized (MultiServidor.getClientsInQueue()) {
+            this.writer.println("aceptar " + peticion);
+            MultiServidor.getClientsInQueue().poll();
+        }
     }
 
     public void ponerEnEspera(){
-        this.writer.println("espera");
-        MultiServidor.getClientsInQueue().offer(MultiServidor.getClientsInQueue().poll());
-        if(MultiServidor.getClientsInQueue().peek() != null) MultiServidor.getClientsInQueue().peek().notify();
-    }
-
-    public void ponerWait(){
-        try {
-            wait();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        synchronized (MultiServidor.getClientsInQueue()) {
+            this.writer.println("espera");
+            MultiServidor.getClientsInQueue().offer(MultiServidor.getClientsInQueue().poll());
         }
     }
 
