@@ -10,11 +10,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 
 public class ServidorController {
-
 
     @FXML
     public TextArea txtaSolicitudSeleccionada;
@@ -37,25 +38,21 @@ public class ServidorController {
 
     @FXML
     private Button btnMostrarEnPuerta;
-
     @FXML
     private Button btnMostrarTodos;
     private MultiServidor multiServidor;
 
-    private Aeropuerto aeropuerto;
-
     @FXML
     void initialize() throws IOException {
-        multiServidor = new MultiServidor();
+        multiServidor = new MultiServidor(GestionaArchivo.leerArchivoConfiguracion("config.json"));
         multiServidor.start();
-        aeropuerto = GestionaArchivo.leerArchivoConfiguracion("config.json");
         File archivo = new File("placasRegistradas.txt");
         if (archivo.exists()) {
             archivo.delete();
         }
         archivo.createNewFile(); //de esta manera el archivo se limpia cuando el servidor se carga
-        txtaPistasDisponibles.setText(aeropuerto.pistasToString());
-        txtaPuertasDisponibles.setText(aeropuerto.puertasToString());
+        txtaPistasDisponibles.setText(MultiServidor.aeropuertoServer.pistasToString());
+        txtaPuertasDisponibles.setText(MultiServidor.aeropuertoServer.puertasToString());
     }
 
     @FXML

@@ -9,7 +9,6 @@ public class Aeronave {
     private final int CARGA= 2;
     private final int AVIONETA = 3;
     private int estado = 3;
-
     private Vuelo vuelo;
 
     public Aeronave(int tipo) {

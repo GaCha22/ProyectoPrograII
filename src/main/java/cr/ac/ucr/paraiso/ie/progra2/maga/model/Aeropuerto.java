@@ -81,6 +81,7 @@ public class Aeropuerto {
 
         return sb.toString();
     }
+
     public void setDisponiblePista(int numPista, boolean disponible){
         for (Pista pista:pistas) {
             if(pista.getNumPista() == numPista){
@@ -96,10 +97,6 @@ public class Aeropuerto {
             }
         }
     }
-
-
-
-
 
     @Override
     public String toString() {

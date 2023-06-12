@@ -89,11 +89,6 @@ public class ClienteHomeController {
                         "\nAerolínea: " + companiaAerea.getNombre() +
                         "\nEstado del avión: En el aire");
             }
-
-            File archivo = new File("vuelo.json");
-            if (archivo.exists()) {
-                archivo.delete();
-            }
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error al guardar");

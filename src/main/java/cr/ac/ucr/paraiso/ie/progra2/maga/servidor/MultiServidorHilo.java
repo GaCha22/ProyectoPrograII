@@ -1,5 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,10 +13,8 @@ public class MultiServidorHilo extends Thread{
     private BufferedReader reader;
     private PrintWriter writer;
     private String peticion;
-    public MultiServidorHilo(Socket socket, String name) {
-        super(name);
+    public MultiServidorHilo(Socket socket) {
         try {
-
             this.peticion = null;
             this.socket = socket;
             this.writer = new PrintWriter(this.socket.getOutputStream(), true);
@@ -27,35 +27,39 @@ public class MultiServidorHilo extends Thread{
 
     @Override
     public void run() {
-        synchronized (this) {
-            try {
-                writer.println("Cliente " + this.getName() + " conectado con el servidor");
-                while ((peticion = reader.readLine()) != null) {
-                    System.out.println(peticion);
-                    MultiServidor.addClientsInQueue(this);
-                    if (MultiServidor.getClientsInQueue().peek() != this) {
-                        wait();
-                    }
+        Protocolo protocolo = new Protocolo();
+        try {
+            writer.println("Cliente conectado con el servidor");
+            while ((peticion = reader.readLine()) != null) {
+                System.out.println(peticion);
+                MultiServidor.addClientsInQueue(this);
+                switch (peticion){
+                    case "aterrizar":
+                        protocolo.avionAterrizando();
+                        break;
+                    case "despegar":
+                        protocolo.avionDespegue();
+                        break;
+                    case "puerta":
+                        protocolo.avionAPuerta();
+                        break;
                 }
-            } catch (IOException | InterruptedException e) {
-                closeResources(this.socket, this.reader, this.writer);
-                e.printStackTrace();
             }
+        } catch (IOException e) {
+            closeResources(this.socket, this.reader, this.writer);
+            e.printStackTrace();
         }
+
     }
 
     public void aceptarSolicitud(){
-        synchronized (MultiServidor.getClientsInQueue()) {
-            this.writer.println("aceptar " + peticion);
-            MultiServidor.getClientsInQueue().poll();
-        }
+        this.writer.println("aceptar " + peticion);
+        MultiServidor.getClientsInQueue().poll();
     }
 
     public void ponerEnEspera(){
-        synchronized (MultiServidor.getClientsInQueue()) {
-            this.writer.println("espera");
-            MultiServidor.getClientsInQueue().offer(MultiServidor.getClientsInQueue().poll());
-        }
+        this.writer.println("espera");
+        MultiServidor.getClientsInQueue().offer(MultiServidor.getClientsInQueue().poll());
     }
 
     private void closeResources(Socket socket, BufferedReader reader, PrintWriter writer){
