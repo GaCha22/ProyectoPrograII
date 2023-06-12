@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MultiServidor extends Thread{
     private boolean escuchando = true;
     private Map<String, MultiServidorHilo> clientes = new HashMap<>();
+    private static Queue<MultiServidorHilo> clientsInQueue = new ArrayDeque<>();
 
     @Override
     public void run() {
@@ -40,5 +38,17 @@ public class MultiServidor extends Thread{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void addClientsInQueue(MultiServidorHilo client) {
+        MultiServidor.clientsInQueue.offer(client);
+    }
+
+    public static void removeClientInQueue() {
+        MultiServidor.clientsInQueue.poll();
+    }
+
+    public static Queue<MultiServidorHilo> getClientsInQueue() {
+        return clientsInQueue;
     }
 }

@@ -30,7 +30,7 @@ public class ClienteController {
     @FXML
     void initialize(){
         vuelo = GestionaArchivo.leerVuelo("vuelo.json");
-        piloto = new Piloto(9999, txtaDatos, vuelo.getAeronave().getPlaca());
+        piloto = new Piloto(9999, vuelo.getAeronave().getPlaca());
         piloto.start();
         vueloLogica = new VueloLogica(this.vuelo);
         btnDespegar.setDisable(true);
@@ -39,6 +39,7 @@ public class ClienteController {
 
     @FXML
     void onActionIrAPuerta(ActionEvent a){
+        piloto.puerta();
         btnAterrizar.setDisable(true);
         btnDespegar.setDisable(false);
         btnIrAPuerta.setDisable(true);
@@ -48,6 +49,7 @@ public class ClienteController {
 
     @FXML
     void onActionAterrizar(ActionEvent a) {
+        piloto.aterrizar();
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(false);
         btnAterrizar.setDisable(true);
@@ -57,6 +59,7 @@ public class ClienteController {
 
     @FXML
     void onActionDespegar(ActionEvent a){
+        piloto.despegar();
         btnIrAPuerta.setDisable(true);
         btnAterrizar.setDisable(false);
         btnDespegar.setDisable(true);

@@ -6,6 +6,7 @@ import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.servidor.MultiServidor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
@@ -58,15 +59,32 @@ public class ServidorController {
     }
 
     @FXML
-    void onActionEnEsperar(ActionEvent actionEvent) {
+    void onActionAceptarSolicitud(ActionEvent actionEvent) {
+        if(MultiServidor.getClientsInQueue().peek() != null)
+            MultiServidor.getClientsInQueue().peek().aceptarSolicitud();
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setContentText("No haz seleccionado una petición");
+            alert.showAndWait();
+        }
     }
 
     @FXML
-    void onActionAceptarSolicitud(ActionEvent actionEvent) {
+    void onActionEnEsperar(ActionEvent actionEvent) {
+        if(MultiServidor.getClientsInQueue().peek() != null)
+            MultiServidor.getClientsInQueue().peek().ponerEnEspera();
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setContentText("No haz seleccionado una petición");
+            alert.showAndWait();
+        }
     }
 
     @FXML
     void onActionGenerarReporte(ActionEvent actionEvent) {
+
     }
 
     @FXML
