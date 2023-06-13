@@ -1,7 +1,6 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.model;
 
 public class Aeronave {
-
     private String placa;
     private int tipo;
     private final int COMERCIAL = 1;
