@@ -1,5 +1,6 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.cliente;
 
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 
@@ -17,6 +18,7 @@ public class Piloto extends Thread{
     private BufferedReader reader;
     private String respuesta;
     private Socket echoSocket;
+    private String propertyMessage;
     private String mensaje;
     public final static Vuelo vuelo = GestionaArchivo.leerVuelo("vuelo.json");
     private PropertyChangeSupport propertyChangeSupport;
@@ -38,11 +40,32 @@ public class Piloto extends Thread{
 
     @Override
     public void run() {
+        Protocolo protocolo = new Protocolo();
         try {
             while ((respuesta = reader.readLine()) != null) {
                 System.out.println(respuesta);
-                respuesta = respuesta.replaceAll("aceptar ", "");
-                setMensaje(respuesta);
+                setMensaje(respuesta + " " + mensaje);
+                if(respuesta.equals("aceptar")) {
+                    try {
+                        sleep(10000);
+                        if(mensaje.equals("puerta")){
+                            switch(vuelo.getAeronave().getTipo()) {
+                                case 1: //comercial
+                                    sleep(120000);
+                                    break;
+                                case 2: //carga
+                                    sleep(240000);
+                                    break;
+                                case 3: //avioneta
+                                    sleep(60000);
+                                    break;
+                            }
+                        }
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                setMensaje(mensaje);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -50,15 +73,18 @@ public class Piloto extends Thread{
     }
 
     public void despegar(){
-        this.writer.println("despegar");
+        this.mensaje = "despegar";
+        this.writer.println(mensaje);
     }
 
     public void aterrizar(){
-        this.writer.println("aterrizar");
+        this.mensaje = "aterrizar";
+        this.writer.println(mensaje);
     }
 
     public void puerta(){
-        this.writer.println("puerta");
+        this.mensaje = "puerta";
+        this.writer.println(mensaje);
     }
 
     public void agregarPropertyChangeListener(PropertyChangeListener listener) {
@@ -70,8 +96,8 @@ public class Piloto extends Thread{
     }
 
     public void setMensaje(String nuevoMensaje) {
-        String viejoMensaje = mensaje;
-        mensaje = nuevoMensaje;
+        String viejoMensaje = propertyMessage;
+        propertyMessage = nuevoMensaje;
         propertyChangeSupport.firePropertyChange("mensaje", viejoMensaje, nuevoMensaje);
     }
 
