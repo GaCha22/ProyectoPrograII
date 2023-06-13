@@ -15,27 +15,27 @@ public class Test {
     GeneraRandoms gR = new GeneraRandoms();
     LocalTime horaSalida = LocalTime.now();
     LocalTime horaLlegada= LocalTime.now();
-    Vuelo vuelo1 = new Vuelo("123",new Aeronave(2), new Aeropuerto(), new Aeropuerto( "Juan Santamaria"),new CompaniaAerea("compañia 2"),false, horaSalida,horaLlegada);
-    Vuelo vuelo2 = new Vuelo("456",new Aeronave(3), new Aeropuerto(), new Aeropuerto( "El Dorado"),new CompaniaAerea("compañia 1"),false, horaSalida,horaLlegada);
+    Vuelo vuelo1 = new Vuelo(GeneraRandoms.getIdVuelo(), new Aeronave("CA52432", 2), new Aeropuerto(GeneraRandoms.getAeropuertoOrigen()), new Aeropuerto( "Juan Santamaria"),new CompaniaAerea("compañia 2"),false, horaSalida,horaLlegada);
+    Vuelo vuelo2 = new Vuelo(GeneraRandoms.getIdVuelo(), new Aeronave("AV10953", 3), new Aeropuerto(GeneraRandoms.getAeropuertoOrigen()), new Aeropuerto( "El Dorado"),new CompaniaAerea("compañia 1"),false, horaSalida,horaLlegada);
 
 
     @org.junit.jupiter.api.Test
     public void escribir(){
-        gestionaArchivo.escribirVuelo(vuelo1, "reportes.json");
-        gestionaArchivo.escribirVuelo(vuelo2, "reportes.json");
+        GestionaArchivo.escribirVuelo(vuelo1, "reportes.json");
+        GestionaArchivo.escribirVuelo(vuelo2, "reportes.json");
     }
 
 
     @org.junit.jupiter.api.Test
     public void leerRegistro(){
-        System.out.println(gestionaArchivo.generarReporteVuelos("reportes.json"));
+        System.out.println(GestionaArchivo.generarReporteVuelos("reportes.json"));
     }
 
     @org.junit.jupiter.api.Test
     public void leerArchivoConfigFunciona(){
         String path = "config.json";
         //aeropuertoDestino
-        System.out.println((gestionaArchivo.leerArchivoConfiguracion(path)).toString());
+        System.out.println((GestionaArchivo.leerArchivoConfiguracion(path)).toString());
     }
 
 
@@ -43,10 +43,9 @@ public class Test {
 
     @org.junit.jupiter.api.Test
     public void generaRandomsFunciona(){
-        System.out.println(gR.getIdVuelo());
-        System.out.println(gR.getAeropuertoOrigen());
+        System.out.println(GeneraRandoms.getIdVuelo());
+        System.out.println(GeneraRandoms.getAeropuertoOrigen());
     }
-
 
 
 }

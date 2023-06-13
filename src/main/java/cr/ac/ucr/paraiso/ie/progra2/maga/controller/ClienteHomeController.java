@@ -1,7 +1,6 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain;
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
@@ -21,19 +20,11 @@ public class ClienteHomeController {
     @FXML
     private BorderPane bp;
     @FXML
-    private Label lbAerolinea;
-    @FXML
-    private Label lbPlacaAvion;
-    @FXML
-    private Label lbTipoAvion;
-    @FXML
     private ChoiceBox<String> chbAerolinea;
     @FXML
     private ChoiceBox<String> chbTipo;
     @FXML
     private TextField txtPlaca;
-    @FXML
-    private Button btnGuardar;
     private ClienteController clienteController;
     CompaniaAerea companiaAerea;
     Aeronave aeronave;
@@ -64,7 +55,6 @@ public class ClienteHomeController {
         }
     }
 
-
     @FXML
     void onActionGuardar(ActionEvent a) {
         if (!chbAerolinea.getValue().equals("Aerolíneas") && !chbTipo.getValue().equals("Tipo de avión") && !txtPlaca.getText().equals("")) {
@@ -84,16 +74,10 @@ public class ClienteHomeController {
                 Vuelo vuelo = new Vuelo(aeronave, companiaAerea);
                 GestionaArchivo.escribirVueloenVuelos(vuelo, "vuelo.json");
                 loadPage("interfaz/cliente.fxml");
-                clienteController.setVuelo(aeronave, companiaAerea);
                 clienteController.setTextTXT("Tipo: " + aeronave +
                         "\nPlaca: " + aeronave.getPlaca() +
                         "\nAerolínea: " + companiaAerea.getNombre() +
                         "\nEstado del avión: En el aire");
-            }
-
-            File archivo = new File("vuelo.json");
-            if (archivo.exists()) {
-                archivo.delete();
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);

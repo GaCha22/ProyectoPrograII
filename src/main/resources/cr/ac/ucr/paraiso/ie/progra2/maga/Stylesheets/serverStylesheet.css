@@ -4,6 +4,12 @@
     -fx-pref-height: 575;
 }
 
+.label{
+    -fx-font-family: Arial;
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
 .button{
     -fx-pref-width: 200;
     -fx-pref-height: 50;
@@ -36,8 +42,10 @@
     -fx-text-fill: white;
 }
 
-.label{
-    -fx-font-size: 18;
+
+.labelTitle{
+    -fx-font-family: Arial;
+    -fx-font-size: 40;
     -fx-font-weight: bold;
 }
 
@@ -49,4 +57,8 @@
     -fx-background-radius: 0;
     -fx-pref-width: 250;
     -fx-pref-height: 200;
+}
+
+.text-area-reports{
+    -fx-pref-height: 500;
 }

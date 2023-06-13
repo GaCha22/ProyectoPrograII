@@ -1,6 +1,6 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.model;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.GeneraRandoms;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 
 import java.time.LocalTime;
@@ -13,15 +13,16 @@ public class Vuelo {
     private Aeropuerto aeropuertoOrigen;
     private Aeropuerto aeropuertoDestino;
     private CompaniaAerea companiaAerea;
-    private boolean enEstado; //true si está Autorizado y false si está en espera
-    private int estadoAvion;
     private LocalTime horaSalida;
     private LocalTime horaLlegada;
 
     public Vuelo(Aeronave aeronave, CompaniaAerea companiaAerea) {
+        this.idVuelo = GeneraRandoms.getIdVuelo();
         this.aeronave = aeronave;
-        this.companiaAerea = companiaAerea;
+        this.aeropuertoOrigen = new Aeropuerto(GeneraRandoms.getAeropuertoOrigen());
         this.aeropuertoDestino = GestionaArchivo.leerArchivoConfiguracion("config.json");
+        this.companiaAerea = companiaAerea;
+        this.horaSalida = LocalTime.now().minusHours(GeneraRandoms.random(1, 24));
     }
 
     public Vuelo(String idVuelo, Aeronave aeronave, Aeropuerto aeropuertoOrigen, Aeropuerto aeropuertoDestino, CompaniaAerea companiaAerea, boolean enEstado, LocalTime horaSalida, LocalTime horaLlegada) {
@@ -30,19 +31,10 @@ public class Vuelo {
         this.aeropuertoOrigen = aeropuertoOrigen;
         this.aeropuertoDestino = aeropuertoDestino;
         this.companiaAerea = companiaAerea;
-        this.enEstado = enEstado;
         this.horaSalida = horaSalida;
         this.horaLlegada = horaLlegada;
     }
 
-    public void cambiarEstado(){
-        VueloLogica vueloLogica = new VueloLogica(this);
-        if(aeronave.getEstado() != vueloLogica.estadoAeronave(aeronave.getEstado())){
-            this.enEstado = true;
-        }else{
-            this.enEstado = false;
-        }
-    }
 
     public String getIdVuelo() {
         return idVuelo;
@@ -84,18 +76,6 @@ public class Vuelo {
         this.companiaAerea = companiaAerea;
     }
 
-    public boolean isEnEstado() {
-        return enEstado;
-    }
-
-    public void setEnEstado(boolean enEstado) {
-        this.enEstado = enEstado;
-    }
-
-    public int getEstadoAvion() {
-        return estadoAvion;
-    }
-
     public void setEstadoAvion(int estadoAvion) {
         this.aeronave.setEstado(estadoAvion);
     }
@@ -119,14 +99,13 @@ public class Vuelo {
 
     @Override
     public String toString() {
-        return "Vuelo{" +
-                "idVuelo='" + idVuelo + '\'' +
-                ", aeronave=" + aeronave.toString() +
-                ", aeropuertoOrigen=" + aeropuertoOrigen.getNombre()+
-                ", aeropuertoDestino=" + aeropuertoDestino.getNombre() +
-                ", companiaAerea=" + companiaAerea.getNombre() +
-                ", horaSalida=" + horaSalida +
-                ", horaLlegada=" + horaLlegada +
-                '}';
+        return "Vuelo: " +
+                "idVuelo: " + idVuelo +
+                ", aeronave: " + aeronave.toString() +
+                ", aeropuertoOrigen: " + aeropuertoOrigen.getNombre()+
+                ", aeropuertoDestino: " + aeropuertoDestino.getNombre() +
+                ", companiaAerea: " + companiaAerea.getNombre() +
+                ", horaSalida: " + horaSalida +
+                ", horaLlegada: " + horaLlegada;
     }
 }
