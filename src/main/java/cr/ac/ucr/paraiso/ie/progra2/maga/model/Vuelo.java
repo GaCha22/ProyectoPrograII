@@ -15,6 +15,8 @@ public class Vuelo {
     private CompaniaAerea companiaAerea;
     private LocalTime horaSalida;
     private LocalTime horaLlegada;
+    private Puerta puertaAsignada;
+    private Pista pistaAsignada;
 
     public Vuelo(Aeronave aeronave, CompaniaAerea companiaAerea) {
         this.idVuelo = GeneraRandoms.getIdVuelo();
@@ -96,6 +98,21 @@ public class Vuelo {
         this.horaLlegada = horaLlegada;
     }
 
+    public Puerta getPuertaAsignada() {
+        return puertaAsignada;
+    }
+
+    public void setPuertaAsignada(Puerta puertaAsignada) {
+        this.puertaAsignada = puertaAsignada;
+    }
+
+    public Pista getPistaAsignada() {
+        return pistaAsignada;
+    }
+
+    public void setPistaAsignada(Pista pistaAsignada) {
+        this.pistaAsignada = pistaAsignada;
+    }
 
     @Override
     public String toString() {
