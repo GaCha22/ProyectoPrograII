@@ -6,6 +6,7 @@ import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,8 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteHomeController {
     @FXML
@@ -64,8 +67,22 @@ public class ClienteHomeController {
         }
     }
 
+    private boolean utilityAeronaves(String serialInsertada){
+        boolean encontrado = false;
+        for (int i=0; i<aviones.size(); i++) {
+            if(aeronave.getPlaca().equals(serialInsertada)){
+                encontrado = true;
+            }
+        }
+        return encontrado;
+    }
+
+    List<Aeronave> aviones = new ArrayList<>();
+
     @FXML
     void onActionGuardar(ActionEvent a) {
+
+
         if (!chbAerolinea.getValue().equals("Aerolíneas") && !chbTipo.getValue().equals("Tipo de avión") && !txtPlaca.getText().equals("")) {
             String placa= txtPlaca.getText();
             if (gestionaArchivo.buscarPlacaEnArchivo(placa,"placasRegistradas.txt")) {
@@ -82,12 +99,14 @@ public class ClienteHomeController {
                 aeronave = new Aeronave(txtPlaca.getText(), tipo);
                 Vuelo vuelo = new Vuelo(aeronave, companiaAerea);
                 GestionaArchivo.escribirVueloenVuelos(vuelo, "vuelo.json");
+
                 loadPage("interfaz/cliente.fxml");
                 clienteController.setVuelo(aeronave, companiaAerea);
                 clienteController.setTextTXT("Tipo: " + aeronave +
                         "\nPlaca: " + aeronave.getPlaca() +
                         "\nAerolínea: " + companiaAerea.getNombre() +
                         "\nEstado del avión: En el aire");
+
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);

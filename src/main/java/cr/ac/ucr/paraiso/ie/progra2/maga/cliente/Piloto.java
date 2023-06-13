@@ -4,6 +4,7 @@ import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.BufferedReader;
@@ -24,6 +25,7 @@ public class Piloto extends Thread{
     private PropertyChangeSupport propertyChangeSupport;
 
     public Piloto(int puerto){
+
         this.puerto = puerto;
         try {
             propertyChangeSupport = new PropertyChangeSupport(this);

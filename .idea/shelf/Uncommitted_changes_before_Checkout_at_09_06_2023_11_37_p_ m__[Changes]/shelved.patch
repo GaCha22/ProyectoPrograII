@@ -1,0 +1,288 @@
+Index: src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cr.ac.ucr.paraiso.ie.progra2.maga.model;\r\n\r\nimport java.util.Arrays;\r\nimport java.util.List;\r\n\r\npublic class Aeropuerto {\r\n    private Pista[] pistas;\r\n    private Puerta[] puertas;\r\n    private String nombre;\r\n\r\n    public Aeropuerto() {\r\n    }\r\n\r\n    public Aeropuerto(String nombre) {\r\n        this.nombre = nombre;\r\n    }\r\n\r\n    public boolean pistasDisponibles(){\r\n        boolean despegar = false;\r\n\r\n        for(Pista pista : pistas){\r\n            if(pista.isDisponible()){\r\n                despegar = true;\r\n            }\r\n        }\r\n        return despegar;\r\n    }\r\n\r\n    public boolean puertasDisponibles(){\r\n        boolean puertaDisponible = false;\r\n        for(Puerta puerta : puertas){\r\n            if(puerta.isDisponible()){\r\n                puertaDisponible = true;\r\n            }\r\n        }\r\n        return puertaDisponible;\r\n    }\r\n\r\n    public Pista[] getPistas() {\r\n        return pistas;\r\n    }\r\n\r\n    public void setPistas(Pista[] pistas) {\r\n        this.pistas = pistas;\r\n    }\r\n\r\n    public Puerta[] getPuertas() {\r\n        return puertas;\r\n    }\r\n\r\n    public void setPuertas(Puerta[] puertas) {\r\n        this.puertas = puertas;\r\n    }\r\n\r\n    public String getNombre() {\r\n        return nombre;\r\n    }\r\n\r\n    public void setNombre(String nombre) {\r\n        this.nombre = nombre;\r\n    }\r\n    \r\n    public String pistasToString(){\r\n        StringBuilder sb = new StringBuilder();\r\n        for (Pista pista: pistas) {\r\n            sb.append(\"Pista #\").append(pista.getNumPista()).append(\" \")\r\n                    .append(pista.isDisponible()?\"Disponible\":\"No Disponible\")\r\n                    .append(\"\\n\");\r\n        }\r\n\r\n        return sb.toString();\r\n    }\r\n    \r\n    public String puertasToString(){\r\n        StringBuilder sb = new StringBuilder();\r\n        for (Puerta puerta: puertas) {\r\n            sb.append(\"Puerta #\").append(puerta.getNumPuerta()).append(\" \")\r\n                    .append(puerta.isDisponible()?\"Disponible\":\"No Disponible\")\r\n                    .append(\"\\n\");\r\n        }\r\n\r\n        return sb.toString();\r\n    }\r\n\r\n    public void setDisponiblePista(int numPista, boolean disponible){\r\n        for (Pista pista:pistas) {\r\n            if(pista.numPista == numPista){\r\n                pista.disponible = disponible;\r\n            }\r\n        }\r\n    }\r\n\r\n    public void setDisponiblePuerta(int numPuerta, boolean disponible){\r\n        for (Puerta puerta:puertas) {\r\n            if(puerta.numPuerta == numPuerta){\r\n                puerta.disponible = disponible;\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n\r\n    @Override\r\n    public String toString() {\r\n        StringBuilder sb = new StringBuilder();\r\n        sb.append(\"Aeropuerto{\");\r\n        sb.append(\"nombre=\").append(nombre);\r\n        sb.append(\", pistas=[\");\r\n        for (Pista pista : pistas) {\r\n            sb.append(pista.toString()).append(\", \");\r\n        }\r\n        sb.setLength(sb.length() - 2);\r\n        sb.append(\"]\");\r\n        sb.append(\", puertas=[\");\r\n        for (Puerta puerta : puertas) {\r\n            sb.append(puerta.toString()).append(\", \");\r\n        }\r\n        sb.setLength(sb.length() - 2);\r\n        sb.append(\"]\");\r\n        sb.append(\"}\");\r\n        return sb.toString();\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java b/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java
+--- a/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java	(revision c0aa4cda618ada0b93ff9a098cec10c11dd7ca2d)
++++ b/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java	(date 1686393443177)
+@@ -82,6 +82,7 @@
+         return sb.toString();
+     }
+ 
++    /*
+     public void setDisponiblePista(int numPista, boolean disponible){
+         for (Pista pista:pistas) {
+             if(pista.numPista == numPista){
+@@ -97,7 +98,7 @@
+             }
+         }
+     }
+-
++/*
+ 
+ 
+     @Override
+Index: src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cr.ac.ucr.paraiso.ie.progra2.maga.controller;\r\n\r\nimport cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain;\r\nimport cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;\r\nimport cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;\r\nimport javafx.collections.FXCollections;\r\nimport javafx.collections.ObservableList;\r\nimport javafx.fxml.FXML;\r\nimport javafx.event.ActionEvent;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.layout.BorderPane;\r\n\r\nimport java.io.IOException;\r\n\r\npublic class ClienteHomeController {\r\n    @FXML\r\n    private BorderPane bp;\r\n    @FXML\r\n    private Label lbAerolinea;\r\n    @FXML\r\n    private Label lbPlacaAvion;\r\n    @FXML\r\n    private Label lbTipoAvion;\r\n    @FXML\r\n    private ChoiceBox<String> chbAerolinea;\r\n    @FXML\r\n    private ChoiceBox<String> chbTipo;\r\n    @FXML\r\n    private TextField txtPlaca;\r\n    @FXML\r\n    private Button btnGuardar;\r\n    private ClienteController clienteController;\r\n    CompaniaAerea companiaAerea;\r\n    Aeronave aeronave;\r\n\r\n    @FXML\r\n    public void initialize() {\r\n        ObservableList<String> items = FXCollections.observableArrayList(\"Avioneta\", \"Avión comercial\", \"Avión de carga\");\r\n        chbTipo.setItems(items);\r\n        chbTipo.setValue(\"Tipo de avión\");\r\n        ObservableList<String> itemsAerolinea = FXCollections.observableArrayList(\"Avianca\", \"Iberia\", \"TACA\");\r\n        chbAerolinea.setItems(itemsAerolinea);\r\n        chbAerolinea.setValue(\"Aerolíneas\");\r\n    }\r\n\r\n    private void loadPage(String page) {\r\n        FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource(page));\r\n        try {\r\n            this.bp.setCenter(fxmlLoader.load());\r\n            clienteController = fxmlLoader.getController();\r\n        } catch (IOException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    void onActionGuardar(ActionEvent a) {\r\n        if (!chbAerolinea.getValue().equals(\"Aerolíneas\") && !chbTipo.getValue().equals(\"Tipo de avión\") && !txtPlaca.getText().equals(\"\")) {\r\n            companiaAerea = new CompaniaAerea(chbAerolinea.getValue());\r\n            int tipo = chbTipo.getValue().equals(\"Avioneta\") ? 3 : chbTipo.getValue().equals(\"Avión comercial\") ? 1 : 2;\r\n            aeronave = new Aeronave(txtPlaca.getText(), tipo);\r\n            loadPage(\"interfaz/cliente.fxml\");\r\n            clienteController.setVuelo(aeronave, companiaAerea);\r\n            clienteController.setTextTXT(\"Tipo: \" + aeronave +\r\n                    \"\\nPlaca: \" + aeronave.getPlaca() +\r\n                    \"\\nAerolínea: \" + companiaAerea.getNombre() + \"\\n\");\r\n        }else{\r\n            Alert alert = new Alert(Alert.AlertType.WARNING);\r\n            alert.setTitle(\"Error al guardar\");\r\n            alert.setHeaderText(null);\r\n            alert.setContentText(\"Complete todos los datos para poder guardar\");\r\n            alert.showAndWait();\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java b/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java
+--- a/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java	(revision c0aa4cda618ada0b93ff9a098cec10c11dd7ca2d)
++++ b/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java	(date 1686393413202)
+@@ -3,6 +3,7 @@
+ import cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain;
+ import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
+ import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
++import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
+ import javafx.collections.FXCollections;
+ import javafx.collections.ObservableList;
+ import javafx.fxml.FXML;
+@@ -12,6 +13,8 @@
+ import javafx.scene.layout.BorderPane;
+ 
+ import java.io.IOException;
++import java.util.ArrayList;
++import java.util.List;
+ 
+ public class ClienteHomeController {
+     @FXML
+@@ -54,17 +57,42 @@
+         }
+     }
+ 
++    private boolean utilityAeronaves(String serialInsertada){
++        boolean encontrado = false;
++        for (int i=0; i<aviones.size(); i++) {
++            if(aeronave.getPlaca().equals(serialInsertada)){
++                encontrado = true;
++            }
++        }
++        return encontrado;
++    }
++
++    List<Aeronave> aviones = new ArrayList<>();
++
+     @FXML
+     void onActionGuardar(ActionEvent a) {
++
++
+         if (!chbAerolinea.getValue().equals("Aerolíneas") && !chbTipo.getValue().equals("Tipo de avión") && !txtPlaca.getText().equals("")) {
+             companiaAerea = new CompaniaAerea(chbAerolinea.getValue());
+             int tipo = chbTipo.getValue().equals("Avioneta") ? 3 : chbTipo.getValue().equals("Avión comercial") ? 1 : 2;
+             aeronave = new Aeronave(txtPlaca.getText(), tipo);
+-            loadPage("interfaz/cliente.fxml");
+-            clienteController.setVuelo(aeronave, companiaAerea);
+-            clienteController.setTextTXT("Tipo: " + aeronave +
+-                    "\nPlaca: " + aeronave.getPlaca() +
+-                    "\nAerolínea: " + companiaAerea.getNombre() + "\n");
++            aviones.add(aeronave);
++
++            if(!utilityAeronaves(txtPlaca.getText())){
++                Alert alert = new Alert(Alert.AlertType.WARNING);
++                alert.setTitle("No pueden haber dos seriales iguales");
++                alert.setHeaderText(null);
++                alert.setContentText("Cambie el serial");
++                alert.showAndWait();
++
++            }else {
++                loadPage("interfaz/cliente.fxml");
++                clienteController.setVuelo(aeronave, companiaAerea);
++                clienteController.setTextTXT("Tipo: " + aeronave +
++                        "\nPlaca: " + aeronave.getPlaca() +
++                        "\nAerolínea: " + companiaAerea.getNombre() + "\n");
++            }
+         }else{
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+             alert.setTitle("Error al guardar");
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_19\" default=\"true\" project-jdk-name=\"openjdk-19\" project-jdk-type=\"JavaSDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision c0aa4cda618ada0b93ff9a098cec10c11dd7ca2d)
++++ b/.idea/misc.xml	(date 1686393420700)
+@@ -8,5 +8,5 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_19" default="true" project-jdk-name="openjdk-19" project-jdk-type="JavaSDK" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" default="true" project-jdk-name="openjdk-19" project-jdk-type="JavaSDK" />
+ </project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d4d4ec7d-9daf-4447-90e2-27b1df8e2055\" name=\"Changes\" comment=\"Escribir y leer registros\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/reportes.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/reportes.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/ServerMain.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/ServerMain.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/Protocol.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/Protocol.java\" afterDir=\"false\" />\r\n\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Logic\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/service/GestionaArchivo.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHome\" value=\"Use Maven wrapper\" />\r\n        <option name=\"useMavenConfig\" value=\"true\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n    <option name=\"importingSettings\">\r\n      <MavenImportingSettings>\r\n        <option name=\"jdkForImporter\" value=\"19\" />\r\n      </MavenImportingSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2Qc7GKdo4SDavLf5wo5xOYSB9Os\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;Gabriel-Chaves&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.3321839&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\r\n\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\" selected=\"Application.ClienteMain\">\r\n    <configuration name=\"ClienteMain\" type=\"Application\" factoryName=\"Application\" singleton=\"false\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain\" />\r\n      <module name=\"Maga\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"cr.ac.ucr.paraiso.ie.progra2.maga.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ServerMain\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"cr.ac.ucr.paraiso.ie.progra2.maga.ServerMain\" />\r\n      <module name=\"Maga\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"cr.ac.ucr.paraiso.ie.progra2.maga.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Test.escribir\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"Maga\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Test\" />\r\n      <option name=\"METHOD_NAME\" value=\"escribir\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Test.gestionaEstadoFunciona\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"Maga\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Test\" />\r\n      <option name=\"METHOD_NAME\" value=\"gestionaEstadoFunciona\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Test.leerArchivoConfigFunciona\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"Maga\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Test\" />\r\n      <option name=\"METHOD_NAME\" value=\"leerArchivoConfigFunciona\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.ClienteMain\" />\r\n        <item itemvalue=\"Application.ServerMain\" />\r\n        <item itemvalue=\"JUnit.Test.escribir\" />\r\n        <item itemvalue=\"JUnit.Test.leerArchivoConfigFunciona\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"d4d4ec7d-9daf-4447-90e2-27b1df8e2055\" name=\"Changes\" comment=\"\" />\r\n      <created>1685640919760</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1685640919760</updated>\r\n      <workItem from=\"1685640921609\" duration=\"2735000\" />\r\n      <workItem from=\"1685643889980\" duration=\"489000\" />\r\n      <workItem from=\"1685644401832\" duration=\"1191000\" />\r\n      <workItem from=\"1685663277150\" duration=\"8248000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Cambios antes de la tragedia\">\r\n      <created>1686018760327</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1686018760327</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Pantalla inicio\">\r\n      <created>1686021857559</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1686021857559</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Cambios antes de la tragedia\" />\r\n    <MESSAGE value=\"Pantalla inicio\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Pantalla inicio\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/ProyectoPrograII$ClienteMain.ic\" NAME=\"ClienteMain Coverage Results\" MODIFIED=\"1685610076376\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\">\r\n      <FILTER>cr.ac.ucr.paraiso.ie.progra2.maga.*</FILTER>\r\n    </SUITE>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision c0aa4cda618ada0b93ff9a098cec10c11dd7ca2d)
++++ b/.idea/workspace.xml	(date 1686393420687)
+@@ -4,12 +4,14 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d4d4ec7d-9daf-4447-90e2-27b1df8e2055" name="Changes" comment="Escribir y leer registros">
++    <list default="true" id="d4d4ec7d-9daf-4447-90e2-27b1df8e2055" name="Changes" comment="TxtActualizado">
++      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_06_2023_17_55_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_06_2023_17_55__Changes_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/reportes.json" beforeDir="false" afterPath="$PROJECT_DIR$/reportes.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/ServerMain.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/Protocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/Protocol.java" afterDir="false" />
+-
++      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/controller/ClienteHomeController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/model/Aeropuerto.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -27,13 +29,10 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="Logic" />
++        <entry key="$PROJECT_DIR$" value="Luis_Ballar" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-  </component>
+-  <component name="HighlightingSettingsPerFile">
+-    <setting file="file://$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/service/GestionaArchivo.java" root0="FORCE_HIGHLIGHTING" />
+   </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+@@ -64,9 +63,9 @@
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;Gabriel-Chaves&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;Luis__Ballar&quot;,
+     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+-
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/Luis/IdeaProjects/Hilos&quot;,
+     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+@@ -74,13 +73,14 @@
+     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+     &quot;project.structure.side.proportion&quot;: &quot;0.3321839&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+-
++    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+ }</component>
+-  <component name="RunManager" selected="Application.ClienteMain">
++  <component name="RunManager" selected="Application.ServerMain">
+     <configuration name="ClienteMain" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
++      <option name="ALTERNATIVE_JRE_PATH" value="19" />
++      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+       <option name="MAIN_CLASS_NAME" value="cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain" />
+       <module name="Maga" />
+       <extension name="coverage">
+@@ -116,21 +116,21 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="Test.gestionaEstadoFunciona" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="Test.leerArchivoConfigFunciona" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="Maga" />
+       <option name="PACKAGE_NAME" value="" />
+       <option name="MAIN_CLASS_NAME" value="Test" />
+-      <option name="METHOD_NAME" value="gestionaEstadoFunciona" />
++      <option name="METHOD_NAME" value="leerArchivoConfigFunciona" />
+       <option name="TEST_OBJECT" value="method" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="Test.leerArchivoConfigFunciona" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="Test.leerRegistro" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="Maga" />
+       <option name="PACKAGE_NAME" value="" />
+       <option name="MAIN_CLASS_NAME" value="Test" />
+-      <option name="METHOD_NAME" value="leerArchivoConfigFunciona" />
++      <option name="METHOD_NAME" value="leerRegistro" />
+       <option name="TEST_OBJECT" value="method" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+@@ -138,10 +138,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.ClienteMain" />
+         <item itemvalue="Application.ServerMain" />
+-        <item itemvalue="JUnit.Test.escribir" />
++        <item itemvalue="Application.ClienteMain" />
+         <item itemvalue="JUnit.Test.leerArchivoConfigFunciona" />
++        <item itemvalue="JUnit.Test.leerRegistro" />
++        <item itemvalue="JUnit.Test.escribir" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -172,7 +173,35 @@
+       <option name="project" value="LOCAL" />
+       <updated>1686021857559</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="Interfaz &quot;lista&quot;">
++      <created>1686024611534</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1686024611534</updated>
++    </task>
++    <task id="LOCAL-00004" summary="Interfaz &quot;lista&quot;">
++      <created>1686024815654</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1686024815654</updated>
++    </task>
++    <task id="LOCAL-00005" summary="Interfaz &quot;lista&quot;">
++      <created>1686030130015</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1686030130015</updated>
++    </task>
++    <task id="LOCAL-00006" summary="TxtActualizado">
++      <created>1686071585781</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1686071585781</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -192,11 +221,8 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Cambios antes de la tragedia" />
+     <MESSAGE value="Pantalla inicio" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Pantalla inicio" />
+-  </component>
+-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+-    <SUITE FILE_PATH="coverage/ProyectoPrograII$ClienteMain.ic" NAME="ClienteMain Coverage Results" MODIFIED="1685610076376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+-      <FILTER>cr.ac.ucr.paraiso.ie.progra2.maga.*</FILTER>
+-    </SUITE>
++    <MESSAGE value="Interfaz &quot;lista&quot;" />
++    <MESSAGE value="TxtActualizado" />
++    <option name="LAST_COMMIT_MESSAGE" value="TxtActualizado" />
+   </component>
+ </project>
+\ No newline at end of file

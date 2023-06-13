@@ -11,6 +11,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/Protocolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/Protocolo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/VueloLogica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/logic/VueloLogica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidorHilo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cr/ac/ucr/paraiso/ie/progra2/maga/servidor/MultiServidorHilo.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,7 @@
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="dev_C22037Respaldo" />
+
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,10 +45,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "settings.editor.selected.configurable": "preferences.lookFeel"
+
   }
 }]]></component>
   <component name="RunManager" selected="Application.ClienteMain">
     <configuration name="ClienteMain" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="19" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain" />
       <module name="Maga" />
       <extension name="coverage">
@@ -251,6 +256,7 @@
       <updated>1686551091271</updated>
     </task>
     <option name="localTasksCounter" value="22" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,6 +283,7 @@
     <MESSAGE value="Interfaz" />
     <MESSAGE value="Lógica" />
     <option name="LAST_COMMIT_MESSAGE" value="Lógica" />
+
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ProyectoPrograII$ClienteMain.ic" NAME="ClienteMain Coverage Results" MODIFIED="1685610076376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
