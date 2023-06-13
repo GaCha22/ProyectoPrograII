@@ -77,7 +77,7 @@ public class Protocolo {
                     break;
                 }
             }
-            aeropuerto.getPuertas()[flag].setDisponible(true);//siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible
+//            aeropuerto.getPuertas()[flag].setDisponible(true);//siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible
             notifyAll();
         }
     }
@@ -93,7 +93,7 @@ public class Protocolo {
                     break;
                 }
             }
-            aeropuerto.getPistas()[flag].setDisponible(true);
+//            aeropuerto.getPistas()[flag].setDisponible(true);
             notifyAll();
         }
     }

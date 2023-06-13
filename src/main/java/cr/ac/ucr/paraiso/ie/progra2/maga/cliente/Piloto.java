@@ -1,6 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.cliente;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.time.LocalTime;
 
 public class Piloto extends Thread{
     private int puerto;
@@ -22,9 +24,11 @@ public class Piloto extends Thread{
     private String mensaje;
     public final static Vuelo vuelo = GestionaArchivo.leerVuelo("vuelo.json");
     private PropertyChangeSupport propertyChangeSupport;
+    private Solicitud solicitud;
 
     public Piloto(int puerto){
         this.puerto = puerto;
+        this.solicitud = new Solicitud(vuelo, "");
         try {
             propertyChangeSupport = new PropertyChangeSupport(this);
             echoSocket = new Socket("localhost", this.puerto);
@@ -40,7 +44,6 @@ public class Piloto extends Thread{
 
     @Override
     public void run() {
-        Protocolo protocolo = new Protocolo();
         try {
             while ((respuesta = reader.readLine()) != null) {
                 System.out.println(respuesta);
@@ -74,17 +77,20 @@ public class Piloto extends Thread{
 
     public void despegar(){
         this.mensaje = "despegar";
-        this.writer.println(mensaje);
+        solicitud.setSolicitud(mensaje);
+        this.writer.println(GestionaArchivo.solicitudAJson(solicitud));
     }
 
     public void aterrizar(){
         this.mensaje = "aterrizar";
-        this.writer.println(mensaje);
+        solicitud.setSolicitud(mensaje);
+        this.writer.println(GestionaArchivo.solicitudAJson(solicitud));
     }
 
     public void puerta(){
         this.mensaje = "puerta";
-        this.writer.println(mensaje);
+        solicitud.setSolicitud(mensaje);
+        this.writer.println(GestionaArchivo.solicitudAJson(solicitud));
     }
 
     public void agregarPropertyChangeListener(PropertyChangeListener listener) {

@@ -1,8 +1,6 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
@@ -26,16 +24,12 @@ public class ClienteController implements PropertyChangeListener {
     @FXML
     private Button btnIrAPuerta;
     private Piloto piloto;
-    private Vuelo vuelo;
-    private VueloLogica vueloLogica;
-    private Protocolo protocolo;
 
     @FXML
     void initialize(){
         piloto = new Piloto(9999);
         piloto.agregarPropertyChangeListener(this);
         piloto.start();
-        vueloLogica = new VueloLogica(this.vuelo);
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(true);
     }
@@ -63,14 +57,6 @@ public class ClienteController implements PropertyChangeListener {
 
     public void setTextTXT(String txt){
         txtaDatos.setText(txt);
-    }
-
-    public void setVuelo(Aeronave aeronave, CompaniaAerea companiaAerea){
-        this.vuelo = new Vuelo(aeronave, companiaAerea);
-    }
-
-    public void setVuelo(Vuelo vuelo) {
-        this.vuelo = vuelo;
     }
 
     public void nuevoEstado(String mensaje){

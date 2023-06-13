@@ -3,6 +3,7 @@ package cr.ac.ucr.paraiso.ie.progra2.maga.service;
 import com.google.gson.GsonBuilder;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 import com.google.gson.Gson;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 
 import java.io.*;
@@ -31,7 +32,6 @@ public class GestionaArchivo {
     }
 
     public static String generarReporteVuelos(String path) {
-
         String jsonString;
         String salida = "";
         try {
@@ -50,6 +50,26 @@ public class GestionaArchivo {
             salida +=  vuelo.toString()  + "\n" ;
         }
         return salida;
+    }
+
+    public static String solicitudAJson(Solicitud solicitud){
+        String json = null;
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
+                .create();
+        json = gson.toJson(solicitud);
+        return json;
+    }
+
+    public static Solicitud jsonASolicitud(String json){
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
+                .create();
+
+        Solicitud solicitud = null;
+        solicitud =  gson.fromJson(json, Solicitud.class);
+
+        return solicitud;
     }
 
     public static Vuelo leerVuelo(String path) {

@@ -1,18 +1,23 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 
+import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
+import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.time.LocalTime;
 
 public class MultiServidorHilo extends Thread{
     private Socket socket;
     private BufferedReader reader;
     private PrintWriter writer;
     private String peticion;
+    private Solicitud solicitud;
     public MultiServidorHilo(Socket socket) {
         try {
             this.peticion = null;
@@ -30,6 +35,8 @@ public class MultiServidorHilo extends Thread{
         try {
             writer.println("Cliente conectado con el servidor");
             while ((peticion = reader.readLine()) != null) {
+                solicitud = GestionaArchivo.jsonASolicitud(peticion);
+                MultiServidor.setMensaje(peticion);
                 System.out.println(peticion);
                 MultiServidor.addClientsInQueue(this);
             }
@@ -43,11 +50,15 @@ public class MultiServidorHilo extends Thread{
     public void aceptarSolicitud(){
         Protocolo protocolo = new Protocolo();
         this.writer.println("aceptar");
-        switch (peticion){
+        switch (solicitud.getSolicitud()){
             case "aterrizar":
+                Piloto.vuelo.setHoraLlegada(LocalTime.now());
+                GestionaArchivo.escribirVuelo(Piloto.vuelo, "reportes.json");
                 protocolo.avionAterrizando();
                 break;
             case "despegar":
+                Piloto.vuelo.setHoraSalida(LocalTime.now());
+                GestionaArchivo.escribirVuelo(Piloto.vuelo, "reportes.json");
                 protocolo.avionDespegue();
                 break;
             case "puerta":
@@ -55,6 +66,7 @@ public class MultiServidorHilo extends Thread{
                 break;
         }
         MultiServidor.getClientsInQueue().poll();
+        MultiServidor.setMensaje("actualizar");
     }
 
     public void ponerEnEspera(){
