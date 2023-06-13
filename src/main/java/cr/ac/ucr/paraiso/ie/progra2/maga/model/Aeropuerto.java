@@ -99,8 +99,6 @@ public class Aeropuerto {
         }
     }
 
-
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

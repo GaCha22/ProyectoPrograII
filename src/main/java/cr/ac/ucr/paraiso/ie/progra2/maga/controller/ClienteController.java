@@ -1,6 +1,8 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.VueloLogica;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
@@ -9,7 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
-public class ClienteController {
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javafx.application.Platform;
+
+public class ClienteController implements PropertyChangeListener {
 
     @FXML
     private TextArea txtaDatos;
@@ -21,33 +27,37 @@ public class ClienteController {
     private Button btnIrAPuerta;
     private Piloto piloto;
     private Vuelo vuelo;
+    private VueloLogica vueloLogica;
+    private Protocolo protocolo;
 
     @FXML
     void initialize(){
-        piloto = new Piloto(9999, txtaDatos);
+        piloto = new Piloto(9999);
+        piloto.agregarPropertyChangeListener(this);
         piloto.start();
+        vueloLogica = new VueloLogica(this.vuelo);
         btnDespegar.setDisable(true);
         btnIrAPuerta.setDisable(true);
     }
 
     @FXML
     void onActionIrAPuerta(ActionEvent a){
-        btnAterrizar.setDisable(true);
-        btnDespegar.setDisable(false);
+        nuevoEstado("Esperando aprobación");
+        piloto.puerta();
         btnIrAPuerta.setDisable(true);
     }
 
     @FXML
     void onActionAterrizar(ActionEvent a) {
-        btnDespegar.setDisable(true);
-        btnIrAPuerta.setDisable(false);
+        nuevoEstado("Esperando aprobación");
+        piloto.aterrizar();
         btnAterrizar.setDisable(true);
     }
 
     @FXML
     void onActionDespegar(ActionEvent a){
-        btnIrAPuerta.setDisable(true);
-        btnAterrizar.setDisable(false);
+        nuevoEstado("Esperando aprobación");
+        piloto.despegar();
         btnDespegar.setDisable(true);
     }
 
@@ -57,5 +67,59 @@ public class ClienteController {
 
     public void setVuelo(Aeronave aeronave, CompaniaAerea companiaAerea){
         this.vuelo = new Vuelo(aeronave, companiaAerea);
+    }
+
+    public void setVuelo(Vuelo vuelo) {
+        this.vuelo = vuelo;
+    }
+
+    public void nuevoEstado(String mensaje){
+        Platform.runLater(() -> {
+            String textArea = txtaDatos.getText();
+            String[] lineas = textArea.split("\n");
+            lineas[3] = "Estado del avión: " + mensaje;
+            String txtaDatos = String.join("\n", lineas);
+            this.txtaDatos.setText(txtaDatos);
+        });
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        String actualizar = (String) evt.getNewValue();
+        switch (actualizar){
+            case "despegar":
+                btnIrAPuerta.setDisable(true);
+                btnAterrizar.setDisable(false);
+                btnDespegar.setDisable(true);
+                nuevoEstado("En el aire");
+                break;
+            case "aterrizar":
+                btnIrAPuerta.setDisable(false);
+                btnAterrizar.setDisable(true);
+                btnDespegar.setDisable(true);
+                nuevoEstado("En pista");
+                break;
+            case "puerta":
+                btnIrAPuerta.setDisable(true);
+                btnAterrizar.setDisable(true);
+                btnDespegar.setDisable(false);
+                nuevoEstado("En puerta");
+                break;
+            case "aceptar aterrizar":
+                nuevoEstado("Aterrizando");
+                break;
+            case "aceptar despegar":
+                nuevoEstado("Despegando");
+                break;
+            case "aceptar puerta":
+                nuevoEstado("En puerta");
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                nuevoEstado("En espera");
+                break;
+        }
     }
 }

@@ -2,6 +2,7 @@ module cr.ac.ucr.paraiso.ie.progra2.gama {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
+    requires java.desktop;
     exports cr.ac.ucr.paraiso.ie.progra2.maga.logic;
     exports cr.ac.ucr.paraiso.ie.progra2.maga.service;
     exports cr.ac.ucr.paraiso.ie.progra2.maga.controller;

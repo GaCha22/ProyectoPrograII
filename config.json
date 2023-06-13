@@ -1,7 +1,6 @@
 {
   "nombre": "Juan Santamaría",
-  "pistas":
-  [
+  "pistas": [
     {
       "numPista": 1,
       "disponible": true

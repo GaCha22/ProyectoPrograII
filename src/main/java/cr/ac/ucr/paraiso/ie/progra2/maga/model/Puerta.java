@@ -12,7 +12,7 @@ public class Puerta {
     }
 
     public void cantidadPuertas(){
-        
+
     }
 
     public CompaniaAerea getCompaniaAerea() {
@@ -39,10 +39,19 @@ public class Puerta {
         this.disponible = disponible;
     }
 
+    public CompaniaAerea getCompaniaAerea() {
+        return companiaAerea;
+    }
+
+    public void setCompaniaAerea(CompaniaAerea companiaAerea) {
+        this.companiaAerea = companiaAerea;
+    }
+
     @Override
     public String toString() {
         return "Puerta{" +
                 "numPuerta=" + numPuerta +
+                ", companiaAerea=" + companiaAerea +
                 '}';
     }
 }

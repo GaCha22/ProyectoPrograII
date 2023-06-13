@@ -1,17 +1,27 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
 
+import cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.servidor.MultiServidor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
 
 public class ServidorController {
 
-
+    @FXML
+    private BorderPane bp;
     @FXML
     public TextArea txtaSolicitudSeleccionada;
     @FXML
@@ -33,32 +43,60 @@ public class ServidorController {
 
     @FXML
     private Button btnMostrarEnPuerta;
-
     @FXML
     private Button btnMostrarTodos;
     private MultiServidor multiServidor;
 
-    private Aeropuerto aeropuerto;
-
+    private ReporteController reporteController;
     @FXML
-    void initialize(){
-        multiServidor = new MultiServidor();
+    void initialize() throws IOException {
+        multiServidor = new MultiServidor(GestionaArchivo.leerArchivoConfiguracion("config.json"));
         multiServidor.start();
-        aeropuerto = GestionaArchivo.leerArchivoConfiguracion("config.json");
-        txtaPistasDisponibles.setText(aeropuerto.pistasToString());
-        txtaPuertasDisponibles.setText(aeropuerto.puertasToString());
-    }
-
-    @FXML
-    void onActionEnEsperar(ActionEvent actionEvent) {
+        File archivo = new File("placasRegistradas.txt");
+        if (archivo.exists()) {
+            archivo.delete();
+        }
+        archivo.createNewFile(); //de esta manera el archivo se limpia cuando el servidor se carga
+        txtaPistasDisponibles.setText(MultiServidor.aeropuertoServer.pistasToString());
+        txtaPuertasDisponibles.setText(MultiServidor.aeropuertoServer.puertasToString());
     }
 
     @FXML
     void onActionAceptarSolicitud(ActionEvent actionEvent) {
+        if(MultiServidor.getClientsInQueue().peek() != null)
+            MultiServidor.getClientsInQueue().peek().aceptarSolicitud();
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setContentText("No haz seleccionado una petición");
+            alert.showAndWait();
+        }
     }
 
     @FXML
+    void onActionEnEsperar(ActionEvent actionEvent) {
+        if(MultiServidor.getClientsInQueue().peek() != null)
+            MultiServidor.getClientsInQueue().peek().ponerEnEspera();
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setContentText("No haz seleccionado una petición");
+            alert.showAndWait();
+        }
+    }
+
+    private void loadPage(String page) {
+        FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource(page));
+        try {
+            this.bp.setCenter(fxmlLoader.load());
+            reporteController = fxmlLoader.getController();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
     void onActionGenerarReporte(ActionEvent actionEvent) {
+        loadPage("interfaz/reporte.fxml");
     }
 
     @FXML
