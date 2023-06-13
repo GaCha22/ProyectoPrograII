@@ -27,23 +27,11 @@ public class MultiServidorHilo extends Thread{
 
     @Override
     public void run() {
-        Protocolo protocolo = new Protocolo();
         try {
             writer.println("Cliente conectado con el servidor");
             while ((peticion = reader.readLine()) != null) {
                 System.out.println(peticion);
                 MultiServidor.addClientsInQueue(this);
-                switch (peticion){
-                    case "aterrizar":
-                        protocolo.avionAterrizando();
-                        break;
-                    case "despegar":
-                        protocolo.avionDespegue();
-                        break;
-                    case "puerta":
-                        protocolo.avionAPuerta();
-                        break;
-                }
             }
         } catch (IOException e) {
             closeResources(this.socket, this.reader, this.writer);
@@ -53,12 +41,24 @@ public class MultiServidorHilo extends Thread{
     }
 
     public void aceptarSolicitud(){
-        this.writer.println("aceptar " + peticion);
+        Protocolo protocolo = new Protocolo();
+        this.writer.println("aceptar");
+        switch (peticion){
+            case "aterrizar":
+                protocolo.avionAterrizando();
+                break;
+            case "despegar":
+                protocolo.avionDespegue();
+                break;
+            case "puerta":
+                protocolo.avionAPuerta();
+                break;
+        }
         MultiServidor.getClientsInQueue().poll();
     }
 
     public void ponerEnEspera(){
-        this.writer.println("espera");
+        this.writer.println("esperar");
         MultiServidor.getClientsInQueue().offer(MultiServidor.getClientsInQueue().poll());
     }
 

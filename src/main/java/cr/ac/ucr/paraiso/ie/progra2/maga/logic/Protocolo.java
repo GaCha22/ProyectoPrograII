@@ -35,7 +35,6 @@ public class Protocolo {
         utilityPuertas();
         //sale de puertas, mandelo a esperar
         aeronave.setEstado(2);
-        avionEnEspera();
         }
 
 
@@ -53,42 +52,19 @@ public class Protocolo {
         aeronave.setEstado(3);
     }
 
-    public synchronized void avionEnEspera(){
-        //mientras no haya pistas o puertas disponibles
-        if(aeronave.getEstado() == 2){
-            System.out.println("En Espera");
-            aeronave.setEstado(0);
-            try {
-                switch(aeronave.getTipo()){
-                    case 1: //comercial
-                        sleep(60000);
-                        break;
-                    case 2: //carga
-                        sleep(120000);
-                        break;
-                    case 3: //avioneta
-                        sleep(240000);
-                        break;
-                }
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
     //si no hay puertas o pistas pone en espera al hilo hasta que alguien le notifique que ya hay puertas
-    public synchronized void avionEsperando(){
-        //mientras no haya pistas o puertas disponibles
-        while(!aeropuerto.puertasDisponibles() && aeronave.getEstado() == 1 ||
-                !aeropuerto.pistasDisponibles() && aeronave.getEstado() == 2 ||
-                !aeropuerto.pistasDisponibles() && aeronave.getEstado() == 3){
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
+//    public synchronized void avionEsperando(){
+//        //mientras no haya pistas o puertas disponibles
+//        while(!aeropuerto.puertasDisponibles() && aeronave.getEstado() == 1 ||
+//                !aeropuerto.pistasDisponibles() && aeronave.getEstado() == 2 ||
+//                !aeropuerto.pistasDisponibles() && aeronave.getEstado() == 3){
+//            try {
+//                wait();
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//    }
 
     //gestiona puertas disponibles en el aeropuerto destino
     private synchronized void utilityPuertas() {
@@ -97,16 +73,11 @@ public class Protocolo {
             for (int i = 0; i < aeropuerto.getPuertas().length; i++) {
                 if (aeropuerto.getPuertas()[i].isDisponible()) {
                     aeropuerto.getPuertas()[i].setDisponible(false);
-                    try {
-                        sleep(10000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
                     flag = i;
                     break;
                 }
             }
-            aeropuerto.getPuertas()[flag].setDisponible(true); //siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible
+            aeropuerto.getPuertas()[flag].setDisponible(true);//siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible
             notifyAll();
         }
     }
@@ -118,11 +89,6 @@ public class Protocolo {
             for (int i = 0; i < aeropuerto.getPistas().length; i++) {
                 if (aeropuerto.getPistas()[i].isDisponible()) {
                     aeropuerto.getPistas()[i].setDisponible(false);
-                    try {
-                        sleep(10000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
                     flag = i;
                     break;
                 }
