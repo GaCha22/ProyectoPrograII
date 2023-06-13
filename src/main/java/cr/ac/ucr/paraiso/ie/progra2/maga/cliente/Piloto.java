@@ -1,6 +1,5 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.cliente;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
@@ -12,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.time.LocalTime;
 
 public class Piloto extends Thread{
     private int puerto;
@@ -22,7 +20,7 @@ public class Piloto extends Thread{
     private Socket echoSocket;
     private String propertyMessage;
     private String mensaje;
-    public final static Vuelo vuelo = GestionaArchivo.leerVuelo("vuelo.json");
+    public final Vuelo vuelo = GestionaArchivo.leerVuelo("vuelo.json");
     private PropertyChangeSupport propertyChangeSupport;
     private Solicitud solicitud;
 
@@ -34,6 +32,7 @@ public class Piloto extends Thread{
             echoSocket = new Socket("localhost", this.puerto);
             this.writer = new PrintWriter(echoSocket.getOutputStream(), true);
             this.reader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+            writer.println(GestionaArchivo.classAJson(vuelo));
             respuesta = reader.readLine();
             System.out.println("Servidor: " + respuesta);
             respuesta = null;
@@ -51,18 +50,31 @@ public class Piloto extends Thread{
                 if(respuesta.equals("aceptar")) {
                     try {
                         sleep(10000);
-                        if(mensaje.equals("puerta")){
-                            switch(vuelo.getAeronave().getTipo()) {
-                                case 1: //comercial
-                                    sleep(120000);
-                                    break;
-                                case 2: //carga
-                                    sleep(240000);
-                                    break;
-                                case 3: //avioneta
-                                    sleep(60000);
-                                    break;
-                            }
+                        switch (mensaje){
+                            case "despegar":
+                                this.writer.println("despegado");
+                                break;
+                            case "aterrizar":
+//                                sleep(10000);
+                                this.writer.println("aterrizado");
+                                break;
+                            case "puerta":
+                                this.writer.println("esperando");
+                                setMensaje("esperando");
+//                                sleep(10000);
+                                switch(vuelo.getAeronave().getTipo()) {
+                                    case 1: //comercial
+                                        sleep(120000);
+                                        break;
+                                    case 2: //carga
+                                        sleep(240000);
+                                        break;
+                                    case 3: //avioneta
+                                        sleep(60000);
+                                        break;
+                                }
+                                break;
+
                         }
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
@@ -78,19 +90,19 @@ public class Piloto extends Thread{
     public void despegar(){
         this.mensaje = "despegar";
         solicitud.setSolicitud(mensaje);
-        this.writer.println(GestionaArchivo.solicitudAJson(solicitud));
+        this.writer.println(GestionaArchivo.classAJson(solicitud));
     }
 
     public void aterrizar(){
         this.mensaje = "aterrizar";
         solicitud.setSolicitud(mensaje);
-        this.writer.println(GestionaArchivo.solicitudAJson(solicitud));
+        this.writer.println(GestionaArchivo.classAJson(solicitud));
     }
 
     public void puerta(){
         this.mensaje = "puerta";
         solicitud.setSolicitud(mensaje);
-        this.writer.println(GestionaArchivo.solicitudAJson(solicitud));
+        this.writer.println(GestionaArchivo.classAJson(solicitud));
     }
 
     public void agregarPropertyChangeListener(PropertyChangeListener listener) {

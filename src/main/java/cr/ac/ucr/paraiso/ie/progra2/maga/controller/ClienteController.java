@@ -99,11 +99,8 @@ public class ClienteController implements PropertyChangeListener {
                 break;
             case "aceptar puerta":
                 nuevoEstado("En puerta");
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                break;
+            case "esperando":
                 nuevoEstado("En espera");
                 break;
         }

@@ -1,22 +1,25 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.logic;
-import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.*;
 import cr.ac.ucr.paraiso.ie.progra2.maga.servidor.MultiServidor;
 
 import static java.lang.Thread.sleep;
 
 public class Protocolo {
-    private final Vuelo vuelo = Piloto.vuelo;
+    private final Vuelo vuelo;
     private final Aeropuerto aeropuerto = MultiServidor.aeropuertoServer;
+
+    public Protocolo(Vuelo vuelo){
+        this.vuelo = vuelo;
+    }
 
     public synchronized void avionAterrizando(){
         while(!aeropuerto.pistasDisponibles() && vuelo.getAeronave().getEstado() == 3){
-            try {
+//            try {
                 System.out.println("Aterrizar");
-                wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+//                wait();
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
         }
         utilityPistas();
         vuelo.getAeronave().setEstado(1);
@@ -32,6 +35,7 @@ public class Protocolo {
                 throw new RuntimeException(e);
             }
         }
+        liberarPista();
         utilityPuertas();
         //sale de puertas, mandelo a esperar
         vuelo.getAeronave().setEstado(2);
@@ -98,5 +102,24 @@ public class Protocolo {
         }
     }
 
+    public void liberarPista(){
+        for (Pista pista : aeropuerto.getPistas()) {
+            if (pista == vuelo.getPistaAsignada()){
+                pista.setDisponible(true);
+                vuelo.setPistaAsignada(null);
+                notify();
+            }
+        }
+    }
+
+    public void liberarPuerta() {
+        for (Puerta puerta :aeropuerto.getPuertas()) {
+            if (puerta == vuelo.getPuertaAsignada()){
+                puerta.setDisponible(true);
+                vuelo.setPuertaAsignada(null);
+                notify();
+            }
+        }
+    }
 }
 

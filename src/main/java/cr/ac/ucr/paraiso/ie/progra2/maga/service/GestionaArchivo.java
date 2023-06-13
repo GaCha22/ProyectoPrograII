@@ -52,7 +52,7 @@ public class GestionaArchivo {
         return salida;
     }
 
-    public static String solicitudAJson(Solicitud solicitud){
+    public static String classAJson(Object solicitud){
         String json = null;
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
@@ -83,6 +83,17 @@ public class GestionaArchivo {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return vuelo;
+    }
+
+    public static Vuelo jsonAVuelo(String json){
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
+                .create();
+
+        Vuelo vuelo = null;
+        vuelo =  gson.fromJson(json, Vuelo.class);
 
         return vuelo;
     }

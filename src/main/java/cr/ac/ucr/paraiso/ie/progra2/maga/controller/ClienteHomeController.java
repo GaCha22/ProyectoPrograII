@@ -35,7 +35,7 @@ public class ClienteHomeController {
     public void initialize() {
         File archivo = new File("vuelo.json");
         if (archivo.exists()) {
-            archivo.delete();
+            boolean x = archivo.delete();
         }
         ObservableList<String> items = FXCollections.observableArrayList("Avioneta", "Avión comercial", "Avión de carga");
         chbTipo.setItems(items);
@@ -74,10 +74,15 @@ public class ClienteHomeController {
                 Vuelo vuelo = new Vuelo(aeronave, companiaAerea);
                 GestionaArchivo.escribirVueloenVuelos(vuelo, "vuelo.json");
                 loadPage("interfaz/cliente.fxml");
-                clienteController.setTextTXT("Tipo: " + aeronave +
-                        "\nPlaca: " + aeronave.getPlaca() +
+                String tipoSt = aeronave.getTipo() == 1 ? "COMERCIAL" : aeronave.getTipo() == 2 ? "CARGA" : "AVIONETA";
+                clienteController.setTextTXT("Placa: " + aeronave.getPlaca() +
+                        "\nTipo: " + tipoSt +
                         "\nAerolínea: " + companiaAerea.getNombre() +
                         "\nEstado del avión: En el aire");
+                File archivo = new File("vuelo.json");
+                if (archivo.exists()) {
+                    boolean x = archivo.delete();
+                }
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);

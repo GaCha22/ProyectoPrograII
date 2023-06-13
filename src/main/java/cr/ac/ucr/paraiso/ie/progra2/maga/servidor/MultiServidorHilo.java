@@ -1,8 +1,8 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 
 import java.io.BufferedReader;
@@ -17,9 +17,14 @@ public class MultiServidorHilo extends Thread{
     private BufferedReader reader;
     private PrintWriter writer;
     private String peticion;
+    private Vuelo vuelo;
     private Solicitud solicitud;
-    public MultiServidorHilo(Socket socket) {
+    Protocolo protocolo;
+
+    public MultiServidorHilo(Socket socket, Vuelo vuelo) {
         try {
+            this.vuelo = vuelo;
+            this.protocolo = new Protocolo(vuelo);
             this.peticion = null;
             this.socket = socket;
             this.writer = new PrintWriter(this.socket.getOutputStream(), true);
@@ -35,10 +40,25 @@ public class MultiServidorHilo extends Thread{
         try {
             writer.println("Cliente conectado con el servidor");
             while ((peticion = reader.readLine()) != null) {
-                solicitud = GestionaArchivo.jsonASolicitud(peticion);
-                MultiServidor.setMensaje(peticion);
-                System.out.println(peticion);
-                MultiServidor.addClientsInQueue(this);
+
+                switch (peticion){
+                    case "en puerta":
+                    case "despegando":
+                        protocolo.liberarPista();
+                        break;
+                    case "esperando":
+                        protocolo.liberarPuerta();
+                        MultiServidor.setMensaje("consume");
+                        MultiServidor.setMensaje("actualizar");
+                        break;
+                    case "aterrizado":
+                        break;
+                    default:
+                        solicitud = GestionaArchivo.jsonASolicitud(peticion);
+                        MultiServidor.setMensaje(peticion);
+                        System.out.println(peticion);
+                        MultiServidor.addClientsInQueue(this);
+                }
             }
         } catch (IOException e) {
             closeResources(this.socket, this.reader, this.writer);
@@ -48,24 +68,29 @@ public class MultiServidorHilo extends Thread{
     }
 
     public void aceptarSolicitud(){
-        Protocolo protocolo = new Protocolo();
-        this.writer.println("aceptar");
         switch (solicitud.getSolicitud()){
             case "aterrizar":
-                Piloto.vuelo.setHoraLlegada(LocalTime.now());
-                GestionaArchivo.escribirVuelo(Piloto.vuelo, "reportes.json");
+                vuelo.setHoraLlegada(LocalTime.now());
+                GestionaArchivo.escribirVuelo(vuelo, "reportes.json");
                 protocolo.avionAterrizando();
                 break;
             case "despegar":
-                Piloto.vuelo.setHoraSalida(LocalTime.now());
-                GestionaArchivo.escribirVuelo(Piloto.vuelo, "reportes.json");
+                vuelo.setHoraSalida(LocalTime.now());
+                GestionaArchivo.escribirVuelo(vuelo, "reportes.json");
                 protocolo.avionDespegue();
                 break;
             case "puerta":
                 protocolo.avionAPuerta();
                 break;
         }
+        this.writer.println("aceptar");
         MultiServidor.getClientsInQueue().poll();
+        try {
+            sleep(10);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        MultiServidor.setMensaje("consume");
         MultiServidor.setMensaje("actualizar");
     }
 

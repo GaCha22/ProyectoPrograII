@@ -1,6 +1,8 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -31,9 +33,20 @@ public class MultiServidor extends Thread{
             System.out.println("Servidor activo: " + serverSocket.getLocalPort());
             while(escuchando){
                 Socket socketCliente = serverSocket.accept();
-                MultiServidorHilo cliente = new MultiServidorHilo(socketCliente);
+                MultiServidorHilo cliente = new MultiServidorHilo(socketCliente, getIdVuelo(socketCliente));
                 cliente.start();
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Vuelo getIdVuelo(Socket clientSocket){
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            String id = reader.readLine();
+            return GestionaArchivo.jsonAVuelo(id);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

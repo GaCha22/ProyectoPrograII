@@ -19,6 +19,11 @@ public class ClienteMain extends Application {
         stage.show();
     }
 
+    @Override
+    public void stop() throws Exception {
+        System.exit(0);
+    }
+
     public static void main(String[] args) {
         launch();
     }

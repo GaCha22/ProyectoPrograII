@@ -190,11 +190,14 @@ public class ServidorController implements PropertyChangeListener{
         if (solicitud.equals("actualizar")){
             txtaPistasDisponibles.setText(MultiServidor.aeropuertoServer.pistasToString());
             txtaPuertasDisponibles.setText(MultiServidor.aeropuertoServer.puertasToString());
+        }else if (solicitud.equals("consume")) {
+
         }else {
-            colaDeSolicitudes.offer(GestionaArchivo.jsonASolicitud(solicitud));
-            setSolicitudSeleccionada();
-            txtaPistasDisponibles.setText(MultiServidor.aeropuertoServer.pistasToString());
-            txtaPuertasDisponibles.setText(MultiServidor.aeropuertoServer.puertasToString());
+                colaDeSolicitudes.offer(GestionaArchivo.jsonASolicitud(solicitud));
+                setSolicitudSeleccionada();
+                txtaPistasDisponibles.setText(MultiServidor.aeropuertoServer.pistasToString());
+                txtaPuertasDisponibles.setText(MultiServidor.aeropuertoServer.puertasToString());
         }
+
     }
 }
