@@ -25,6 +25,7 @@ public class Test {
         gestionaArchivo.escribirVuelo(vuelo2, "reportes.json");
     }
 
+
     @org.junit.jupiter.api.Test
     public void leerRegistro(){
         System.out.println(gestionaArchivo.generarReporteVuelos("reportes.json"));
@@ -36,6 +37,8 @@ public class Test {
         //aeropuertoDestino
         System.out.println((gestionaArchivo.leerArchivoConfiguracion(path)).toString());
     }
+
+
 
 
     @org.junit.jupiter.api.Test
