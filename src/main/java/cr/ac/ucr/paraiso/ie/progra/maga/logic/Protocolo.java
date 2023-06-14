@@ -16,45 +16,48 @@ public class Protocolo {
         this.vuelo = vuelo;
     }
 
+    //Método para hacer que el avión aterrice
     public boolean avionAterrizando(){
         if(!aeropuerto.pistasDisponibles() && vuelo.getAeronave().getEstado() == 3){
             return false;
         }
         utilityPistas();
+        //Se le da un nuevo valor al estado del avión
         vuelo.getAeronave().setEstado(1);
         return true;
     }
 
-    //si hay puertas disponibles, y si el avion esta en puerta, entonces lo pone a esperar un tiempo respectivo
+    //Método para hacer que el avión vaya a Puerta
     public boolean avionAPuerta(){
         if (!aeropuerto.puertasDisponibles() && vuelo.getAeronave().getEstado() == 1){
                 return false;
         }
         liberarPista();
         utilityPuertas();
-        //sale de puertas, mandelo a esperar
+        //Se le da un nuevo valor al estado del avión
         vuelo.getAeronave().setEstado(2);
         return true;
         }
 
-
+    //Método para hacer que el avión despegue
     public boolean avionDespegue() {
         if (!aeropuerto.pistasDisponibles() && vuelo.getAeronave().getEstado() == 2) {
                 return false;
         }
         utilityPistas();
-        //sale de puertas, mandelo a despegar
+        //Se le da un nuevo valor al estado del avión
         vuelo.getAeronave().setEstado(3);
         return true;
     }
 
-    //gestiona puertas disponibles en el aeropuerto destino
+    //Método para gestionar puertas disponibles en el aeropuerto destino
     private void utilityPuertas() {
         if (aeropuerto.puertasDisponibles()) {
             for (int i = 0; i < aeropuerto.getPuertas().length; i++) {
                 Puerta puerta = aeropuerto.getPuertas()[i];
                 if (puerta.isDisponible()) {
                     puerta.setDisponible(false);
+                    //Se guarda en el vuelo la puerta asignada
                     vuelo.setPuertaAsignada(puerta);
                     break;
                 }
@@ -62,13 +65,14 @@ public class Protocolo {
         }
     }
 
-    //gestiona pistas en el aeropuerto destino
+    //Método para gestionar pistas disponibles en el aeropuerto destino
     private void utilityPistas() {
         if (aeropuerto.pistasDisponibles()) {
             for (int i = 0; i < aeropuerto.getPistas().length; i++) {
                 Pista pista = aeropuerto.getPistas()[i];
                 if (pista.isDisponible()) {
                     pista.setDisponible(false);
+                    //Se guarda en el vuelo la pista asignada
                     vuelo.setPistaAsignada(pista);
                     break;
                 }
@@ -76,10 +80,12 @@ public class Protocolo {
         }
     }
 
+    //Método que permite la liberación de pistas
     public void liberarPista(){
         for (Pista pista : aeropuerto.getPistas()) {
             if (pista == vuelo.getPistaAsignada()){
                 pista.setDisponible(true);
+                //Se le quita el valor de la pista al vuelo
                 vuelo.setPistaAsignada(null);
                 if (MultiServidor.getListaDeEsperaPistas().peek() != null) Platform.runLater(() -> {MultiServidor.removeListaEsperaPistas().aceptarSolicitud();});
                 try {
@@ -91,10 +97,12 @@ public class Protocolo {
         }
     }
 
+    //Método que permite la liberación de puertas
     public void liberarPuerta() {
         for (Puerta puerta :aeropuerto.getPuertas()) {
             if (puerta == vuelo.getPuertaAsignada()){
                 puerta.setDisponible(true);
+                //Se le quita el valor de la puerta al vuelo
                 vuelo.setPuertaAsignada(null);
                 if (MultiServidor.getListaDeEsperaPuertas().peek() != null) Platform.runLater(() -> {MultiServidor.removeListaEsperaPuertas().aceptarSolicitud();});
                 try {
