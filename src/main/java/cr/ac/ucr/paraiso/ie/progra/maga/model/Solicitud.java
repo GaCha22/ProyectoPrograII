@@ -13,10 +13,6 @@ public class Solicitud {
         return vuelo;
     }
 
-    public void setVuelo(Vuelo vuelo) {
-        this.vuelo = vuelo;
-    }
-
     public String getSolicitud() {
         return solicitud;
     }

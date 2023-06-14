@@ -8,9 +8,6 @@ import javafx.scene.layout.BorderPane;
 
 public class ReporteController {
     @FXML
-    private BorderPane bp;
-    GestionaArchivo gestionaArchivo = new GestionaArchivo();
-    @FXML
     private TextArea textReporte;
 
     @FXML

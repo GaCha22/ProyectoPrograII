@@ -4,6 +4,7 @@ import cr.ac.ucr.paraiso.ie.progra.maga.model.Pista;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Puerta;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra.maga.servidor.MultiServidor;
+import javafx.application.Platform;
 
 import static java.lang.Thread.sleep;
 
@@ -15,7 +16,7 @@ public class Protocolo {
         this.vuelo = vuelo;
     }
 
-    public synchronized boolean avionAterrizando(){
+    public boolean avionAterrizando(){
         if(!aeropuerto.pistasDisponibles() && vuelo.getAeronave().getEstado() == 3){
             return false;
         }
@@ -25,7 +26,7 @@ public class Protocolo {
     }
 
     //si hay puertas disponibles, y si el avion esta en puerta, entonces lo pone a esperar un tiempo respectivo
-    public synchronized boolean avionAPuerta(){
+    public boolean avionAPuerta(){
         if (!aeropuerto.puertasDisponibles() && vuelo.getAeronave().getEstado() == 1){
                 return false;
         }
@@ -37,8 +38,8 @@ public class Protocolo {
         }
 
 
-    public synchronized boolean avionDespegue() {
-        if (!aeropuerto.pistasDisponibles() && vuelo.getAeronave().getEstado() == 0) {
+    public boolean avionDespegue() {
+        if (!aeropuerto.pistasDisponibles() && vuelo.getAeronave().getEstado() == 2) {
                 return false;
         }
         utilityPistas();
@@ -47,22 +48,8 @@ public class Protocolo {
         return true;
     }
 
-    //si no hay puertas o pistas pone en espera al hilo hasta que alguien le notifique que ya hay puertas
-//    public synchronized void avionEsperando(){
-//        //mientras no haya pistas o puertas disponibles
-//        while(!aeropuerto.puertasDisponibles() && aeronave.getEstado() == 1 ||
-//                !aeropuerto.pistasDisponibles() && aeronave.getEstado() == 2 ||
-//                !aeropuerto.pistasDisponibles() && aeronave.getEstado() == 3){
-//            try {
-//                wait();
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }
-
     //gestiona puertas disponibles en el aeropuerto destino
-    private synchronized void utilityPuertas() {
+    private void utilityPuertas() {
         if (aeropuerto.puertasDisponibles()) {
             for (int i = 0; i < aeropuerto.getPuertas().length; i++) {
                 Puerta puerta = aeropuerto.getPuertas()[i];
@@ -76,7 +63,7 @@ public class Protocolo {
     }
 
     //gestiona pistas en el aeropuerto destino
-    private synchronized void utilityPistas() {
+    private void utilityPistas() {
         if (aeropuerto.pistasDisponibles()) {
             for (int i = 0; i < aeropuerto.getPistas().length; i++) {
                 Pista pista = aeropuerto.getPistas()[i];
@@ -94,7 +81,12 @@ public class Protocolo {
             if (pista == vuelo.getPistaAsignada()){
                 pista.setDisponible(true);
                 vuelo.setPistaAsignada(null);
-                if (MultiServidor.getListaDeEsperaPistas().peek() != null) MultiServidor.removeListaEsperaPistas().aceptarSolicitud();
+                if (MultiServidor.getListaDeEsperaPistas().peek() != null) Platform.runLater(() -> {MultiServidor.removeListaEsperaPistas().aceptarSolicitud();});
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
@@ -104,7 +96,12 @@ public class Protocolo {
             if (puerta == vuelo.getPuertaAsignada()){
                 puerta.setDisponible(true);
                 vuelo.setPuertaAsignada(null);
-                if (MultiServidor.getListaDeEsperaPuertas().peek() != null) MultiServidor.removeListaEsperaPuertas().aceptarSolicitud();
+                if (MultiServidor.getListaDeEsperaPuertas().peek() != null) Platform.runLater(() -> {MultiServidor.removeListaEsperaPuertas().aceptarSolicitud();});
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }

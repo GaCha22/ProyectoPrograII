@@ -32,20 +32,6 @@ public class ServidorController implements PropertyChangeListener{
     public TextArea txtaPistasDisponibles;
     @FXML
     public TextArea txtaPuertasDisponibles;
-    @FXML
-    private Button btnGenerarReporte;
-    @FXML
-    private Button btnAceptarSolicitud;
-    @FXML
-    private Button btnPonerEnEspera;
-    @FXML
-    private Button btnMostrarAterrizando;
-    @FXML
-    private Button btnMostrarEnEspera;
-    @FXML
-    private Button btnMostrarEnPuerta;
-    @FXML
-    private Button btnMostrarTodos;
     private MultiServidor multiServidor;
     public static Stage stage;
     @FXML
@@ -94,6 +80,7 @@ public class ServidorController implements PropertyChangeListener{
         try {
             stage = new Stage();
             stage.setScene(new Scene(fxmlLoader.load()));
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -103,37 +90,6 @@ public class ServidorController implements PropertyChangeListener{
     @FXML
     void onActionGenerarReporte(ActionEvent actionEvent) {
         loadPage("interfaz/reporte.fxml");
-    }
-
-    @FXML
-    void onActionMostrarAterrizando(ActionEvent event) {
-        setDisableAll(false);
-        btnMostrarAterrizando.setDisable(true);
-    }
-
-    @FXML
-    void onActionMostrarEnEspera(ActionEvent event) {
-        setDisableAll(false);
-        btnMostrarEnEspera.setDisable(true);
-    }
-
-    @FXML
-    void onActionMostrarEnPuerta(ActionEvent event) {
-        setDisableAll(false);
-        btnMostrarEnPuerta.setDisable(true);
-    }
-
-    @FXML
-    void onActionMostrarTodos(ActionEvent event) {
-        setDisableAll(false);
-        btnMostrarTodos.setDisable(true);
-    }
-
-    private void setDisableAll(boolean option){
-        btnMostrarAterrizando.setDisable(option);
-        btnMostrarTodos.setDisable(option);
-        btnMostrarEnEspera.setDisable(option);
-        btnMostrarEnPuerta.setDisable(option);
     }
 
     private void setTable(){
@@ -159,7 +115,7 @@ public class ServidorController implements PropertyChangeListener{
         ObservableList<List<String>> data = FXCollections.observableArrayList();
         int count = 0;
         List<String> info = new ArrayList<>();
-        int ni = MultiServidor.getSolicitudes().size();
+        int ni = MultiServidor.getSolicitudesParaMostrar().size();
         int i = 0;
         while (i < ni){
             Solicitud solicitud = MultiServidor.removeSolicitudInQueue();

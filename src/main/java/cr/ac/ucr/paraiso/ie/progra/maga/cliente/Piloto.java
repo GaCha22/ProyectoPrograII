@@ -3,7 +3,6 @@ package cr.ac.ucr.paraiso.ie.progra.maga.cliente;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Solicitud;
 import cr.ac.ucr.paraiso.ie.progra.maga.service.GestionaArchivo;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.BufferedReader;
@@ -34,7 +33,6 @@ public class Piloto extends Thread{
             this.reader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
             writer.println(GestionaArchivo.classAJson(vuelo));
             respuesta = reader.readLine();
-            System.out.println("Servidor: " + respuesta);
             respuesta = null;
         } catch (IOException e) {
             closeResources(this.echoSocket, this.reader, this.writer);
@@ -46,34 +44,31 @@ public class Piloto extends Thread{
     public void run() {
         try {
             while ((respuesta = reader.readLine()) != null) {
-                System.out.println(respuesta);
                 setMensaje(respuesta + " " + mensaje);
                 if(respuesta.equals("aceptar")) {
                     try {
-                        sleep(10000);
+                        sleep(2_000);
                         switch (mensaje){
                             case "despegar":
                                 this.writer.println("despegado");
                                 break;
                             case "aterrizar":
-//                                sleep(10000);
                                 this.writer.println("aterrizado");
                                 break;
                             case "puerta":
                                 this.writer.println("esperando");
                                 setMensaje("esperando");
-//                                sleep(10000);
-                                switch(vuelo.getAeronave().getTipo()) {
-                                    case 1: //comercial
-                                        sleep(120000);
-                                        break;
-                                    case 2: //carga
-                                        sleep(240000);
-                                        break;
-                                    case 3: //avioneta
-                                        sleep(60000);
-                                        break;
-                                }
+//                                switch(vuelo.getAeronave().getTipo()) {
+//                                    case 1: //comercial
+//                                        sleep(120_000);
+//                                        break;
+//                                    case 2: //carga
+//                                        sleep(240_000);
+//                                        break;
+//                                    case 3: //avioneta
+//                                        sleep(60_000);
+//                                        break;
+//                                }
                                 break;
 
                         }
@@ -81,7 +76,11 @@ public class Piloto extends Thread{
                         throw new RuntimeException(e);
                     }
                 }
-                setMensaje(mensaje);
+                if (respuesta.equals("lista de espera pista") || respuesta.equals("lista de espera puerta") || respuesta.equals("esperar")){
+                    setMensaje(respuesta);
+                }else {
+                    setMensaje(mensaje);
+                }
             }
         } catch (IOException e) {
             closeResources(this.echoSocket, this.reader, this.writer);
@@ -107,18 +106,8 @@ public class Piloto extends Thread{
         this.writer.println(GestionaArchivo.classAJson(solicitud));
     }
 
-    public void desconectar(){
-        this.writer.println("desconectar");
-        closeResources(this.echoSocket, this.reader, this.writer);
-
-    }
-
     public void agregarPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removerPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(listener);
     }
 
     public void setMensaje(String nuevoMensaje) {
