@@ -1,6 +1,6 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
+package cr.ac.ucr.paraiso.ie.progra.maga.controller;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
+import cr.ac.ucr.paraiso.ie.progra.maga.service.GestionaArchivo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;

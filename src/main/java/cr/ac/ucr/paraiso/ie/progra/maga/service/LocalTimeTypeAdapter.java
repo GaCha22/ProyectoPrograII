@@ -1,4 +1,4 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.service;
+package cr.ac.ucr.paraiso.ie.progra.maga.service;
 
 import com.google.gson.*;
 import java.lang.reflect.Type;

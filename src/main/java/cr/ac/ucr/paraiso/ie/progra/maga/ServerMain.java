@@ -1,21 +1,18 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga;
+package cr.ac.ucr.paraiso.ie.progra.maga;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
-public class ClienteMain extends Application {
+public class ServerMain extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource("interfaz/clienteHome.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ServerMain.class.getResource("interfaz/servidor.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Cliente");
+        stage.setTitle("Controlador Aéreo");
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
     }
 

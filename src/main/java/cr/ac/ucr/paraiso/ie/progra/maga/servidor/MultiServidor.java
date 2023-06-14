@@ -1,9 +1,9 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
+package cr.ac.ucr.paraiso.ie.progra.maga.servidor;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
-import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Aeropuerto;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Solicitud;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra.maga.service.GestionaArchivo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -19,6 +19,8 @@ public class MultiServidor extends Thread{
     public static Aeropuerto aeropuertoServer;
     private static Queue<MultiServidorHilo> clientsInQueue = new ArrayDeque<>();
     private static Queue<Solicitud> solicitudes = new ArrayDeque<>();
+    private static Queue<MultiServidorHilo> listaDeEsperaPistas = new ArrayDeque<>();
+    private static Queue<MultiServidorHilo> listaDeEsperaPuertas = new ArrayDeque<>();
     private static PropertyChangeSupport propertyChangeSupport;
     private static String mensaje;
 
@@ -58,8 +60,8 @@ public class MultiServidor extends Thread{
         MultiServidor.clientsInQueue.offer(client);
     }
 
-    public static void removeClientInQueue() {
-        MultiServidor.clientsInQueue.poll();
+    public static MultiServidorHilo removeClientInQueue() {
+        return MultiServidor.clientsInQueue.poll();
     }
 
     public static Queue<MultiServidorHilo> getClientsInQueue() {
@@ -80,6 +82,27 @@ public class MultiServidor extends Thread{
 
     public static Queue<Solicitud> getSolicitudes() {
         return solicitudes;
+    }
+
+    public static void addListaEsperaPistas(MultiServidorHilo client) {
+        MultiServidor.listaDeEsperaPistas.offer(client);
+    }
+    public static MultiServidorHilo removeListaEsperaPistas() {
+        return MultiServidor.listaDeEsperaPistas.poll();
+    }
+    public static Queue<MultiServidorHilo> getListaDeEsperaPistas() {
+        return listaDeEsperaPistas;
+    }
+
+    public static void addListaEsperaPuertas(MultiServidorHilo client) {
+        MultiServidor.listaDeEsperaPuertas.offer(client);
+    }
+
+    public static MultiServidorHilo removeListaEsperaPuertas() {
+        return MultiServidor.listaDeEsperaPuertas.poll();
+    }
+    public static Queue<MultiServidorHilo> getListaDeEsperaPuertas() {
+        return listaDeEsperaPuertas;
     }
 
     public void agregarPropertyChangeListener(PropertyChangeListener listener) {

@@ -1,4 +1,4 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.logic;
+package cr.ac.ucr.paraiso.ie.progra.maga.logic;
 
 public class GeneraRandoms {
 

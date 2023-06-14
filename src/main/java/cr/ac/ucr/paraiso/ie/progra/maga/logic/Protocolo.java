@@ -1,6 +1,9 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.logic;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.*;
-import cr.ac.ucr.paraiso.ie.progra2.maga.servidor.MultiServidor;
+package cr.ac.ucr.paraiso.ie.progra.maga.logic;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Aeropuerto;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Pista;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Puerta;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra.maga.servidor.MultiServidor;
 
 import static java.lang.Thread.sleep;
 
@@ -69,8 +72,6 @@ public class Protocolo {
                     break;
                 }
             }
-//            aeropuerto.getPuertas()[flag].setDisponible(true);//siempre pasa por el if porque si entro al if incial es que al menos hay una puerta disponible
-//            notifyAll();
         }
     }
 
@@ -85,8 +86,6 @@ public class Protocolo {
                     break;
                 }
             }
-//            aeropuerto.getPistas()[flag].setDisponible(true);
-//            notifyAll();
         }
     }
 
@@ -95,7 +94,7 @@ public class Protocolo {
             if (pista == vuelo.getPistaAsignada()){
                 pista.setDisponible(true);
                 vuelo.setPistaAsignada(null);
-//                notify();
+                if (MultiServidor.getListaDeEsperaPistas().peek() != null) MultiServidor.removeListaEsperaPistas().aceptarSolicitud();
             }
         }
     }
@@ -105,7 +104,7 @@ public class Protocolo {
             if (puerta == vuelo.getPuertaAsignada()){
                 puerta.setDisponible(true);
                 vuelo.setPuertaAsignada(null);
-//                notify();
+                if (MultiServidor.getListaDeEsperaPuertas().peek() != null) MultiServidor.removeListaEsperaPuertas().aceptarSolicitud();
             }
         }
     }

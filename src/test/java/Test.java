@@ -1,11 +1,11 @@
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.GeneraRandoms;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra.maga.logic.GeneraRandoms;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Aeronave;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Aeropuerto;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.CompaniaAerea;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
 
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
+import cr.ac.ucr.paraiso.ie.progra.maga.service.GestionaArchivo;
 import java.time.LocalTime;
 
 

@@ -1,7 +1,4 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.model;
-
-import java.util.Arrays;
-import java.util.List;
+package cr.ac.ucr.paraiso.ie.progra.maga.model;
 
 public class Aeropuerto {
     private Pista[] pistas;

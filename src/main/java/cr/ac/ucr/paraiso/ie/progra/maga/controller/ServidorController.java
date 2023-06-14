@@ -1,9 +1,9 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
+package cr.ac.ucr.paraiso.ie.progra.maga.controller;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.ClienteMain;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
-import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
-import cr.ac.ucr.paraiso.ie.progra2.maga.servidor.MultiServidor;
+import cr.ac.ucr.paraiso.ie.progra.maga.ClienteMain;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Solicitud;
+import cr.ac.ucr.paraiso.ie.progra.maga.service.GestionaArchivo;
+import cr.ac.ucr.paraiso.ie.progra.maga.servidor.MultiServidor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -69,7 +68,6 @@ public class ServidorController implements PropertyChangeListener{
     void onActionAceptarSolicitud(ActionEvent actionEvent) {
         if(MultiServidor.getClientsInQueue().peek() != null) {
             MultiServidor.getClientsInQueue().peek().aceptarSolicitud();
-            MultiServidor.removeSolicitudInQueue();
             setSolicitudSeleccionada();
         }else {
             Alert alert = new Alert(Alert.AlertType.WARNING);

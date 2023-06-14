@@ -1,4 +1,4 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.model;
+package cr.ac.ucr.paraiso.ie.progra.maga.model;
 
 import java.util.List;
 

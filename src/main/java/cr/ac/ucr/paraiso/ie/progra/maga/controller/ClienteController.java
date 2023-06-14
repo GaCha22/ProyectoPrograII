@@ -1,9 +1,6 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.controller;
+package cr.ac.ucr.paraiso.ie.progra.maga.controller;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.cliente.Piloto;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeronave;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.CompaniaAerea;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra.maga.cliente.Piloto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

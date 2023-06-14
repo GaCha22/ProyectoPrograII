@@ -1,11 +1,11 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
+package cr.ac.ucr.paraiso.ie.progra.maga.servidor;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.GeneraRandoms;
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
-import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
+import cr.ac.ucr.paraiso.ie.progra.maga.logic.GeneraRandoms;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Aeropuerto;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Solicitud;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra.maga.service.GestionaArchivo;
+import cr.ac.ucr.paraiso.ie.progra.maga.logic.Protocolo;
 import javafx.scene.control.Alert;
 
 import java.io.BufferedReader;
@@ -96,30 +96,33 @@ public class MultiServidorHilo extends Thread{
                 if (!protocolo.avionAterrizando()){
                     alert.setContentText("No hay pistas disponibles");
                     alert.showAndWait();
+                    MultiServidor.addListaEsperaPistas(MultiServidor.removeClientInQueue());
                 }
                 break;
             case "despegar":
                 if (!protocolo.avionDespegue()){
                     alert.setContentText("No hay pistas disponibles");
                     alert.showAndWait();
+                    MultiServidor.addListaEsperaPistas(MultiServidor.removeClientInQueue());
                 }
                 break;
             case "puerta":
                 if (!protocolo.avionAPuerta()){
                     alert.setContentText("No hay puertas disponibles");
                     alert.showAndWait();
+                    MultiServidor.addListaEsperaPuertas(MultiServidor.removeClientInQueue());
                 }
                 break;
         }
+
         if (alert.getContentText().equals("")){
             this.writer.println("aceptar");
             MultiServidor.getClientsInQueue().poll();
+            MultiServidor.removeSolicitudInQueue();
+        }else {
+            this.writer.println("lista de espera");
         }
-        try {
-            sleep(10);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
         MultiServidor.setMensaje("consume");
         MultiServidor.setMensaje("actualizar");
     }

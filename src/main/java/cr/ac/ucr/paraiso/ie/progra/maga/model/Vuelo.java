@@ -1,7 +1,7 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.model;
+package cr.ac.ucr.paraiso.ie.progra.maga.model;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.logic.GeneraRandoms;
-import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
+import cr.ac.ucr.paraiso.ie.progra.maga.logic.GeneraRandoms;
+import cr.ac.ucr.paraiso.ie.progra.maga.service.GestionaArchivo;
 
 import java.time.LocalTime;
 

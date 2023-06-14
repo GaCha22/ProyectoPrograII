@@ -1,10 +1,10 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.service;
+package cr.ac.ucr.paraiso.ie.progra.maga.service;
 
 import com.google.gson.GsonBuilder;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Aeropuerto;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Solicitud;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
 import com.google.gson.Gson;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 
 import java.io.*;
 import java.nio.file.Files;

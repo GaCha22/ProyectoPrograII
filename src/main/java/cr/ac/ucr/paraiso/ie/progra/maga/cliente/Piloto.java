@@ -1,8 +1,8 @@
-package cr.ac.ucr.paraiso.ie.progra2.maga.cliente;
+package cr.ac.ucr.paraiso.ie.progra.maga.cliente;
 
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
-import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
-import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
+import cr.ac.ucr.paraiso.ie.progra.maga.model.Solicitud;
+import cr.ac.ucr.paraiso.ie.progra.maga.service.GestionaArchivo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
