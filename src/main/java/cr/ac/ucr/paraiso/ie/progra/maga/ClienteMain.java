@@ -11,7 +11,7 @@ public class ClienteMain extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource("interfaz/clienteHome.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Cliente");
+        stage.setTitle("Piloto");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
