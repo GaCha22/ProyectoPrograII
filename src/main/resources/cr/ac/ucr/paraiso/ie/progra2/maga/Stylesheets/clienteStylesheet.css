@@ -24,6 +24,13 @@
     -fx-scale-x: 0.9;
 }
 
+.label{
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+    -fx-text-fill: black;
+}
+
 #btnGuardar{
     -fx-background-radius: 0;
     -fx-background-color: white;
@@ -41,7 +48,7 @@
     -fx-border-color: black;
     -fx-font-weight: bold;
     -fx-font-size: 18;
-    -fx-pref-width: 250;
+    -fx-pref-width: 280;
 }
 
 .text-field{

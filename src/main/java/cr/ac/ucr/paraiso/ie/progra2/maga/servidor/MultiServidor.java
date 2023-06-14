@@ -1,6 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 
@@ -17,6 +18,7 @@ public class MultiServidor extends Thread{
     private boolean escuchando = true;
     public static Aeropuerto aeropuertoServer;
     private static Queue<MultiServidorHilo> clientsInQueue = new ArrayDeque<>();
+    private static Queue<Solicitud> solicitudes = new ArrayDeque<>();
     private static PropertyChangeSupport propertyChangeSupport;
     private static String mensaje;
 
@@ -62,6 +64,22 @@ public class MultiServidor extends Thread{
 
     public static Queue<MultiServidorHilo> getClientsInQueue() {
         return clientsInQueue;
+    }
+
+    public static void addSolicitudesInQueue(Solicitud solicitud){
+        MultiServidor.solicitudes.offer(solicitud);
+    }
+
+    public static Solicitud removeSolicitudInQueue() {
+        return MultiServidor.solicitudes.poll();
+    }
+
+    public static Solicitud peekSolicitudInQueue(){
+        return solicitudes.peek();
+    }
+
+    public static Queue<Solicitud> getSolicitudes() {
+        return solicitudes;
     }
 
     public void agregarPropertyChangeListener(PropertyChangeListener listener) {

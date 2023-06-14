@@ -37,6 +37,7 @@ public class Piloto extends Thread{
             System.out.println("Servidor: " + respuesta);
             respuesta = null;
         } catch (IOException e) {
+            closeResources(this.echoSocket, this.reader, this.writer);
             e.printStackTrace();
         }
     }
@@ -83,6 +84,7 @@ public class Piloto extends Thread{
                 setMensaje(mensaje);
             }
         } catch (IOException e) {
+            closeResources(this.echoSocket, this.reader, this.writer);
             e.printStackTrace();
         }
     }
@@ -105,6 +107,12 @@ public class Piloto extends Thread{
         this.writer.println(GestionaArchivo.classAJson(solicitud));
     }
 
+    public void desconectar(){
+        this.writer.println("desconectar");
+        closeResources(this.echoSocket, this.reader, this.writer);
+
+    }
+
     public void agregarPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
     }
@@ -117,6 +125,16 @@ public class Piloto extends Thread{
         String viejoMensaje = propertyMessage;
         propertyMessage = nuevoMensaje;
         propertyChangeSupport.firePropertyChange("mensaje", viejoMensaje, nuevoMensaje);
+    }
+
+    private void closeResources(Socket socket, BufferedReader reader, PrintWriter writer){
+        try {
+            if (socket != null) socket.close();
+            if (reader != null) reader.close();
+            if (writer != null) writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

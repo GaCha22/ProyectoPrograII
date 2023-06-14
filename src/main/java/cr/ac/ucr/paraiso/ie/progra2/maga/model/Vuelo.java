@@ -4,7 +4,6 @@ import cr.ac.ucr.paraiso.ie.progra2.maga.logic.GeneraRandoms;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
 
 import java.time.LocalTime;
-import java.util.Date;
 
 public class Vuelo {
 
@@ -21,7 +20,7 @@ public class Vuelo {
     public Vuelo(Aeronave aeronave, CompaniaAerea companiaAerea) {
         this.idVuelo = GeneraRandoms.getIdVuelo();
         this.aeronave = aeronave;
-        this.aeropuertoOrigen = new Aeropuerto(GeneraRandoms.getAeropuertoOrigen());
+        this.aeropuertoOrigen = new Aeropuerto(GeneraRandoms.generaAeropuertoRandom());
         this.aeropuertoDestino = GestionaArchivo.leerArchivoConfiguracion("config.json");
         this.companiaAerea = companiaAerea;
         this.horaSalida = LocalTime.now().minusHours(GeneraRandoms.random(1, 24));
@@ -116,13 +115,12 @@ public class Vuelo {
 
     @Override
     public String toString() {
-        return "Vuelo: " +
-                "idVuelo: " + idVuelo +
-                ", aeronave: " + aeronave.toString() +
-                ", aeropuertoOrigen: " + aeropuertoOrigen.getNombre()+
-                ", aeropuertoDestino: " + aeropuertoDestino.getNombre() +
-                ", companiaAerea: " + companiaAerea.getNombre() +
-                ", horaSalida: " + horaSalida +
-                ", horaLlegada: " + horaLlegada;
+        return "VUELO: " + idVuelo +
+                "\nAeronave: " + aeronave +
+                "\nAeropuerto de origen: " + aeropuertoOrigen.getNombre()+
+                "\nAeropuerto destino: " + aeropuertoDestino.getNombre() +
+                "\nAerolinea: " + companiaAerea.getNombre() +
+                "\nHora de salida: " + horaSalida +
+                "\nHora de llegada: " + horaLlegada;
     }
 }

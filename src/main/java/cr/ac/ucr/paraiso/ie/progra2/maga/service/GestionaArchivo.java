@@ -46,8 +46,9 @@ public class GestionaArchivo {
         Vuelo[] vuelos = gson.fromJson(jsonString, Vuelo[].class);
 
 
+        if (vuelos == null) return "No hay reportes";
         for (Vuelo vuelo : vuelos) {
-            salida +=  vuelo.toString()  + "\n" ;
+            salida +=  vuelo.toString()  + "\n\n" ;
         }
         return salida;
     }

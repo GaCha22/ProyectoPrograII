@@ -1,15 +1,19 @@
 package cr.ac.ucr.paraiso.ie.progra2.maga.servidor;
 
+import cr.ac.ucr.paraiso.ie.progra2.maga.logic.GeneraRandoms;
 import cr.ac.ucr.paraiso.ie.progra2.maga.logic.Protocolo;
+import cr.ac.ucr.paraiso.ie.progra2.maga.model.Aeropuerto;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Solicitud;
 import cr.ac.ucr.paraiso.ie.progra2.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra2.maga.service.GestionaArchivo;
+import javafx.scene.control.Alert;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
 import java.time.LocalTime;
 
 public class MultiServidorHilo extends Thread{
@@ -17,7 +21,7 @@ public class MultiServidorHilo extends Thread{
     private BufferedReader reader;
     private PrintWriter writer;
     private String peticion;
-    private Vuelo vuelo;
+    private final Vuelo vuelo;
     private Solicitud solicitud;
     Protocolo protocolo;
 
@@ -39,11 +43,12 @@ public class MultiServidorHilo extends Thread{
     public void run() {
         try {
             writer.println("Cliente conectado con el servidor");
-            while ((peticion = reader.readLine()) != null) {
-
+            while ((peticion = reader.readLine()) != null && !peticion.equals("desconectar")) {
                 switch (peticion){
                     case "en puerta":
-                    case "despegando":
+                    case "despegado":
+                        vuelo.setHoraSalida(LocalTime.now());
+                        GestionaArchivo.escribirVuelo(vuelo, "reportes.json");
                         protocolo.liberarPista();
                         break;
                     case "esperando":
@@ -52,39 +57,64 @@ public class MultiServidorHilo extends Thread{
                         MultiServidor.setMensaje("actualizar");
                         break;
                     case "aterrizado":
+                        vuelo.setHoraLlegada(LocalTime.now());
+                        GestionaArchivo.escribirVuelo(vuelo, "reportes.json");
+                        cambiarDatosVuelo();
                         break;
                     default:
                         solicitud = GestionaArchivo.jsonASolicitud(peticion);
-                        MultiServidor.setMensaje(peticion);
+                        MultiServidor.addSolicitudesInQueue(solicitud);
                         System.out.println(peticion);
+                        MultiServidor.setMensaje("consume");
+                        MultiServidor.setMensaje("actualizar");
                         MultiServidor.addClientsInQueue(this);
                 }
             }
-        } catch (IOException e) {
+            closeResources(this.socket, this.reader, this.writer);
+        }catch (SocketException e){
+            closeResources(this.socket, this.reader, this.writer);
+        }catch (IOException e) {
             closeResources(this.socket, this.reader, this.writer);
             e.printStackTrace();
         }
 
     }
 
+    private void cambiarDatosVuelo() {
+        vuelo.setHoraSalida(null);
+        vuelo.setHoraLlegada(null);
+        vuelo.setAeropuertoOrigen(MultiServidor.aeropuertoServer);
+        vuelo.setAeropuertoDestino(new Aeropuerto(GeneraRandoms.generaAeropuertoRandom()));
+    }
+
     public void aceptarSolicitud(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText(null);
+        alert.setContentText("");
         switch (solicitud.getSolicitud()){
             case "aterrizar":
-                vuelo.setHoraLlegada(LocalTime.now());
-                GestionaArchivo.escribirVuelo(vuelo, "reportes.json");
-                protocolo.avionAterrizando();
+                if (!protocolo.avionAterrizando()){
+                    alert.setContentText("No hay pistas disponibles");
+                    alert.showAndWait();
+                }
                 break;
             case "despegar":
-                vuelo.setHoraSalida(LocalTime.now());
-                GestionaArchivo.escribirVuelo(vuelo, "reportes.json");
-                protocolo.avionDespegue();
+                if (!protocolo.avionDespegue()){
+                    alert.setContentText("No hay pistas disponibles");
+                    alert.showAndWait();
+                }
                 break;
             case "puerta":
-                protocolo.avionAPuerta();
+                if (!protocolo.avionAPuerta()){
+                    alert.setContentText("No hay puertas disponibles");
+                    alert.showAndWait();
+                }
                 break;
         }
-        this.writer.println("aceptar");
-        MultiServidor.getClientsInQueue().poll();
+        if (alert.getContentText().equals("")){
+            this.writer.println("aceptar");
+            MultiServidor.getClientsInQueue().poll();
+        }
         try {
             sleep(10);
         } catch (InterruptedException e) {

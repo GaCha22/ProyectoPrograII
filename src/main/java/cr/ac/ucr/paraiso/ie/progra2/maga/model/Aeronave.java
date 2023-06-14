@@ -44,7 +44,7 @@ public class Aeronave {
     @Override
     public String toString() {
         return "Placa: " + this.placa +
-                " " + "Tipo: " +
+                ", Tipo: " +
                 (this.tipo == COMERCIAL ? "COMERCIAL" : this.tipo == CARGA ? "CARGA" : "AVIONETA");
     }
 }

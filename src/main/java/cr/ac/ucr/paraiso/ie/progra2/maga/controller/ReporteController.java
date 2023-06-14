@@ -15,7 +15,7 @@ public class ReporteController {
 
     @FXML
     void initialize(){
-        textReporte.setText(gestionaArchivo.generarReporteVuelos("reportes.json"));
+        textReporte.setText(GestionaArchivo.generarReporteVuelos("reportes.json"));
     }
 
     @FXML

@@ -78,7 +78,7 @@ public class ClienteHomeController {
                 clienteController.setTextTXT("Placa: " + aeronave.getPlaca() +
                         "\nTipo: " + tipoSt +
                         "\nAerolínea: " + companiaAerea.getNombre() +
-                        "\nEstado del avión: En el aire");
+                        "\nEstado del avión:\nEN EL AIRE");
                 File archivo = new File("vuelo.json");
                 if (archivo.exists()) {
                     boolean x = archivo.delete();

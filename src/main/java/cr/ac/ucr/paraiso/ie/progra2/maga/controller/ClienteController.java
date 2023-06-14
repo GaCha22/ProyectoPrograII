@@ -63,7 +63,7 @@ public class ClienteController implements PropertyChangeListener {
         Platform.runLater(() -> {
             String textArea = txtaDatos.getText();
             String[] lineas = textArea.split("\n");
-            lineas[3] = "Estado del avión: " + mensaje;
+            lineas[4] = mensaje.toUpperCase();
             String txtaDatos = String.join("\n", lineas);
             this.txtaDatos.setText(txtaDatos);
         });

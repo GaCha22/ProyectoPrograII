@@ -48,11 +48,9 @@ public class ServidorController implements PropertyChangeListener{
     @FXML
     private Button btnMostrarTodos;
     private MultiServidor multiServidor;
-    private Queue<Solicitud> colaDeSolicitudes;
     public static Stage stage;
     @FXML
     void initialize() throws IOException {
-        colaDeSolicitudes = new ArrayDeque<>();
         multiServidor = new MultiServidor(GestionaArchivo.leerArchivoConfiguracion("config.json"));
         multiServidor.agregarPropertyChangeListener(this);
         if (!multiServidor.isAlive()) multiServidor.start();
@@ -71,7 +69,7 @@ public class ServidorController implements PropertyChangeListener{
     void onActionAceptarSolicitud(ActionEvent actionEvent) {
         if(MultiServidor.getClientsInQueue().peek() != null) {
             MultiServidor.getClientsInQueue().peek().aceptarSolicitud();
-            colaDeSolicitudes.poll();
+            MultiServidor.removeSolicitudInQueue();
             setSolicitudSeleccionada();
         }else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -163,15 +161,16 @@ public class ServidorController implements PropertyChangeListener{
         ObservableList<List<String>> data = FXCollections.observableArrayList();
         int count = 0;
         List<String> info = new ArrayList<>();
-        int ni = colaDeSolicitudes.size();
+        int ni = MultiServidor.getSolicitudes().size();
         int i = 0;
         while (i < ni){
-            info.add(colaDeSolicitudes.peek().getVuelo().getAeronave().getPlaca());
-            info.add(colaDeSolicitudes.peek().getVuelo().getCompaniaAerea().getNombre().toUpperCase());
-            info.add(colaDeSolicitudes.peek().getVuelo().getAeronave().getTipo() == 1? "COMERCIAL": colaDeSolicitudes.peek().getVuelo().getAeronave().getTipo() == 2? "CARGA":"AVIONETA");
-            info.add(colaDeSolicitudes.peek().getSolicitud().toUpperCase());
+            Solicitud solicitud = MultiServidor.removeSolicitudInQueue();
+            info.add(solicitud.getVuelo().getAeronave().getPlaca());
+            info.add(solicitud.getVuelo().getCompaniaAerea().getNombre().toUpperCase());
+            info.add(solicitud.getVuelo().getAeronave().getTipo() == 1? "COMERCIAL": solicitud.getVuelo().getAeronave().getTipo() == 2? "CARGA":"AVIONETA");
+            info.add(solicitud.getSolicitud().toUpperCase());
             data.add(info);
-            colaDeSolicitudes.offer(colaDeSolicitudes.poll());
+            MultiServidor.addSolicitudesInQueue(solicitud);
             info = new ArrayList<>();
             i++;
         }
@@ -180,7 +179,7 @@ public class ServidorController implements PropertyChangeListener{
 
     private void setSolicitudSeleccionada(){
         tblSolcitudes.setItems(getData());
-        if (colaDeSolicitudes.peek()!=null) txtaSolicitudSeleccionada.setText(colaDeSolicitudes.peek().getVuelo().getAeronave().getPlaca());
+        if (MultiServidor.peekSolicitudInQueue()!=null) txtaSolicitudSeleccionada.setText(MultiServidor.peekSolicitudInQueue().getVuelo().getAeronave().getPlaca());
         else txtaSolicitudSeleccionada.setText("No hay solicitudes");
     }
 
@@ -188,16 +187,9 @@ public class ServidorController implements PropertyChangeListener{
     public void propertyChange(PropertyChangeEvent evt) {
         String solicitud = (String) evt.getNewValue();
         if (solicitud.equals("actualizar")){
+            setSolicitudSeleccionada();
             txtaPistasDisponibles.setText(MultiServidor.aeropuertoServer.pistasToString());
             txtaPuertasDisponibles.setText(MultiServidor.aeropuertoServer.puertasToString());
-        }else if (solicitud.equals("consume")) {
-
-        }else {
-                colaDeSolicitudes.offer(GestionaArchivo.jsonASolicitud(solicitud));
-                setSolicitudSeleccionada();
-                txtaPistasDisponibles.setText(MultiServidor.aeropuertoServer.pistasToString());
-                txtaPuertasDisponibles.setText(MultiServidor.aeropuertoServer.puertasToString());
-        }
-
+        }else if (solicitud.equals("consume")){}
     }
 }

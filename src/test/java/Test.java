@@ -15,8 +15,8 @@ public class Test {
     GeneraRandoms gR = new GeneraRandoms();
     LocalTime horaSalida = LocalTime.now();
     LocalTime horaLlegada= LocalTime.now();
-    Vuelo vuelo1 = new Vuelo(GeneraRandoms.getIdVuelo(), new Aeronave("CA52432", 2), new Aeropuerto(GeneraRandoms.getAeropuertoOrigen()), new Aeropuerto( "Juan Santamaria"),new CompaniaAerea("compañia 2"),false, horaSalida,horaLlegada);
-    Vuelo vuelo2 = new Vuelo(GeneraRandoms.getIdVuelo(), new Aeronave("AV10953", 3), new Aeropuerto(GeneraRandoms.getAeropuertoOrigen()), new Aeropuerto( "El Dorado"),new CompaniaAerea("compañia 1"),false, horaSalida,horaLlegada);
+    Vuelo vuelo1 = new Vuelo(GeneraRandoms.getIdVuelo(), new Aeronave("CA52432", 2), new Aeropuerto(GeneraRandoms.generaAeropuertoRandom()), new Aeropuerto( "Juan Santamaria"),new CompaniaAerea("compañia 2"),false, horaSalida,horaLlegada);
+    Vuelo vuelo2 = new Vuelo(GeneraRandoms.getIdVuelo(), new Aeronave("AV10953", 3), new Aeropuerto(GeneraRandoms.generaAeropuertoRandom()), new Aeropuerto( "El Dorado"),new CompaniaAerea("compañia 1"),false, horaSalida,horaLlegada);
 
 
     @org.junit.jupiter.api.Test
@@ -44,7 +44,7 @@ public class Test {
     @org.junit.jupiter.api.Test
     public void generaRandomsFunciona(){
         System.out.println(GeneraRandoms.getIdVuelo());
-        System.out.println(GeneraRandoms.getAeropuertoOrigen());
+        System.out.println(GeneraRandoms.generaAeropuertoRandom());
     }
 
 
