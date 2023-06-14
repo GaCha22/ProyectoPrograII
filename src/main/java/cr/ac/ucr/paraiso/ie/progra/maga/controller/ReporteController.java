@@ -10,6 +10,7 @@ public class ReporteController {
     @FXML
     private TextArea textReporte;
 
+    //Se muestran los registros del archivo reportes.json
     @FXML
     void initialize(){
         textReporte.setText(GestionaArchivo.generarReporteVuelos("reportes.json"));

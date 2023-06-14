@@ -14,11 +14,11 @@ public class ClienteMain extends Application {
         stage.setTitle("Piloto");
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.show();
+        stage.show(); //Se muestra la interfaz de clienteHome
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop() throws Exception { //Método que permite cerrar la aplicación del cliente
         System.exit(0);
     }
 
