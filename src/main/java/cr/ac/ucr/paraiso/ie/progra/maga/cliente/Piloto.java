@@ -19,10 +19,12 @@ public class Piloto extends Thread{
     private Socket echoSocket;
     private String propertyMessage;
     private String mensaje;
-    public final Vuelo vuelo = GestionaArchivo.leerVuelo("vuelo.json");
+    public final Vuelo vuelo = GestionaArchivo.leerVuelo("vuelo.json"); //Se lee el vuelo en el archivo.
     private PropertyChangeSupport propertyChangeSupport;
     private Solicitud solicitud;
 
+    //Constructor de piloto, el método permite la conexión del servidor, además de que
+    //de inicializar el propertyChage para los futuros cambios que sucedan en el cliente.
     public Piloto(int puerto){
         this.puerto = puerto;
         this.solicitud = new Solicitud(vuelo, "");
@@ -47,7 +49,7 @@ public class Piloto extends Thread{
                 setMensaje(respuesta + " " + mensaje);
                 if(respuesta.equals("aceptar")) {
                     try {
-                        sleep(2_000);
+                        sleep(10_000);
                         switch (mensaje){
                             case "despegar":
                                 this.writer.println("despegado");
@@ -58,17 +60,17 @@ public class Piloto extends Thread{
                             case "puerta":
                                 this.writer.println("esperando");
                                 setMensaje("esperando");
-//                                switch(vuelo.getAeronave().getTipo()) {
-//                                    case 1: //comercial
-//                                        sleep(120_000);
-//                                        break;
-//                                    case 2: //carga
-//                                        sleep(240_000);
-//                                        break;
-//                                    case 3: //avioneta
-//                                        sleep(60_000);
-//                                        break;
-//                                }
+                                switch(vuelo.getAeronave().getTipo()) {
+                                    case 1: //Comercial
+                                        sleep(120_000); //2 minutos
+                                        break;
+                                    case 2: //Carga
+                                        sleep(240_000); //4 minutos
+                                        break;
+                                    case 3: //Avioneta
+                                        sleep(60_000); //1 minuto
+                                        break;
+                                }
                                 break;
 
                         }

@@ -34,9 +34,11 @@ public class ClienteHomeController {
     @FXML
     public void initialize() {
         File archivo = new File("vuelo.json");
+        //Si el archivo vuelo.json existe se elimina al entrar
         if (archivo.exists()) {
             boolean x = archivo.delete();
         }
+        //Se le da valor a los respectivos ChoiceBox
         ObservableList<String> items = FXCollections.observableArrayList("Avioneta", "Avión comercial", "Avión de carga");
         chbTipo.setItems(items);
         chbTipo.setValue("Tipo de avión");
@@ -45,7 +47,7 @@ public class ClienteHomeController {
         chbAerolinea.setValue("Aerolíneas");
     }
 
-
+    //Método que
     private void loadPage(String page) {
         FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource(page));
         try {
