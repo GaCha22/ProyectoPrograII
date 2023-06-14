@@ -20,14 +20,6 @@
                      <children>
                         <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <HBox alignment="CENTER">
-                                 <children>
-                                    <Button fx:id="btnMostrarTodos" disable="true" mnemonicParsing="false" onAction="#onActionMostrarTodos" styleClass="btnFilter" text="Mostrar todos" />
-                                    <Button fx:id="btnMostrarAterrizando" mnemonicParsing="false" onAction="#onActionMostrarAterrizando" styleClass="btnFilter" text="Aterrizando" />
-                                    <Button fx:id="btnMostrarEnPuerta" mnemonicParsing="false" onAction="#onActionMostrarEnPuerta" styleClass="btnFilter" text="En puerta" />
-                                    <Button fx:id="btnMostrarEnEspera" mnemonicParsing="false" onAction="#onActionMostrarEnEspera" styleClass="btnFilter" text="En Espera" />
-                                 </children>
-                              </HBox>
                               <AnchorPane>
                                  <children>
                                     <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -72,9 +64,9 @@
                      <children>
                         <VBox alignment="CENTER" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button fx:id="btnGenerarReporte" mnemonicParsing="false" onAction="#onActionGenerarReporte" text="Generar Reporte" />
-                              <Button fx:id="btnAceptarSolicitud" mnemonicParsing="false" onAction="#onActionAceptarSolicitud" text="Aceptar solicitud" />
-                              <Button fx:id="btnPonerEnEspera" mnemonicParsing="false" onAction="#onActionEnEsperar" text="Poner en espera" />
+                              <Button mnemonicParsing="false" onAction="#onActionGenerarReporte" text="Generar Reporte" />
+                              <Button mnemonicParsing="false" onAction="#onActionAceptarSolicitud" text="Aceptar solicitud" />
+                              <Button mnemonicParsing="false" onAction="#onActionEnEsperar" text="Poner en espera" />
                            </children>
                         </VBox>
                      </children>

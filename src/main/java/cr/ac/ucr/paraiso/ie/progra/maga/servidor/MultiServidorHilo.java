@@ -6,8 +6,8 @@ import cr.ac.ucr.paraiso.ie.progra.maga.model.Solicitud;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra.maga.service.GestionaArchivo;
 import cr.ac.ucr.paraiso.ie.progra.maga.logic.Protocolo;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,8 +21,10 @@ public class MultiServidorHilo extends Thread{
     private BufferedReader reader;
     private PrintWriter writer;
     private String peticion;
+    private String respuesta;
     private final Vuelo vuelo;
     private Solicitud solicitud;
+    private boolean listaEspera;
     Protocolo protocolo;
 
     public MultiServidorHilo(Socket socket, Vuelo vuelo) {
@@ -30,6 +32,7 @@ public class MultiServidorHilo extends Thread{
             this.vuelo = vuelo;
             this.protocolo = new Protocolo(vuelo);
             this.peticion = null;
+            this.respuesta = "";
             this.socket = socket;
             this.writer = new PrintWriter(this.socket.getOutputStream(), true);
             this.reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
@@ -46,10 +49,13 @@ public class MultiServidorHilo extends Thread{
             while ((peticion = reader.readLine()) != null && !peticion.equals("desconectar")) {
                 switch (peticion){
                     case "en puerta":
+                        break;
                     case "despegado":
+                        protocolo.liberarPista();
+                        MultiServidor.setMensaje("consume");
+                        MultiServidor.setMensaje("actualizar");
                         vuelo.setHoraSalida(LocalTime.now());
                         GestionaArchivo.escribirVuelo(vuelo, "reportes.json");
-                        protocolo.liberarPista();
                         break;
                     case "esperando":
                         protocolo.liberarPuerta();
@@ -64,7 +70,6 @@ public class MultiServidorHilo extends Thread{
                     default:
                         solicitud = GestionaArchivo.jsonASolicitud(peticion);
                         MultiServidor.addSolicitudesInQueue(solicitud);
-                        System.out.println(peticion);
                         MultiServidor.setMensaje("consume");
                         MultiServidor.setMensaje("actualizar");
                         MultiServidor.addClientsInQueue(this);
@@ -88,48 +93,67 @@ public class MultiServidorHilo extends Thread{
     }
 
     public void aceptarSolicitud(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText(null);
-        alert.setContentText("");
+        listaEspera = false;
+        if (respuesta.equals("lista de espera pista")){
+            respuesta = "aceptar";
+            MultiServidor.removeListaEsperaPistas();
+        }else if (respuesta.equals("lista de espera puerta")){
+            respuesta = "aceptar";
+            MultiServidor.removeListaEsperaPuertas();
+
+        }
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setContentText("");
         switch (solicitud.getSolicitud()){
             case "aterrizar":
                 if (!protocolo.avionAterrizando()){
                     alert.setContentText("No hay pistas disponibles");
-                    alert.showAndWait();
+                    respuesta = "lista de espera pista";
+                    Platform.runLater(alert::show);
                     MultiServidor.addListaEsperaPistas(MultiServidor.removeClientInQueue());
+                    listaEspera = true;
                 }
                 break;
             case "despegar":
                 if (!protocolo.avionDespegue()){
                     alert.setContentText("No hay pistas disponibles");
-                    alert.showAndWait();
+                    respuesta = "lista de espera pista";
+                    Platform.runLater(alert::show);
                     MultiServidor.addListaEsperaPistas(MultiServidor.removeClientInQueue());
+                    listaEspera = true;
                 }
                 break;
             case "puerta":
                 if (!protocolo.avionAPuerta()){
                     alert.setContentText("No hay puertas disponibles");
-                    alert.showAndWait();
+                    respuesta = "lista de espera puerta";
+                    Platform.runLater(alert::show);
                     MultiServidor.addListaEsperaPuertas(MultiServidor.removeClientInQueue());
+                    listaEspera = true;
                 }
                 break;
         }
 
-        if (alert.getContentText().equals("")){
-            this.writer.println("aceptar");
+        if (alert.getContentText().equals("") && !listaEspera){
+            respuesta = "aceptar";
             MultiServidor.getClientsInQueue().poll();
-            MultiServidor.removeSolicitudInQueue();
-        }else {
-            this.writer.println("lista de espera");
         }
 
+        this.writer.println(respuesta);
+        MultiServidor.removeSolicitudInQueue();
         MultiServidor.setMensaje("consume");
         MultiServidor.setMensaje("actualizar");
     }
 
     public void ponerEnEspera(){
-        this.writer.println("esperar");
+        respuesta = "esperar";
+        this.writer.println(respuesta);
+        MultiServidor.addSolicitudesInQueue(MultiServidor.removeSolicitudInQueue());
         MultiServidor.getClientsInQueue().offer(MultiServidor.getClientsInQueue().poll());
+        MultiServidor.setMensaje("consume");
+        MultiServidor.setMensaje("actualizar");
     }
 
     private void closeResources(Socket socket, BufferedReader reader, PrintWriter writer){
