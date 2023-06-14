@@ -17,10 +17,6 @@ public class Pista {
         return numPista;
     }
 
-    public void setNumPista(int numPista) {
-        this.numPista = numPista;
-    }
-
     @Override
     public String toString() {
         return "Pista{" +

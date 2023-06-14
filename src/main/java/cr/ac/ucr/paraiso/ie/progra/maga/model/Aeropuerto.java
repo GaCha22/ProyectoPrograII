@@ -37,26 +37,14 @@ public class Aeropuerto {
         return pistas;
     }
 
-    public void setPistas(Pista[] pistas) {
-        this.pistas = pistas;
-    }
-
     public Puerta[] getPuertas() {
         return puertas;
-    }
-
-    public void setPuertas(Puerta[] puertas) {
-        this.puertas = puertas;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
     public String pistasToString(){
         StringBuilder sb = new StringBuilder();
         for (Pista pista: pistas) {
@@ -77,22 +65,6 @@ public class Aeropuerto {
         }
 
         return sb.toString();
-    }
-
-    public void setDisponiblePista(int numPista, boolean disponible){
-        for (Pista pista:pistas) {
-            if(pista.getNumPista() == numPista){
-                pista.setDisponible(disponible);
-            }
-        }
-    }
-
-    public void setDisponiblePuerta(int numPuerta, boolean disponible){
-        for (Puerta puerta:puertas) {
-            if(puerta.getNumPuerta() == numPuerta){
-                puerta.setDisponible(disponible);
-            }
-        }
     }
 
     @Override

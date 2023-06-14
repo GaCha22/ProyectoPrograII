@@ -4,7 +4,6 @@ import cr.ac.ucr.paraiso.ie.progra.maga.model.Aeropuerto;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Solicitud;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra.maga.service.GestionaArchivo;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.BufferedReader;
@@ -18,7 +17,7 @@ public class MultiServidor extends Thread{
     private boolean escuchando = true;
     public static Aeropuerto aeropuertoServer;
     private static Queue<MultiServidorHilo> clientsInQueue = new ArrayDeque<>();
-    private static Queue<Solicitud> solicitudes = new ArrayDeque<>();
+    private static Queue<Solicitud> solicitudesParaMostrar = new ArrayDeque<>();
     private static Queue<MultiServidorHilo> listaDeEsperaPistas = new ArrayDeque<>();
     private static Queue<MultiServidorHilo> listaDeEsperaPuertas = new ArrayDeque<>();
     private static PropertyChangeSupport propertyChangeSupport;
@@ -34,7 +33,6 @@ public class MultiServidor extends Thread{
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(9999);
-            System.out.println("Servidor activo: " + serverSocket.getLocalPort());
             while(escuchando){
                 Socket socketCliente = serverSocket.accept();
                 MultiServidorHilo cliente = new MultiServidorHilo(socketCliente, getIdVuelo(socketCliente));
@@ -69,19 +67,19 @@ public class MultiServidor extends Thread{
     }
 
     public static void addSolicitudesInQueue(Solicitud solicitud){
-        MultiServidor.solicitudes.offer(solicitud);
+        MultiServidor.solicitudesParaMostrar.offer(solicitud);
     }
 
     public static Solicitud removeSolicitudInQueue() {
-        return MultiServidor.solicitudes.poll();
+        return MultiServidor.solicitudesParaMostrar.poll();
     }
 
     public static Solicitud peekSolicitudInQueue(){
-        return solicitudes.peek();
+        return solicitudesParaMostrar.peek();
     }
 
-    public static Queue<Solicitud> getSolicitudes() {
-        return solicitudes;
+    public static Queue<Solicitud> getSolicitudesParaMostrar() {
+        return solicitudesParaMostrar;
     }
 
     public static void addListaEsperaPistas(MultiServidorHilo client) {
@@ -107,10 +105,6 @@ public class MultiServidor extends Thread{
 
     public void agregarPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removerPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(listener);
     }
 
     public static void setMensaje(String nuevoMensaje) {

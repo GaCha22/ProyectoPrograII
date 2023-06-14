@@ -5,7 +5,6 @@ import cr.ac.ucr.paraiso.ie.progra.maga.model.Aeropuerto;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Solicitud;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
 import com.google.gson.Gson;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GestionaArchivo {
-
 
     public static Aeropuerto leerArchivoConfiguracion(String path) {
         Gson gson = new GsonBuilder()

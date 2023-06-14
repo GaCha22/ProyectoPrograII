@@ -86,7 +86,7 @@ public class ClienteController implements PropertyChangeListener {
                 btnIrAPuerta.setDisable(true);
                 btnAterrizar.setDisable(true);
                 btnDespegar.setDisable(false);
-                nuevoEstado("En puerta");
+                nuevoEstado("Listo para despegar");
                 break;
             case "aceptar aterrizar":
                 nuevoEstado("Aterrizando");
@@ -98,6 +98,13 @@ public class ClienteController implements PropertyChangeListener {
                 nuevoEstado("En puerta");
                 break;
             case "esperando":
+                nuevoEstado("Preparando avión");
+                break;
+            case "lista de espera pista":
+            case "lista de espera puerta":
+                nuevoEstado("En lista de espera");
+                break;
+            case "esperar":
                 nuevoEstado("En espera");
                 break;
         }

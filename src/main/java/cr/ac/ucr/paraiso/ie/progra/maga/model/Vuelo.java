@@ -36,33 +36,12 @@ public class Vuelo {
         this.horaLlegada = horaLlegada;
     }
 
-
-    public String getIdVuelo() {
-        return idVuelo;
-    }
-
-    public void setIdVuelo(String idVuelo) {
-        this.idVuelo = idVuelo;
-    }
-
     public Aeronave getAeronave() {
         return aeronave;
     }
 
-    public void setAeronave(Aeronave aeronave) {
-        this.aeronave = aeronave;
-    }
-
-    public Aeropuerto getAeropuertoOrigen() {
-        return aeropuertoOrigen;
-    }
-
     public void setAeropuertoOrigen(Aeropuerto aeropuertoOrigen) {
         this.aeropuertoOrigen = aeropuertoOrigen;
-    }
-
-    public Aeropuerto getAeropuertoDestino() {
-        return aeropuertoDestino;
     }
 
     public void setAeropuertoDestino(Aeropuerto aeropuertoDestino) {
@@ -73,24 +52,8 @@ public class Vuelo {
         return companiaAerea;
     }
 
-    public void setCompaniaAerea(CompaniaAerea companiaAerea) {
-        this.companiaAerea = companiaAerea;
-    }
-
-    public void setEstadoAvion(int estadoAvion) {
-        this.aeronave.setEstado(estadoAvion);
-    }
-
-    public LocalTime getHoraSalida() {
-        return horaSalida;
-    }
-
     public void setHoraSalida(LocalTime horaSalida) {
         this.horaSalida = horaSalida;
-    }
-
-    public LocalTime getHoraLlegada() {
-        return horaLlegada;
     }
 
     public void setHoraLlegada(LocalTime horaLlegada) {

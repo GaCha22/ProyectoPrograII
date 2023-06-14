@@ -8,10 +8,6 @@ public class Aeronave {
     private final int AVIONETA = 3;
     private int estado = 3;
 
-    public Aeronave(int tipo) {
-        this.tipo = tipo;
-    }
-
     public Aeronave(String placa, int tipo) {
         this.placa = placa;
         this.tipo = tipo;
@@ -21,16 +17,8 @@ public class Aeronave {
         return placa;
     }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
     public int getTipo() {
         return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
     }
 
     public int getEstado() {

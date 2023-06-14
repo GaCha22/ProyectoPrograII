@@ -12,11 +12,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-
 import java.io.File;
 import java.io.IOException;
 
 public class ClienteHomeController {
+
     @FXML
     private BorderPane bp;
     @FXML
@@ -40,10 +40,11 @@ public class ClienteHomeController {
         ObservableList<String> items = FXCollections.observableArrayList("Avioneta", "Avión comercial", "Avión de carga");
         chbTipo.setItems(items);
         chbTipo.setValue("Tipo de avión");
-        ObservableList<String> itemsAerolinea = FXCollections.observableArrayList("Avianca", "Iberia", "TACA");
+        ObservableList<String> itemsAerolinea = FXCollections.observableArrayList("Avianca", "Iberia", "TACA", "American Airlines", "Qatar Airways");
         chbAerolinea.setItems(itemsAerolinea);
         chbAerolinea.setValue("Aerolíneas");
     }
+
 
     private void loadPage(String page) {
         FXMLLoader fxmlLoader = new FXMLLoader(ClienteMain.class.getResource(page));
