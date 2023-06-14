@@ -4,7 +4,6 @@ import cr.ac.ucr.paraiso.ie.progra.maga.model.Pista;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Puerta;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra.maga.servidor.MultiServidor;
-import javafx.application.Platform;
 
 import static java.lang.Thread.sleep;
 
@@ -87,12 +86,7 @@ public class Protocolo {
                 pista.setDisponible(true);
                 //Se le quita el valor de la pista al vuelo
                 vuelo.setPistaAsignada(null);
-                if (MultiServidor.getListaDeEsperaPistas().peek() != null) Platform.runLater(() -> {MultiServidor.removeListaEsperaPistas().aceptarSolicitud();});
-                try {
-                    sleep(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                if (MultiServidor.getListaDeEsperaPistas().peek() != null) MultiServidor.removeListaEsperaPistas().aceptarSolicitud();
             }
         }
     }
@@ -104,12 +98,7 @@ public class Protocolo {
                 puerta.setDisponible(true);
                 //Se le quita el valor de la puerta al vuelo
                 vuelo.setPuertaAsignada(null);
-                if (MultiServidor.getListaDeEsperaPuertas().peek() != null) Platform.runLater(() -> {MultiServidor.removeListaEsperaPuertas().aceptarSolicitud();});
-                try {
-                    sleep(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                if (MultiServidor.getListaDeEsperaPuertas().peek() != null) MultiServidor.removeListaEsperaPuertas().aceptarSolicitud();
             }
         }
     }

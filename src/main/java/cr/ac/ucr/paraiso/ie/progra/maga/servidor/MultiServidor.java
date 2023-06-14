@@ -23,11 +23,18 @@ public class MultiServidor extends Thread{
     private static PropertyChangeSupport propertyChangeSupport;
     private static String mensaje;
 
-    public MultiServidor(Aeropuerto aeropuerto) {
+
+    public MultiServidor(Aeropuerto aeropuerto) { //constructor de multiservidor
         aeropuertoServer = aeropuerto;
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
+
+    /** run()
+     * Ejecuta el servidor en un hilo separado.
+     * Acepta conexiones de clientes y crea un hilo MultiServidorHilo para manejar cada cliente.
+     * El método se ejecuta continuamente mientras el servidor está en modo de escucha.
+     */
     @Override
     public void run() {
         ServerSocket serverSocket = null;
@@ -43,7 +50,7 @@ public class MultiServidor extends Thread{
         }
     }
 
-    private Vuelo getIdVuelo(Socket clientSocket){
+    private Vuelo getIdVuelo(Socket clientSocket){ //Obtiene el ID del vuelo del cliente a través del socket.
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
