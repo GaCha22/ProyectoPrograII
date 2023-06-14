@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bp" prefHeight="575.0" prefWidth="890.0" styleClass="borderpane" stylesheets="@../Stylesheets/serverStylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.paraiso.ie.progra2.maga.controller.ReporteController">
+<BorderPane fx:id="bp" prefHeight="575.0" prefWidth="890.0" styleClass="borderpane" stylesheets="@../Stylesheets/serverStylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.paraiso.ie.progra.maga.controller.ReporteController">
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
