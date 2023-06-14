@@ -15,40 +15,42 @@ import java.util.List;
 
 public class GestionaArchivo {
 
-    public static Aeropuerto leerArchivoConfiguracion(String path) {
+    public static Aeropuerto leerArchivoConfiguracion(String path) { //Se lee el archivo de configuración del aeropuerto destino.
+        // Se crea una instancia de Gson con un adaptador de tipo LocalTimeTypeAdapter existente.
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
                 .create();
         Aeropuerto aeropuerto = null;
         try (FileReader reader = new FileReader(path)) {
-            aeropuerto = gson.fromJson(reader, Aeropuerto.class);
+            aeropuerto = gson.fromJson(reader, Aeropuerto.class); //El contenido del archivo json se convierte en un objeto aeropuerto.
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return aeropuerto;
+        return aeropuerto; //Se retorna el objeto aeropuerto
     }
 
     public static String generarReporteVuelos(String path) {
-        String jsonString;
-        String salida = "";
+        String jsonString; //Variable para almacenar el contenido del archivo JSON en formato de String
+
+                String salida = ""; // String que contendrá el reporte de vuelos
         try {
-            jsonString = new String(Files.readAllBytes(Paths.get(path)));
+            jsonString = new String(Files.readAllBytes(Paths.get(path))); //Lee el contenido del archivo en forma de bytes y lo convierte a un String.
         } catch (IOException e) {
-            throw new RuntimeException("Error al leer el archivo: " + e.getMessage(), e);
+            throw new RuntimeException("Error al leer el archivo: " + e.getMessage(), e); //Se lanza una excepción si hay un error al leer el archivo.
         }
-        Gson gson = new GsonBuilder()
+        Gson gson = new GsonBuilder() //Intancia de Gson con LocalTimeTypeAdapter
                 .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
                 .create();
 
-        Vuelo[] vuelos = gson.fromJson(jsonString, Vuelo[].class);
+        Vuelo[] vuelos = gson.fromJson(jsonString, Vuelo[].class); //Se convierte el contenido del archivo JSON en un array de objetos Vuelo
 
 
         if (vuelos == null) return "No hay reportes";
         for (Vuelo vuelo : vuelos) {
-            salida +=  vuelo.toString()  + "\n\n" ;
+            salida +=  vuelo.toString()  + "\n\n" ; //Si existen vuelos entonces se concatena su información en la variable que se va a retornar, así se imprime el reporte.
         }
-        return salida;
+        return salida; //Se retorna el reporte de vuelos como un String.
     }
 
     public static String classAJson(Object solicitud){
@@ -71,19 +73,19 @@ public class GestionaArchivo {
         return solicitud;
     }
 
-    public static Vuelo leerVuelo(String path) {
+    public static Vuelo leerVuelo(String path) { //Método que se encarga de leer un solo vuelo.
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
                 .create();
 
         Vuelo vuelo = null;
         try (FileReader reader = new FileReader(path)) {
-            vuelo =  gson.fromJson(reader, Vuelo.class);
+            vuelo =  gson.fromJson(reader, Vuelo.class); //Se convierte el contenido del archivo en un objeto Vuelo.
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return vuelo;
+        return vuelo; //Se retorna el vuelo leído.
     }
 
     public static Vuelo jsonAVuelo(String json){
@@ -133,7 +135,7 @@ public class GestionaArchivo {
                 throw new RuntimeException(e);
             }
         }
-
+// Se crea una instancia de Gson con un adaptador de tipo LocalTimeTypeAdapter
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
                 .create();
@@ -164,9 +166,14 @@ public class GestionaArchivo {
     // archivos txt
     public void registrarPlacas(String placa, String nombreArchivo) {
         try {
+            // Crea un BufferedWriter que permite escribir en el archivo especificado en modo (true), es decir que no borra el contenido existente del archivo
             BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo, true));
+
+            // Escribe la placa en una nueva línea del archivo
             writer.write(placa);
             writer.newLine();
+
+            // Cierra el BufferedWriter para asegurar que los cambios se guarden en el archivo
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -175,10 +182,10 @@ public class GestionaArchivo {
 
     public boolean buscarPlacaEnArchivo(String placa, String nombreArchivo) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo));
+            BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo)); //BufferedReader que permite leer el contenido del archivo
             String linea;
             while ((linea = reader.readLine()) != null) {
-                if (linea.equals(placa)) {
+                if (linea.equals(placa)) { //Se compara cada línea del archivo con la placa buscada
                     reader.close();
                     return true; // La placa se encontró en el archivo
                 }

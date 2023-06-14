@@ -4,7 +4,6 @@ import cr.ac.ucr.paraiso.ie.progra.maga.model.Pista;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Puerta;
 import cr.ac.ucr.paraiso.ie.progra.maga.model.Vuelo;
 import cr.ac.ucr.paraiso.ie.progra.maga.servidor.MultiServidor;
-import javafx.application.Platform;
 
 import static java.lang.Thread.sleep;
 
@@ -16,7 +15,7 @@ public class Protocolo {
         this.vuelo = vuelo;
     }
 
-    public boolean avionAterrizando(){
+    public synchronized boolean avionAterrizando(){
         if(!aeropuerto.pistasDisponibles() && vuelo.getAeronave().getEstado() == 3){
             return false;
         }
@@ -26,7 +25,7 @@ public class Protocolo {
     }
 
     //si hay puertas disponibles, y si el avion esta en puerta, entonces lo pone a esperar un tiempo respectivo
-    public boolean avionAPuerta(){
+    public synchronized boolean avionAPuerta(){
         if (!aeropuerto.puertasDisponibles() && vuelo.getAeronave().getEstado() == 1){
                 return false;
         }
@@ -38,8 +37,8 @@ public class Protocolo {
         }
 
 
-    public boolean avionDespegue() {
-        if (!aeropuerto.pistasDisponibles() && vuelo.getAeronave().getEstado() == 2) {
+    public synchronized boolean avionDespegue() {
+        if (!aeropuerto.pistasDisponibles() && vuelo.getAeronave().getEstado() == 0) {
                 return false;
         }
         utilityPistas();
@@ -48,8 +47,7 @@ public class Protocolo {
         return true;
     }
 
-    //gestiona puertas disponibles en el aeropuerto destino
-    private void utilityPuertas() {
+    private synchronized void utilityPuertas() {
         if (aeropuerto.puertasDisponibles()) {
             for (int i = 0; i < aeropuerto.getPuertas().length; i++) {
                 Puerta puerta = aeropuerto.getPuertas()[i];
@@ -63,7 +61,7 @@ public class Protocolo {
     }
 
     //gestiona pistas en el aeropuerto destino
-    private void utilityPistas() {
+    private synchronized void utilityPistas() {
         if (aeropuerto.pistasDisponibles()) {
             for (int i = 0; i < aeropuerto.getPistas().length; i++) {
                 Pista pista = aeropuerto.getPistas()[i];
@@ -81,12 +79,7 @@ public class Protocolo {
             if (pista == vuelo.getPistaAsignada()){
                 pista.setDisponible(true);
                 vuelo.setPistaAsignada(null);
-                if (MultiServidor.getListaDeEsperaPistas().peek() != null) Platform.runLater(() -> {MultiServidor.removeListaEsperaPistas().aceptarSolicitud();});
-                try {
-                    sleep(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                if (MultiServidor.getListaDeEsperaPistas().peek() != null) MultiServidor.removeListaEsperaPistas().aceptarSolicitud();
             }
         }
     }
@@ -96,12 +89,7 @@ public class Protocolo {
             if (puerta == vuelo.getPuertaAsignada()){
                 puerta.setDisponible(true);
                 vuelo.setPuertaAsignada(null);
-                if (MultiServidor.getListaDeEsperaPuertas().peek() != null) Platform.runLater(() -> {MultiServidor.removeListaEsperaPuertas().aceptarSolicitud();});
-                try {
-                    sleep(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                if (MultiServidor.getListaDeEsperaPuertas().peek() != null) MultiServidor.removeListaEsperaPuertas().aceptarSolicitud();
             }
         }
     }

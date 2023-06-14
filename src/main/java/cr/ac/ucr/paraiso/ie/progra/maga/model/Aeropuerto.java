@@ -1,6 +1,7 @@
 package cr.ac.ucr.paraiso.ie.progra.maga.model;
 
-public class Aeropuerto {
+public class
+Aeropuerto {
     private Pista[] pistas;
     private Puerta[] puertas;
     private String nombre;
