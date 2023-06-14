@@ -12,6 +12,7 @@ public class Aeropuerto {
         this.nombre = nombre;
     }
 
+    //Método que comprueba las pistas disponibles
     public boolean pistasDisponibles(){
         boolean despegar = false;
 
@@ -23,6 +24,7 @@ public class Aeropuerto {
         return despegar;
     }
 
+    //Método que comprueba las puertas disponibles
     public boolean puertasDisponibles(){
         boolean puertaDisponible = false;
         for(Puerta puerta : puertas){
