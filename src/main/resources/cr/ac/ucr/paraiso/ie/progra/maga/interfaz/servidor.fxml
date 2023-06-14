@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="bp" prefHeight="575.0" prefWidth="890.0" styleClass="borderpane" stylesheets="@../Stylesheets/serverStylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.paraiso.ie.progra.maga.controller.ServidorController">
+   <center>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <HBox spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane>
+                     <children>
+                        <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="btnMostrarTodos" disable="true" mnemonicParsing="false" onAction="#onActionMostrarTodos" styleClass="btnFilter" text="Mostrar todos" />
+                                    <Button fx:id="btnMostrarAterrizando" mnemonicParsing="false" onAction="#onActionMostrarAterrizando" styleClass="btnFilter" text="Aterrizando" />
+                                    <Button fx:id="btnMostrarEnPuerta" mnemonicParsing="false" onAction="#onActionMostrarEnPuerta" styleClass="btnFilter" text="En puerta" />
+                                    <Button fx:id="btnMostrarEnEspera" mnemonicParsing="false" onAction="#onActionMostrarEnEspera" styleClass="btnFilter" text="En Espera" />
+                                 </children>
+                              </HBox>
+                              <AnchorPane>
+                                 <children>
+                                    <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <Label text="Solicitudes" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                          <TableView fx:id="tblSolcitudes" prefHeight="230.0" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <HBox spacing="20.0">
+                                 <children>
+                                    <VBox alignment="CENTER" spacing="5.0">
+                                       <children>
+                                          <Label text="Solicitud Seleccionada" />
+                                          <TextArea fx:id="txtaSolicitudSeleccionada" editable="false" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" spacing="5.0">
+                                       <children>
+                                          <Label text="Pistas disponibles" />
+                                          <TextArea fx:id="txtaPistasDisponibles" editable="false" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" spacing="5.0">
+                                       <children>
+                                          <Label text="Puertas disponibles" />
+                                          <TextArea fx:id="txtaPuertasDisponibles" editable="false" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <VBox alignment="CENTER" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button fx:id="btnGenerarReporte" mnemonicParsing="false" onAction="#onActionGenerarReporte" text="Generar Reporte" />
+                              <Button fx:id="btnAceptarSolicitud" mnemonicParsing="false" onAction="#onActionAceptarSolicitud" text="Aceptar solicitud" />
+                              <Button fx:id="btnPonerEnEspera" mnemonicParsing="false" onAction="#onActionEnEsperar" text="Poner en espera" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <padding>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </padding>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
